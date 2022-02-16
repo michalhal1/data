@@ -39,7 +39,7 @@
       </div>
 
       <a href="tender_create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy przetarg</a>
-      <a href="contractor_new.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Nowy zamawiający</a>
+      <a href="contractor_ne.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Nowy zamawiający</a>
 
     </div>
     <br />
