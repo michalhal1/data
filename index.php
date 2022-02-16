@@ -55,6 +55,7 @@
 
     load_data();
 
+
     function load_data(query) {
       $.ajax({
         url: "fetch.php",
