@@ -12,7 +12,7 @@
 
   <style>
     .input-group-prepend {
-      width: 55%;
+      width: 55%; 
       padding-right: 5%;
     }
 
@@ -73,4 +73,5 @@
       }
     });
   });
+  
 </script>
