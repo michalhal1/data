@@ -5,7 +5,7 @@ require_once "config.php";
 
 
 // Define variables and initialize with empty values
-$tnd_number  = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+$nd_number  = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
 $tnd_number_err  = $tnd_contractor_err = $tnd_type_err = $tnd_segment_err = $tnd_announce_date_err = $tnd_submit_date_err =  "";
 
 // Processing form data when form is submitted
