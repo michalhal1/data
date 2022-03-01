@@ -34,8 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE lead off
     $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value)) {
-        if (!is_numeric($input_contract_value))
+    if (empty($input_contract_value) or (!is_numeric($input_contract_value))) {
         $off_contract_value_err = "Wpisz wartość oferty";
     } else {
         $off_contract_value = $input_contract_value;
@@ -57,15 +56,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_points1 = $input_off_points1;
     }
 
+    $input_off_points2 = trim($_POST["points2"]);
+    if (!empty($input_off_points2)) {
+        if (!is_numeric($input_off_points2))
+            $off_points2_err = "Wpisz wartość liczbową";
+    } else {
+        $off_points2 = $input_off_points2;
+    }
 
-    $off_points1 = trim($_POST["points1"]);
-    $off_points2 = trim($_POST["points2"]);
-    $off_points3 = trim($_POST["points3"]);
-    $off_points4 = trim($_POST["points4"]);
-    $off_points5 = trim($_POST["points5"]);
-    $off_remarks = trim($_POST["remarks"]);
+    $input_off_points3 = trim($_POST["points3"]);
+    if (!empty($input_off_points3)) {
+        if (!is_numeric($input_off_points3))
+            $off_points3_err = "Wpisz wartość liczbową";
+    } else {
+        $off_points3 = $input_off_points3;
+    }
 
-    if (empty($off_contract_value_err) && empty($off_lead_off_err) && empty($off_points1_err)) {
+    $input_off_points4 = trim($_POST["points4"]);
+    if (!empty($input_off_points4)) {
+        if (!is_numeric($input_off_points4))
+            $off_points4_err = "Wpisz wartość liczbową";
+    } else {
+        $off_points4 = $input_off_points4;
+    }
+
+    $input_off_points5 = trim($_POST["points5"]);
+    if (!empty($input_off_points5)) {
+        if (!is_numeric($input_off_points5))
+            $off_points5_err = "Wpisz wartość liczbową";
+    } else {
+        $off_points5 = $input_off_points5;
+    }
+
+
+
+
+    if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err)&& empty($off_points5_err) ) {
         // Prepare an insert statement
 
         $off_job_id = trim($_POST["paramid"]);
