@@ -13,7 +13,7 @@ require_once "config.php";
 
 
 // Define variables and initialize with empty values
-$off_lead_off  = $off_key_offeror1 = $off_key_offeror2 = $off_key_offeror3 = $off_key_offeror4  = $doff_key_offeror5 = $off_contract_value = $off_points1 = $off_points2 = $off_points3 = $off_points4 = $off_points5 = $off_remarks ="";
+$off_lead_off  = $off_key_offeror1 = $off_key_offeror2 = $off_key_offeror3 = $off_key_offeror4  = $doff_key_offeror5 = $off_contract_value = $off_points1 = $off_points2 = $off_points3 = $off_points4 = $off_points5 = $off_remarks = "";
 $off_lead_off_err  = $off_key_offeror1_err = $off_key_offeror2_err = $off_key_offeror3_err = $off_key_offeror4_err  = $off_key_offeror5_err = $off_contract_value_err = $off_points1_err = $off_points2_err = $off_points3_err = $off_points4_err = $off_points5_err = "";
 
 // Processing form data when form is submitted
@@ -50,48 +50,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // VALIDATE point1
     $input_off_points1 = trim($_POST["points1"]);
     if (!empty($input_off_points1)) {
-        if (!is_numeric($input_off_points1))
+        if (!is_numeric($input_off_points1)) {
             $off_points1_err = "Wpisz wartość liczbową";
+        } elseif ($input_off_points1 > 100) {
+            $off_points1_err = "Wartość kryterium nie może być większe niż 100";
+        }
     } else {
         $off_points1 = $input_off_points1;
     }
-
-    $input_off_points2 = trim($_POST["points2"]);
+    // VALIDATE point2
+      $input_off_points2 = trim($_POST["points2"]);
     if (!empty($input_off_points2)) {
-        if (!is_numeric($input_off_points2))
+        if (!is_numeric($input_off_points2)) {
             $off_points2_err = "Wpisz wartość liczbową";
+        } elseif ($input_off_points2 > 100) {
+            $off_points2_err = "Wartość kryterium nie może być większe niż 100";
+        }
     } else {
         $off_points2 = $input_off_points2;
     }
-
+    // VALIDATE point3
     $input_off_points3 = trim($_POST["points3"]);
     if (!empty($input_off_points3)) {
-        if (!is_numeric($input_off_points3))
-            $off_points3_err = "Wpisz wartość liczbową";
+        if (!is_numeric($input_off_points3)) {
+            $off_points1_err = "Wpisz wartość liczbową";
+        } elseif ($input_off_points3 > 100) {
+            $off_points3_err = "Wartość kryterium nie może być większe niż 100";
+        }
     } else {
         $off_points3 = $input_off_points3;
     }
-
+    // VALIDATE point4
     $input_off_points4 = trim($_POST["points4"]);
     if (!empty($input_off_points4)) {
-        if (!is_numeric($input_off_points4))
-            $off_points4_err = "Wpisz wartość liczbową";
+        if (!is_numeric($input_off_points4)) {
+            $off_points1_err = "Wpisz wartość liczbową";
+        } elseif ($input_off_points4 > 100) {
+            $off_points1_err = "Wartość kryterium nie może być większe niż 100";
+        }
     } else {
         $off_points4 = $input_off_points4;
     }
-
+    // VALIDATE point5
     $input_off_points5 = trim($_POST["points5"]);
     if (!empty($input_off_points5)) {
-        if (!is_numeric($input_off_points5))
+        if (!is_numeric($input_off_points5)) {
             $off_points5_err = "Wpisz wartość liczbową";
+        } elseif ($input_off_points1 > 100) {
+            $off_points5_err = "Wartość kryterium nie może być większe niż 100";
+        }
     } else {
-        $off_points5 = $input_off_points5;
+        $off_points5 = $input_off_points1;
     }
 
 
 
 
-    if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err)&& empty($off_points5_err) ) {
+    if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err)) {
         // Prepare an insert statement
 
         $off_job_id = trim($_POST["paramid"]);
@@ -110,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_key_offeror3 = $off_key_offeror3;
             $param_off_key_offeror4 = $off_key_offeror4;
             $param_off_contract_value = $off_contract_value;
-     
+
             $param_off_points1 = $off_points1;
             $param_off_points2 = $off_points2;
             $param_off_points3 = $off_points3;
@@ -132,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: offerors_ok.php");
                 // echo $_POST['off_winner'];
                 // echo trim($_POST["inputname"]); 
-               // echo $off_points1;
+                // echo $off_points1;
                 exit();
             } else {
                 echo "Ups! Wystąpił błąd";
@@ -261,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
 
-               
+
                     if ($stmt3 = mysqli_prepare($link, $selected_keyoff_sql)) {
                         // Bind variables to the prepared statement as parameters
                         mysqli_stmt_bind_param($stmt3, "i", $off_key_offeror2);
@@ -520,7 +535,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group col-md-4">
                         <label for="off_value">Uwagi</label>
                         <input type="text" id="remarks" name="remarks" class="form-control" value="<?php echo $off_remarks; ?>">
-                       
+
                     </div>
                 </div>
 
