@@ -495,35 +495,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     });
                 </script>
 
+
+<?php 
+//tutaj sprawdzamy, które kryteria są wypelnione w tasks.php
+
+$sql_crit = 'SELECT case when job_criteria_id1 is null  or length(job_criteria_id1) = 0 then 1 else 0 end as crit1,
+case when job_criteria_id2 is null  or length(job_criteria_id2) = 0 then 1 else 0 end as crit2,
+case when job_criteria_id3 is null  or length(job_criteria_id3) = 0 then 1 else 0 end as crit3,
+case when job_criteria_id4 is null  or length(job_criteria_id4) = 0 then 1 else 0 end as crit4,
+case when job_criteria_id5 is null  or length(job_criteria_id5) = 0 then 1 else 0 end as crit5
+FROM tenders_test.tenders_jobs
+where job_id = ?';
+
+   if ($stmt_crit = mysqli_prepare($link, $sql_crit)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt_crit, "i", $_SESSION['paramid'] );
+
+    if (mysqli_stmt_execute($stmt_crit)) {
+        $result_crit = mysqli_stmt_get_result($stmt_crit);
+        $row_crit = mysqli_fetch_array($result_crit);
+        //
+        if (!$row_crit == NULL) {
+            $crit1_db = $row_crit[0];
+        } else {
+            $crit1_db = 0;
+        }
+        
+
+        if (!$row_crit == NULL) {
+            $crit2_db = $row_crit[1];
+        } else {
+            $crit2_db = 0;
+        }
+
+        if (!$row_crit == NULL) {
+            $crit3_db = $row_crit[2];
+        } else {
+            $crit3_db = 0;
+        }
+
+        if (!$row_crit == NULL) {
+            $crit4_db = $row_crit[3];
+        } else {
+            $crit4_db = 0;
+        }
+
+        if (!$row_crit == NULL) {
+            $crit5_db = $row_crit[4];
+        } else {
+            $crit5_db = 0;
+        }
+
+    }
+}
+
+
+?>
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="points1">Punkty kryterium 1</label>
-                        <input type="text" id="points1" name="points1" class="form-control <?php echo (!empty($off_points1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points1; ?>">
+                        <input type="text" id="points1" name="points1" class="form-control <?php echo (!empty($off_points1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points1; ?>" <?php echo ($crit1_db==1) ? 'disabled' : ''; ?>>
                         <span class="invalid-feedback"><?php echo $off_points1_err; ?></span>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points2">Punkty kryterium 2</label>
-                        <input type="text" id="points2" name="points2" class="form-control <?php echo (!empty($off_points2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points2; ?>">
+                        <input type="text" id="points2" name="points2" class="form-control <?php echo (!empty($off_points2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points2; ?>" <?php echo ($crit2_db==1) ? 'disabled' : '' ;?>>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points3">Punkty kryterium 3</label>
-                        <input type="text" id="points3" name="points3" class="form-control <?php echo (!empty($off_points3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points3; ?>">
+                        <input type="text" id="points3" name="points3" class="form-control <?php echo (!empty($off_points3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points3; ?>"<?php echo ($crit3_db==1) ? 'disabled' : ''; ?>>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points4">Punkty kryterium 4</label>
-                        <input type="text" id="points4" name="points4" class="form-control <?php echo (!empty($off_points4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points4; ?>">
+                        <input type="text" id="points4" name="points4" class="form-control <?php echo (!empty($off_points4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points4; ?>"<?php echo ($crit4_db==1) ? 'disabled' : '' ?>>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points5">Punkty kryterium 5</label>
-                        <input type="text" id="points5" name="points5" class="form-control <?php echo (!empty($off_points5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points5; ?>">
+                        <input type="text" id="points5" name="points5" class="form-control <?php echo (!empty($off_points5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points5; ?>" <?php echo ($crit5_db==1) ? 'disabled' : '' ?>>
                         </select>
                     </div>
                 </div>
