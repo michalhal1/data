@@ -105,83 +105,83 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($crit1_db == 0) {
         $input_off_points1 = trim($_POST["points1"]);
     }
-    
-    if (!empty($input_off_points1)) {
-        if (!is_numeric($input_off_points1)) {
-            $off_points1_err = "Wpisz wartość liczbową";
-        } elseif ($input_off_points1 > 100) {
-            $off_points1_err = "Wartość kryterium nie może być większe niż 100";
-        }
+
+
+    if (empty($input_off_points1)) {
+        $off_points1 = NULL;
+    } elseif (!is_numeric($input_off_points1)) {
+        $off_points1_err = "Wpisz wartość liczbową";
+    } elseif ($input_off_points2 > 100) {
+        $off_points1_err = "Wartość kryterium nie może być większe niż 100";
     } else {
         $off_points1 = $input_off_points1;
     }
 
-    
     // VALIDATE point2
     if ($crit2_db == 0) {
         $input_off_points2 = trim($_POST["points2"]);
     }
 
-
-    if (!empty($input_off_points2)) {
-        if (!is_numeric($input_off_points2)) {
-            $off_points2_err = "Wpisz wartość liczbową";
-        } elseif ($input_off_points2 > 100) {
-            $off_points2_err = "Wartość kryterium nie może być większe niż 100";
-        }
+    if (empty($input_off_points2)) {
+        $off_points2 = NULL;
+    } elseif (!is_numeric($input_off_points2)) {
+        $off_points2_err = "Wpisz wartość liczbową";
+    } elseif ($input_off_points2 > 100) {
+        $off_points2_err = "Wartość kryterium nie może być większe niż 100";
     } else {
-        if ($crit2_db == 0) {
-            $off_points2 = $input_off_points2;
-        }
+        $off_points2 = $input_off_points2;
     }
+
     // VALIDATE point3
     if ($crit3_db == 0) {
         $input_off_points3 = trim($_POST["points3"]);
     }
 
-    if (!empty($input_off_points3)) {
-        if (!is_numeric($input_off_points3)) {
-            $off_points1_err = "Wpisz wartość liczbową";
-        } elseif ($input_off_points3 > 100) {
-            $off_points3_err = "Wartość kryterium nie może być większe niż 100";
-        }
+    if (empty($input_off_points3)) {
+        $off_points3 = NULL;
+    } elseif (!is_numeric($input_off_points3)) {
+        $off_points3_err = "Wpisz wartość liczbową";
+    } elseif ($input_off_points3 > 100) {
+        $off_points3_err = "Wartość kryterium nie może być większe niż 100";
     } else {
-        if ($crit3_db == 0) {
-            $off_points3 = $input_off_points3;
-        }
+        $off_points3 = $input_off_points3;
     }
+
+
     // VALIDATE point4
     if ($crit4_db == 0) {
         $input_off_points4 = trim($_POST["points4"]);
     }
 
-    if (!empty($input_off_points4)) {
-        if (!is_numeric($input_off_points4)) {
-            $off_points4_err = "Wpisz wartość liczbową";
-        } elseif ($input_off_points4 > 100) {
-            $off_points4_err = "Wartość kryterium nie może być większe niż 100";
-        }
-    } else {
-        if ($crit4_db == 0) {
-            $off_points4 = $input_off_points4;
-        }
+
+    if ($crit3_db == 0) {
+        $input_off_points4 = trim($_POST["points4"]);
     }
+
+    if (empty($input_off_points4)) {
+        $off_points4 = NULL;
+    } elseif (!is_numeric($input_off_points4)) {
+        $off_points4_err = "Wpisz wartość liczbową";
+    } elseif ($input_off_points4 > 100) {
+        $off_points4_err = "Wartość kryterium nie może być większe niż 100";
+    } else {
+        $off_points4 = $input_off_points4;
+    }
+
+
     // VALIDATE point5
     if ($crit5_db == 0) {
         $input_off_points5 = trim($_POST["points5"]);
     }
 
-
-    if (!empty($input_off_points5)) {
-        if (!is_numeric($input_off_points5)) {
-            $off_points5_err = "Wpisz wartość liczbową";
-        } elseif ($input_off_points1 > 100) {
-            $off_points5_err = "Wartość kryterium nie może być większe niż 100";
-        }
+    if (empty($input_off_points5)) {
+        $off_points5 = NULL;
+    } elseif (!is_numeric($input_off_points5)) {
+        $off_points5_err = "Wpisz wartość liczbową";
+    } elseif ($input_off_points5 > 100) {
+        $off_points5_err = "Wartość kryterium nie może być większe niż 100";
     } else {
-        if ($crit5_db == 0) {
-            $off_points5 = $input_off_points5;
-        }
+        $off_points5 = $input_off_points4;
     }
 
     $sql_winn = 'SELECT sum(off_iswinner) as iswinner FROM tenders_test.tenders_jobs
@@ -204,10 +204,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     //validate winner
+    if (isset($_POST['off_winner'])) {
+        if ($_POST['off_winner'] == '1') {
+            $off_winn = 1;
+        }
+    } else {
+        $off_winn = 0;
+    }
 
-    if ($winn_db > 0 && ($_POST['off_winner'] == '1')) {
-        $off_winner_err = 'Zwycięzca już istnieje';?>
-        <div class="alert alert-danger"><?php echo $input_off_points1 ; ?> </div>
+    if ($winn_db > 0 && ($off_winn == '1')) {
+        $off_winner_err = 'Zwycięzca już istnieje'; ?>
+        <div class="alert alert-danger"><?php echo $off_winner_err; ?> </div>
 <?php
     }
 
@@ -239,14 +246,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_points4 = $off_points4;
             $param_off_points5 = $off_points5;
             $param_off_remarks = $off_remarks;
+            $param_off_iswinner = $off_winn;
 
-
-
-            if ($_POST['off_winner'] == '1') {
-                $param_off_iswinner = 1;
-            } else {
-                $param_off_iswinner = 0;
-            }
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
