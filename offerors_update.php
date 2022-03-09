@@ -268,6 +268,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_close($stmt);
         }
     }
+} else {
+    // Check existence of id parameter before processing further
+    
+    if (isset( $_SESSION['paramid']))  {
+        // Get URL parameter
+        $id =   $_SESSION['paramid'];
+        
+        $sql = "SELECT * FROM  tenders_test.offerors  WHERE off_job_id = ? and off_id=12";
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
+
+            // Set parameters
+            $param_id = $id;
+
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+
+                if (mysqli_num_rows($result) == 1) {
+                    /* Fetch result row as an associative array. Since the result set
+                    contains only one row, we don't need to use while loop */
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                    //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+                    // Retrieve individual field value
+                    $off_leading_oferor = $row["off_leading_offeror"];
+                    $off_key_offeror1 = $row["off_key_offeror1"];
+                    $off_key_offeror2 = $row["off_key_offeror2"];
+                    $off_key_offeror3 = $row["off_key_offeror3"];
+                    $off_key_offeror4 = $row["off_key_offeror4"];
+                    $off_contract_value = $row["off_contract_value"];
+                    $off_points_crit1 = $row["off_points_crit1"];
+                    $off_points_crit2 = $row["off_points_crit2"];
+                    $off_points_crit3 = $row["off_points_crit3"];
+                    $off_points_crit4 = $row["off_points_crit4"];
+                    $off_points_crit5 = $row["off_points_crit5"];
+                    $off_remarks = $row["off_remarks"];
+                    $off_iswinner = $row["off_iswinner"];
+                 
+
+                } else {
+                    // URL doesn't contain valid id. Redirect to error page
+                    header("location: error.php");
+                    exit();
+                }
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+            mysqli_stmt_close($stmt);
+        }
+
+        // Close statement
+
+
+        // Close connection
+
+    } else {
+        // URL doesn't contain id parameter. Redirect to error page
+        header("location: error.php");
+        exit();
+    }
+
 
     // Close connection
 }
@@ -355,7 +417,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($stmt3 = mysqli_prepare($link, $selected_keyoff_sql)) {
                         // Bind variables to the prepared statement as parameters
-                        mysqli_stmt_bind_param($stmt3, "i", $off_lead_off);
+                        mysqli_stmt_bind_param($stmt3, "i", $off_leading_oferor);
 
                         if (mysqli_stmt_execute($stmt3)) {
                             $result_keyoff_name = mysqli_stmt_get_result($stmt3);

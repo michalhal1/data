@@ -5,7 +5,7 @@ if (isset($_GET["job_id"])) {
     $_SESSION['paramid'] = $paramid;
 };?>
 
-<?php echo $_SESSION['paramid'] ?>
+
 <html>
 
 <head>
@@ -125,7 +125,7 @@ if (isset($_GET["job_id"])) {
     <td nowrap>' . $row["tend_type_name"] . '</td>
     <td nowrap>' . $row["tnd_creation_worker"] . '</td>
      <td width=100>
-     <a href="update.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
+     <a href="offerors_update.php?job_id=' .  $_SESSION['paramid'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
      <a href="delete.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
      <a href="tasks.php?tnd_number=' . $row['tnd_number'] . '" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
     </td>
