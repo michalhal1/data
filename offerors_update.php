@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_points1 = NULL;
     } elseif (!is_numeric($input_off_points1)) {
         $off_points1_err = "Wpisz wartość liczbową";
-    } elseif ($input_off_points2 > 100) {
+    } elseif ($input_off_points1 > 100) {
         $off_points1_err = "Wartość kryterium nie może być większe niż 100";
     } else {
         $off_points1 = $input_off_points1;
@@ -203,6 +203,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+
+    //VALIDATE REMARKS
+
+    $input_off_remarks = trim($_POST["remarks"]);
+    if ((strlen($input_off_remarks)>349)) {
+        $off_remarks_value_err = "Uwaga zbyt długa";
+    } else {
+        $off_remarks= $input_off_remarks;
+    }
+
     //validate winner
     if (isset($_POST['off_winner'])) {
         if ($_POST['off_winner'] == '1') {
@@ -220,12 +230,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err) && empty($off_winner_err)) {
+    if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err) && empty($off_winner_err) && empty($off_remarks_value_err)) {
         // Prepare an insert statement
 
         $off_job_id = trim($_POST["paramid"]);
 
-        $sql = "INSERT INTO tenders_test.offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_iswinner) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_iswinner=? where off_id=12";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -253,7 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (mysqli_stmt_execute($stmt)) {
                 // Records created successfully. Redirect to landing page
                 //echo "Dodano nowy przetarg";
-                header("location: offerors_ok.php");
+                header("location: offerors_update_ok.php?job_id=" . $_SESSION['paramid']);
                 // echo $_POST['off_winner'];
                 // echo trim($_POST["inputname"]); 
                 // echo $off_points1;
@@ -267,15 +277,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Close statement
             mysqli_stmt_close($stmt);
         }
+       
     }
 } else {
     // Check existence of id parameter before processing further
-    
-    if (isset( $_SESSION['paramid']))  {
+
+    if (isset($_SESSION['paramid'])) {
         // Get URL parameter
         $id =   $_SESSION['paramid'];
-        
-        $sql = "SELECT * FROM  tenders_test.offerors  WHERE off_job_id = ? and off_id=12";
+
+        $sql = "SELECT off_leading_offeror, off_key_offeror1, off_key_offeror2,off_key_offeror3
+        ,off_key_offeror4, off_contract_value, 
+        case when off_points_crit1 = 0 then null else off_points_crit1 end as off_points_crit1, 
+        case when off_points_crit2 = 0 then null else off_points_crit2 end as off_points_crit2, 
+        case when off_points_crit3 = 0 then null else off_points_crit3 end as off_points_crit3, 
+        case when off_points_crit4 = 0 then null else off_points_crit4 end as off_points_crit4, 
+        case when off_points_crit5 = 0 then null else off_points_crit5 end as off_points_crit5, 
+        off_remarks , off_iswinner
+         FROM  tenders_test.offerors  WHERE off_job_id = ? and off_id=12";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -293,21 +312,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
                     // Retrieve individual field value
-                    $off_leading_oferor = $row["off_leading_offeror"];
+                    $off_lead_off = $row["off_leading_offeror"];
                     $off_key_offeror1 = $row["off_key_offeror1"];
                     $off_key_offeror2 = $row["off_key_offeror2"];
                     $off_key_offeror3 = $row["off_key_offeror3"];
                     $off_key_offeror4 = $row["off_key_offeror4"];
                     $off_contract_value = $row["off_contract_value"];
-                    $off_points_crit1 = $row["off_points_crit1"];
-                    $off_points_crit2 = $row["off_points_crit2"];
-                    $off_points_crit3 = $row["off_points_crit3"];
-                    $off_points_crit4 = $row["off_points_crit4"];
-                    $off_points_crit5 = $row["off_points_crit5"];
+                    $off_points1 = $row["off_points_crit1"];
+                    $off_points2 = $row["off_points_crit2"];
+                    $off_points3 = $row["off_points_crit3"];
+                    $off_points4 = $row["off_points_crit4"];
+                    $off_points5 = $row["off_points_crit5"];
                     $off_remarks = $row["off_remarks"];
-                    $off_iswinner = $row["off_iswinner"];
-                 
-
+                    $off_winn = $row["off_iswinner"];
                 } else {
                     // URL doesn't contain valid id. Redirect to error page
                     header("location: error.php");
@@ -329,7 +346,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: error.php");
         exit();
     }
-
 
     // Close connection
 }
@@ -417,7 +433,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($stmt3 = mysqli_prepare($link, $selected_keyoff_sql)) {
                         // Bind variables to the prepared statement as parameters
-                        mysqli_stmt_bind_param($stmt3, "i", $off_leading_oferor);
+                        mysqli_stmt_bind_param($stmt3, "i", $off_lead_off);
 
                         if (mysqli_stmt_execute($stmt3)) {
                             $result_keyoff_name = mysqli_stmt_get_result($stmt3);
@@ -543,7 +559,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_contract_value; ?>">
+                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_lead_off; ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 
@@ -716,7 +732,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <dd id="rr-element">
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="off_winner" id="off_winner" value="1" />
+                        <input class="form-check-input" type="checkbox" name="off_winner" id="off_winner" value="1" <?php echo $off_winn==1 ? "checked" : ""; ?>  />
                         <label class="form-check-label" for="inlineCheckbox2">Zwycięzca</label>
                     </div>
                 </dd>
