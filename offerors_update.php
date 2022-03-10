@@ -240,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiiiiiiiisi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_iswinner);
+            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_iswinner);
 
             $param_off_job_id = $off_job_id;
             $param_off_leading_offeror = $off_lead_off;
@@ -264,8 +264,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Records created successfully. Redirect to landing page
                 //echo "Dodano nowy przetarg";
                 header("location: offerors_update_ok.php?job_id=" . $_SESSION['paramid']);
-                // echo $_POST['off_winner'];
-                // echo trim($_POST["inputname"]); 
+                 //echo $_POST["off_value"];
+                //echo $input_contract_value; 
                 // echo $off_points1;
                 exit();
             } else {
@@ -559,7 +559,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_lead_off; ?>">
+                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_contract_value; ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 

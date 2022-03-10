@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_points1 = NULL;
     } elseif (!is_numeric($input_off_points1)) {
         $off_points1_err = "Wpisz wartość liczbową";
-    } elseif ($input_off_points2 > 100) {
+    } elseif ($input_off_points1 > 100) {
         $off_points1_err = "Wartość kryterium nie może być większe niż 100";
     } else {
         $off_points1 = $input_off_points1;
@@ -203,6 +203,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+
+    
+    $input_off_remarks = trim($_POST["remarks"]);
+    if ((strlen($input_off_remarks)>349)) {
+        $off_remarks_value_err = "Uwaga zbyt długa";
+    } else {
+        $off_remarks= $input_off_remarks;
+    }
+    
     //validate winner
     if (isset($_POST['off_winner'])) {
         if ($_POST['off_winner'] == '1') {
@@ -218,6 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
     }
 
+    $input_off_creation_worker = "michal halama";
 
 
     if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err) && empty($off_winner_err)) {
@@ -225,12 +235,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $off_job_id = trim($_POST["paramid"]);
 
-        $sql = "INSERT INTO tenders_test.offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_iswinner) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tenders_test.offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_iswinner, off_creation_work) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiiiiiiiisi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_iswinner);
+            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsis", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_iswinner,$param_off_creation_worker);
 
             $param_off_job_id = $off_job_id;
             $param_off_leading_offeror = $off_lead_off;
@@ -247,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_points5 = $off_points5;
             $param_off_remarks = $off_remarks;
             $param_off_iswinner = $off_winn;
-
+            $param_off_creation_worker = $input_off_creation_worker;
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
