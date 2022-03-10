@@ -207,10 +207,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //VALIDATE REMARKS
 
     $input_off_remarks = trim($_POST["remarks"]);
-    if ((strlen($input_off_remarks)>349)) {
+    if ((strlen($input_off_remarks) > 349)) {
         $off_remarks_value_err = "Uwaga zbyt długa";
     } else {
-        $off_remarks= $input_off_remarks;
+        $off_remarks = $input_off_remarks;
     }
 
     //validate winner
@@ -235,12 +235,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $off_job_id = trim($_POST["paramid"]);
 
-        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_iswinner=? where off_id=12";
+        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_iswinner=?, off_modification_date = now(), off_modification_work = ? where off_id=12";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_iswinner);
+            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsis", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_iswinner,$param_off_modification_worker);
 
             $param_off_job_id = $off_job_id;
             $param_off_leading_offeror = $off_lead_off;
@@ -258,13 +258,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_remarks = $off_remarks;
             $param_off_iswinner = $off_winn;
 
-
+            $param_off_modification_worker = "michal halama admin";
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Records created successfully. Redirect to landing page
                 //echo "Dodano nowy przetarg";
                 header("location: offerors_update_ok.php?job_id=" . $_SESSION['paramid']);
-                 //echo $_POST["off_value"];
+                //echo $_POST["off_value"];
                 //echo $input_contract_value; 
                 // echo $off_points1;
                 exit();
@@ -277,7 +277,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Close statement
             mysqli_stmt_close($stmt);
         }
-       
     }
 } else {
     // Check existence of id parameter before processing further
@@ -293,7 +292,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case when off_points_crit3 = 0 then null else off_points_crit3 end as off_points_crit3, 
         case when off_points_crit4 = 0 then null else off_points_crit4 end as off_points_crit4, 
         case when off_points_crit5 = 0 then null else off_points_crit5 end as off_points_crit5, 
-        off_remarks , off_iswinner
+        off_remarks , off_iswinner, off_creation_date, off_modification_date, off_creation_work, off_modification_work
          FROM  tenders_test.offerors  WHERE off_job_id = ? and off_id=12";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
@@ -732,12 +731,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <dd id="rr-element">
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="off_winner" id="off_winner" value="1" <?php echo $off_winn==1 ? "checked" : ""; ?>  />
+                        <input class="form-check-input" type="checkbox" name="off_winner" id="off_winner" value="1" <?php echo $off_winn == 1 ? "checked" : ""; ?> />
                         <label class="form-check-label" for="inlineCheckbox2">Zwycięzca</label>
                     </div>
                 </dd>
 
-                <?php mysqli_close($link); ?>
+               
 
 
 
@@ -753,5 +752,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 </body>
+
+
+<?php
+
+
+// Check existence of id parameter before processing further
+if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
+    // Get URL parameter
+    $id =  $_SESSION['paramid'];
+    // Prepare a select statement
+    $sql = "SELECT * FROM tenders_test.offerors WHERE off_id = ?";
+    if ($stmt1a = mysqli_prepare($link, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt1a, "i", $param_id);
+
+        // Set parameters
+        $param_id = 12;
+
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt1a)) {
+            $result1 = mysqli_stmt_get_result($stmt1a);
+
+            if (mysqli_num_rows($result1) == 1) {
+                /* Fetch result row as an associative array. Since the result set
+                    contains only one row, we don't need to use while loop */
+                $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+                //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+                // Retrieve individual field value
+                $off_creation_worker = $row["off_creation_work"];
+                $off_mofidication_worker = $row["off_modification_work"];
+                $off_creation_date = $row["off_creation_date"];
+                $off_modification_date = $row["off_modification_date"];
+            } else {
+
+                exit();
+            }
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+
+    // Close statement
+    mysqli_stmt_close($stmt1a);
+    
+    // Close connection
+
+}
+?>
+
+<br>
+<style>
+    p {
+        text-indent: 130px;
+    }
+
+    h1 {
+        font-size: 10px;
+    }
+</style>
+
+<h1>
+    <p>
+        <?php echo "utworzono: " . $off_creation_date . " przez " . $off_creation_worker ?> <br>
+    <p>
+        <?php echo "ostatnio zmodyfikowano: " . $off_modification_date . " przez " . $off_mofidication_worker; ?>
+
+
+        <?php
+        mysqli_close($link);
+
+
+
+        ?>
 
 </html>
