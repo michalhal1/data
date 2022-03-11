@@ -356,7 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Nowy przetarg</title>
+    <title>Nowa oferta</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .wrapper {
@@ -407,8 +407,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="wrapper">
         <div class="container-fluid">
-            <h2 class="mt-5">Dodaj oferenta</h2>
-            <p>Uzupełnij formularz i zatwierdź</p>
+            <h2 class="mt-5">Dodaj ofertę</h2>
+            Uzupełnij formularz i zatwierdź <br> <br>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
 
@@ -740,7 +740,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-                <input type="submit" class="btn btn-primary" value="Dodaj przetarg">
+                <input type="submit" class="btn btn-primary" value="Edytuj ofertę">
 
                 <input type="hidden" id="paramid" name="paramid" value=<?php echo $_SESSION['paramid'] ?>>
 
