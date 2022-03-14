@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_log_email = trim($_POST["email"]);
     $input_log_password = trim($_POST["password"]);
 
-    $sql_login = "SELECT log_password, log_name FROM tenders_test.logins t 
+    $sql_login = "SELECT log_idlog, log_password, log_name FROM tenders_test.logins t 
     where log_active = 1 and log_mail = ? ";
 
 
@@ -27,19 +27,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (mysqli_num_rows($sql_results) > 0) {
                 $row1 = mysqli_fetch_array($sql_results, MYSQLI_ASSOC);
                 $password_sql = $row1["log_password"];
+                $logid_sql = $row1["log_idlog"];
             } else {
 ?>
                 <div class="alert alert-danger text-center"><?php echo "Nieprawidłowy email lub hasło!"; ?></div>
             <?php }
-        }
-    }
+   
 
 
     if (mysqli_num_rows($sql_results) > 0) {
         if (mysqli_stmt_execute($stmt) and $password_sql == $input_log_password) {
             // Records created successfully. Redirect to landing page
             //echo "Dodano nowy przetarg";
-            header("location: index.php");
+            header("location: index.php?log_logid=".$logid_sql);
 
             exit();
         } else {
@@ -47,6 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="alert alert-danger text-center"><?php echo "Nieprawidłowy email lub hasło!"; ?></div>
 <?php }
     }
+}
+
+}
 }
 ?>
 
