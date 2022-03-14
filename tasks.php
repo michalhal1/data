@@ -1,3 +1,12 @@
+<?php
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
+   header("location:login.php");
+};
+?>
+
+
 <html>
 
 <head>

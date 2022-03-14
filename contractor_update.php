@@ -6,6 +6,15 @@ if (isset($_GET["cnt_id"])) {
 };
 
 
+
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
+   header("location:login.php");
+};
+
+
+
 // Include config file
 require_once "config.php";
 
