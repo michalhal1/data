@@ -5,6 +5,14 @@ if (isset($_GET["job_id"])) {
     $_SESSION['paramid'] = $paramid;
 };
 
+
+
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
+   header("location:login.php");
+};
+
 //echo  $_SESSION['paramid'];
 
 // Include config file

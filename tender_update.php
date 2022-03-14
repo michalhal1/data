@@ -6,6 +6,14 @@ if (isset($_GET["tnd_number"])) {
     $_SESSION['paramid'] = $paramid;
 };
 
+
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
+   header("location:login.php");
+};
+
+
 require_once "config.php";
 
 
