@@ -8,8 +8,13 @@ if (isset($_SESSION["logid"])) {
  } else {
    header("location:login.php");
 };
+
+
+echo $_SESSION['logid']
 ?>
 
+ <a href="log_out.php" title="Wyloguj się"  data-toggle="tooltip"><span class="fa fa-sign-out"></span></a>
+   
 
 <html>
 

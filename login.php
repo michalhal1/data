@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $logid_sql = $row1["log_idlog"];
                 session_start();
 
-                $_SESSION['logid'] = $row1["log_idlog"];
+                $_SESSION['logid'] = $row1["log_name"];
             } else {
 ?>
                 <div class="alert alert-danger text-center"><?php echo "Nieprawidłowy email lub hasło!"; ?></div>
