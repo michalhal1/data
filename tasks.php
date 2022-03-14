@@ -1,4 +1,5 @@
 <?php
+ session_start();
 if (isset($_SESSION["logid"])) {
    $logid = $_SESSION['logid'];
  } else {
