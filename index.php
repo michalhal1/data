@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+//zmienna sesyjna , po kliknięciu w stronę zapamiętuje parametr
+if (isset($_GET["log_idlog"])) {
+   $paramid = trim($_GET["log_idlog"]);
+   $_SESSION['log'] = $paramid;
+} else {
+   header("location:login.php");
+};
+?>
+
+
 <html>
 
 <head>

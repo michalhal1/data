@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_stmt_execute($stmt) and $password_sql == $input_log_password) {
             // Records created successfully. Redirect to landing page
             //echo "Dodano nowy przetarg";
-            header("location: index.php?log_logid=".$logid_sql);
+            header("location: index.php?log_idlog=".$logid_sql);
 
             exit();
         } else {
