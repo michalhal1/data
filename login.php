@@ -22,12 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_stmt_execute($stmt)) {
             $sql_results = mysqli_stmt_get_result($stmt);
             
-
-
             if (mysqli_num_rows($sql_results) > 0) {
                 $row1 = mysqli_fetch_array($sql_results, MYSQLI_ASSOC);
                 $password_sql = $row1["log_password"];
                 $logid_sql = $row1["log_idlog"];
+                session_start();
+
+                $_SESSION['logid'] = $row1["log_idlog"];
             } else {
 ?>
                 <div class="alert alert-danger text-center"><?php echo "Nieprawidłowy email lub hasło!"; ?></div>
@@ -39,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_stmt_execute($stmt) and $password_sql == $input_log_password) {
             // Records created successfully. Redirect to landing page
             //echo "Dodano nowy przetarg";
-            header("location: index.php?log_idlog=".$logid_sql);
-
+          //  header("location: index.php?log_idlog=".$logid_sql);
+          header("location: index.php");
             exit();
         } else {
             ?>

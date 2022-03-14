@@ -3,10 +3,9 @@
 session_start();
 
 //zmienna sesyjna , po kliknięciu w stronę zapamiętuje parametr
-if (isset($_GET["log_idlog"])) {
-   $paramid = trim($_GET["log_idlog"]);
-   $_SESSION['log'] = $paramid;
-} else {
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
    header("location:login.php");
 };
 ?>
