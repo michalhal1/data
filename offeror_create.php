@@ -235,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
     }
 
-    $input_off_creation_worker = "michal halama";
+    $input_off_creation_worker =  $logid;
 
 
     if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err) && empty($off_winner_err)) {

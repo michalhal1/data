@@ -266,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_remarks = $off_remarks;
             $param_off_iswinner = $off_winn;
 
-            $param_off_modification_worker = "michal halama admin";
+            $param_off_modification_worker =  $logid;
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Records created successfully. Redirect to landing page
