@@ -1,8 +1,14 @@
-<?php
+<?php session_start();
 // Include config file
 require_once "config.php";
 
 
+if (isset($_SESSION["logid"])) {
+    $logid = $_SESSION['logid'];
+  } else {
+    header("location:login.php");
+ };
+ 
 
 // Define variables and initialize with empty values
 $cnt_name = $cnt_NIP = $cnt_city = $cnt_postal_code = $cnt_street =  "";
@@ -63,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    $cnt_record_creation_work = "michal halama";
+    $cnt_record_creation_work = $logid ;
 
 
     // '%d-%m-%y')inputZip

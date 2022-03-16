@@ -14,14 +14,6 @@ if (isset($_SESSION["logid"])) {
 
 
 
-
-if (isset($_SESSION["logid"])) {
-   $logid = $_SESSION['logid'];
- } else {
-   header("location:login.php");
-};
-
-
 echo $_SESSION['logid']
 ?>
 

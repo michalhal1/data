@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tnd_submit_date = $input_tnd_submit_date;
     }
 
-    $input_tnd_creation_worker = "michal halama";
+    $input_tnd_creation_worker = $logid;
 
     // validate e-invoice 
 
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_tnd_announce_date = $input_tnd_announce_date;
             $param_tnd_submit_date = $input_tnd_submit_date;
             $param_tnd_einvoice = $input_tnd_einvoice;
-            $param_tnd_creation_worker = "michal halama";
+            $param_tnd_creation_worker = $input_tnd_creation_worker;
             $param_tnd_binding_date = $input_tnd_binding_date;
             $param_tnd_number = ($_SESSION['paramid']);
 

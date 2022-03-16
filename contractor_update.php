@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cnt_postal_code = $input_cnt_postal_code;
     }
 
-    $cnt_record_creation_work = "michal halama";
+    $cnt_record_creation_work = $logid;
 
 
 

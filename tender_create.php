@@ -1,7 +1,13 @@
-<?php
+<?php session_start();
 // Include config file
 require_once "config.php";
 
+
+if (isset($_SESSION["logid"])) {
+    $logid = $_SESSION['logid'];
+  } else {
+    header("location:login.php");
+ };
 
 
 // Define variables and initialize with empty values
@@ -118,7 +124,7 @@ where tnd_number = ? ";
         $tnd_binding_date = $input_tnd_binding_date;
     }
 
-    $input_tnd_creation_worker = "michal halama";
+    $input_tnd_creation_worker = $logid;
 
 
 
@@ -146,7 +152,7 @@ where tnd_number = ? ";
             $param_tnd_announce_date = $input_tnd_announce_date;
             $param_tnd_submit_date = $input_tnd_submit_date;
             $param_tnd_einvoice = $input_tnd_einvoice;
-            $param_tnd_creation_worker = "michal halama";
+            $param_tnd_creation_worker = $input_tnd_creation_worker;
             $param_tnd_binding_worker = $input_tnd_binding_date;
             //date_format($date,"Y/m/d H:i:s");
 
