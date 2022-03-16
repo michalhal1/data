@@ -126,7 +126,7 @@ echo $_SESSION['logid']
     <div class="table-responsive">
     <table class="table table bordered">
     <tr>
-     <th>Numer zadania</th>
+     <th>TEST123</th>
      <th>Przedmiot zamówienia</th>
      <th>Handlowiec</th>
      <th>Region</th>
