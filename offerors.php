@@ -14,11 +14,15 @@ if (isset($_SESSION["logid"])) {
 
 
 
-echo $_SESSION['logid']
+
+echo "<div style='text-align:right'>"; 
+echo "<div style='padding-right:30px';>";
+echo $_SESSION['logid'];
 ?>
 
  <a href="log_out.php" title="Wyloguj się"  data-toggle="tooltip"><span class="fa fa-sign-out"></span></a>
-   
+
+ </div>
 
 <html>
 
