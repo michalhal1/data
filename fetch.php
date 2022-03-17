@@ -10,7 +10,7 @@
     if (isset($_POST["query"])) {
         $search = mysqli_real_escape_string($link, $_POST["query"]);
         $query = "
- SELECT tnd_number, case when length(trim(cnt_name))>25 then concat(left(cnt_name,25), if(right(left(cnt_name,25),1)='.', '', '...')) else cnt_name end as cnt_name, tnd_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
+ SELECT tnd_number, case when length(trim(cnt_name))>25 then concat(left(cnt_name,25), if(right(left(cnt_name,25),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
  left join tenders_test.contractors on cnt_id=tnd_contractor_id
  left join tenders_test.tender_types on tend_type_id=tnd_type
  left join tenders_test.segments on segm_id=tnd_segment_id
