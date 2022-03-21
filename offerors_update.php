@@ -229,14 +229,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_remarks = $input_off_remarks;
     }
 
-    //validate winner
-    if (isset($_POST['off_winner'])) {
-        if ($_POST['off_winner'] == '1') {
-            $off_winn = 1;
+    
+
+
+
+    $sql_winn = 'SELECT min(off_output) as output_winner FROM tenders_test.offerors
+    where off_job_id=?';
+    
+    if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt_winn, "i", $_SESSION['paramid']);
+        if (mysqli_stmt_execute($stmt_winn)) {
+            $result_winn = mysqli_stmt_get_result($stmt_winn);
+            $row_winn = mysqli_fetch_array($result_winn);
+            //
+            if (!$row_winn == NULL) {
+                $winn_db = $row_winn[0];
+            } else {
+                $winn_db = 0;
+            }
         }
-    } else {
-        $off_winn = 0;
     }
+           
+    $input_tenderoutput = trim($_POST["tenderoutput"]);
+    if (empty($input_tenderoutput)) {
+        $off_tenderoutput_err = "Wybierz wynik przetargu";
+    } elseif ($input_tenderoutput==1 and $winn_db==1 ) {
+        $off_tenderoutput_err = "Zwycięzca już istnieje";
+    } else {
+        $off_tenderoutput = $input_tenderoutput;
+    }
+
+
 
 
 

@@ -104,13 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    $input_tenderoutput = trim($_POST["tenderoutput"]);
-    if (empty($input_tenderoutput)) {
-        $off_tenderoutput_err = "Wybierz wynik przetargu";
-    } else {
-        $off_tenderoutput = $input_tenderoutput;
-    }
-
+ 
 
     $off_key_offeror1 = trim($_POST["off1"]);
     $off_key_offeror2 = trim($_POST["off2"]);
@@ -211,8 +205,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_remarks= $input_off_remarks;
     }
    
+// validate tender output wygrany musi miec id =1 
 
+$sql_winn = 'SELECT min(off_output) as output_winner FROM tenders_test.offerors
+where off_job_id=?';
+
+if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt_winn, "i", $_SESSION['paramid']);
+    if (mysqli_stmt_execute($stmt_winn)) {
+        $result_winn = mysqli_stmt_get_result($stmt_winn);
+        $row_winn = mysqli_fetch_array($result_winn);
+        //
+        if (!$row_winn == NULL) {
+            $winn_db = $row_winn[0];
+        } else {
+            $winn_db = 0;
+        }
+    }
+}
    
+
+$input_tenderoutput = trim($_POST["tenderoutput"]);
+if (empty($input_tenderoutput)) {
+    $off_tenderoutput_err = "Wybierz wynik przetargu";
+} elseif ($input_tenderoutput==1 and $winn_db==1 ) {
+    $off_tenderoutput_err = "Zwycięzca już istnieje";
+} else {
+    $off_tenderoutput = $input_tenderoutput;
+}
+
 
     $input_off_creation_worker =  $logid;
 
@@ -684,15 +706,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
 
 
+
+
                 <div class="form-group col-md-4">
                         <label for="tenderoutput">Wynik przetargu</label>
-                        <select id='exampleFormControlSelect1' name='tenderoutput' class="form-control <?php echo (!empty($off_tenderoutput_err)) ? 'is-invalid' : ''; ?>">
+                        <select id='tenderoutput' name='tenderoutput' class="form-control <?php echo (!empty($off_tenderoutput_err)) ? 'is-invalid' : ''; ?>">
                          <option selected="selected" hidden value=<?php echo $output_id; ?>> <?php echo $output_name; ?> </option>
-                         <span class="invalid-feedback"><?php echo $off_tenderoutput_err; ?></div>
+                         <span class="text-danger"><?php echo $off_tenderoutput_err; ?></div>
                          <OPTION> <?php echo $output_options ?> </option>
                         </select>
                     </div>
                 </div>
+
+
 
                 <?php mysqli_close($link); ?>
 
