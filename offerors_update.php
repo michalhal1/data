@@ -6,17 +6,42 @@ if (isset($_GET["off_id"])) {
 };
 
 
-
 if (isset($_SESSION["logid"])) {
     $logid = $_SESSION['logid'];
 } else {
     header("location:login.php");
 };
 
+
+require_once "config.php";
+
+$jobid_sql = "select distinct off_job_id from tenders_test.offerors where off_id = ?";
+
+ 
+if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt4, "i", $param_job);
+        $param_job =  $_SESSION['paramid'];
+    if (mysqli_stmt_execute($stmt4)) {
+        $result_jobid = mysqli_stmt_get_result($stmt4);
+        $row1 = mysqli_fetch_array($result_jobid);
+        //
+        if (!$row1 == NULL) {
+            $result_jobid = $row1[0];
+           
+        } else {
+            $result_jobid = null;
+           
+        }
+    }
+}
+
+$_SESSION['jobid'] = $result_jobid;
+
 //echo  $_SESSION['paramid'];
 
 // Include config file
-require_once "config.php";
+
 
 
 
@@ -78,8 +103,12 @@ if ($stmt_crit = mysqli_prepare($link, $sql_crit)) {
 }
 
 
+
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
     // Validate TENDER
 
 
@@ -269,16 +298,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err) && empty($off_tenderoutput_err) && empty($off_remarks_value_err)) {
         // Prepare an insert statement
 
-        $off_job_id = trim($_POST["paramid"]);
+        $param_off_id = trim($_POST["paramid"]);
 
-        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=12";
+        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsis", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_modification_worker);
+            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsisi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_modification_worker, $param_off_id);
 
-            $param_off_job_id = $off_job_id;
+            $param_off_job_id = trim($_POST["jobid"]);
             $param_off_leading_offeror = $off_lead_off;
             $param_off_key_offeror1 = $off_key_offeror1;
             $param_off_key_offeror2 = $off_key_offeror2;
@@ -295,11 +324,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_output = $off_output_id;
 
             $param_off_modification_worker =  $logid;
+
+            $param_off_id = $_SESSION['paramid'];
+
+
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+
+                $param_job_id = trim($_POST["jobid"]);
                 // Records created successfully. Redirect to landing page
-                //echo "Dodano nowy przetarg";
-                header("location: offerors_update_ok.php?job_id=" . $_SESSION['paramid']);
+                //echo  $param_off_id ;
+                header("location: offerors_update_ok.php?job_id=" . $param_job_id);
                 //echo $_POST["off_value"];
                 //echo $input_contract_value; 
                 // echo $off_points1;
@@ -584,27 +619,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
 
-
-                    $jobid_sql = "select distinct off_job_id from tenders_test.offerors where off_id = ?";
-
-
-                    if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
-                        // Bind variables to the prepared statement as parameters
-                        mysqli_stmt_bind_param($stmt4, "i", $param_id);
-
-                        if (mysqli_stmt_execute($stmt4)) {
-                            $result_jobid = mysqli_stmt_get_result($stmt4);
-                            $row1 = mysqli_fetch_array($result_jobid);
-                            //
-                            if (!$row1 == NULL) {
-                                $result_jobid = $row1[0];
-                               
-                            } else {
-                                $result_jobid = NULL;
-                               
-                            }
-                        }
-                    }
+                   
                     ?>
 
 
@@ -842,7 +857,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" class="btn btn-primary" value="Edytuj ofertę">
 
         <input type="hidden" id="paramid" name="paramid" value=<?php echo $_SESSION['paramid'] ?>>
-
+        <input type="hidden" id="jobid" name="jobid" value=<?php echo $_SESSION['jobid'] ?>>
         <a href="offerors.php?job_id=<?php echo $result_jobid ?>" class="btn btn-secondary ml-2">Powrót</a>
         </form>
     </div>
