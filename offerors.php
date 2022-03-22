@@ -77,7 +77,7 @@ echo $_SESSION['logid'];
         from tenders_test.tenders_jobs
         left join tenders_test.job_value_types on job_value_type_id = jobval_type_id
         left join tenders_test.offerors on job_id = off_job_id
-        left join tenders_test.offerors_names on off_id = offnames_id
+        left join tenders_test.offerors_names on off_leading_offeror = offnames_id
         left join tenders_test.offerors_tender_output on off_output = off_tnd_out
         left join tenders_test.tenders on tnd_id = job_tnd_id
         left join tenders_test.contractors on tnd_contractor_id = cnt_id
@@ -160,7 +160,7 @@ echo $_SESSION['logid'];
             </div>
 
             <a href="offeror_create.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowa oferta</a>
-            <a href="tasks.php" class="btn btn-secondary ml-2">Powrót</a>
+            <a href="tasks.php?tnd_number=<?php echo $numerPrzetargu ?>" class="btn btn-secondary ml-2">Powrót</a>
         </div>
         <br />
         <?php 
