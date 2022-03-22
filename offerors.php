@@ -5,14 +5,11 @@ if (isset($_GET["job_id"])) {
     $_SESSION['paramid'] = $paramid;
 };
 
-
 if (isset($_SESSION["logid"])) {
    $logid = $_SESSION['logid'];
  } else {
    header("location:login.php");
 };
-
-
 
 
 echo "<div style='text-align:right'>"; 
@@ -21,8 +18,7 @@ echo $_SESSION['logid'];
 ?>
 
  <a href="log_out.php" title="Wyloguj się"  data-toggle="tooltip"><span class="fa fa-sign-out"></span></a>
-
- </div>
+   
 
 <html>
 
@@ -35,40 +31,6 @@ echo $_SESSION['logid'];
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-
-<body>
-
-    <style>
-        .input-group-prepend {
-            width: 55%;
-            padding-right: 5%;
-        }
-
-        .btn {
-            margin: 0px 0px 10px 10px;
-
-        }
-    </style>
-
-
-    <div class="container">
-        <br />
-        <h2 align="center">Zadania przetargowe</h2><br />
-        <div class="form-row">
-
-            <div class="input-group-prepend">
-                <span class="input-group-addon"></span>
-            </div>
-
-            <a href="offeror_create.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowa oferta</a>
-
-        </div>
-        <br />
-        <div id="result"></div>
-    </div>
-</body>
-
-</html>
 
 
 <style>
@@ -85,7 +47,7 @@ echo $_SESSION['logid'];
 
 
     table tr td:last-child {
-        width: 700px;
+        width: 100px;
         padding: 0px;
         white-space: nowrap;
     }
@@ -108,60 +70,107 @@ echo $_SESSION['logid'];
     require_once "config.php";
     $output = '';
 
+    if (isset($_GET["job_id"]) && !empty(trim($_GET["job_id"]))) {
+        $id =  trim($_GET["job_id"]);
+        $query = "
+        Select tnd_number, cnt_name, job_number, off_id, job_id, offnames_name, off_contract_value, jobval_name, off_tnd_name
+        from tenders_test.tenders_jobs
+        left join tenders_test.job_value_types on job_value_type_id = jobval_type_id
+        left join tenders_test.offerors on job_id = off_job_id
+        left join tenders_test.offerors_names on off_id = offnames_id
+        left join tenders_test.offerors_tender_output on off_output = off_tnd_out
+        left join tenders_test.tenders on tnd_id = job_tnd_id
+        left join tenders_test.contractors on tnd_contractor_id = cnt_id
+        WHERE job_id = ?";
+        if ($stmt = mysqli_prepare($link, $query)) {
+            mysqli_stmt_bind_param($stmt, "s", $param_job_id);
+            $param_job_id = $id;
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
+            }
 
-    $query = "
- SELECT tnd_number, case when length(trim(cnt_name))>25 then concat(left(cnt_name,25), if(right(left(cnt_name,25),1)='.', '', '...')) else cnt_name end as cnt_name, tnd_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
- left join tenders_test.contractors on cnt_id=tnd_contractor_id
- left join tenders_test.tender_types on tend_type_id=tnd_type
- left join tenders_test.segments on segm_id=tnd_segment_id";
-
-    $result = mysqli_query($link, $query);
-    if (mysqli_num_rows($result) > 0) {
-        $output .= '
-    <div class = "wrapper">
-    <div class="table-responsive">
-    <table class="table table bordered">
-    <tr>
-     <th>TEST123</th>
-     <th>Przedmiot zamówienia</th>
-     <th>Handlowiec</th>
-     <th>Region</th>
-     <th>Typ sprzedaży</th>
-     <th>Liczba miesięcy</th>
-     <th>Oddział</th>
-     <th>Akcja</th>
-    </tr>
- ';
+        //$result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $output .= '
+        <div class = "wrapper">
+        <div class="table-responsive">
+        <table class="table table bordered">
+        <tr>
+        <th>Nazwa oferenta</th>
+        <th>Wartość</th>
+        <th>Typ wartości</th>
+        <th>Wynik</th>
+        <th>Akcja</th>
+        </tr>
+        ';
+        
         while ($row = mysqli_fetch_array($result)) {
             $output .= '
-   <tr>
-    <td width=60>' . $row["tnd_number"] . '</td>
-    <td nowrap>' . $row["cnt_name"] . '</td>
-    <td>' . $row["tnd_NIP"] . '</td>   
-    <td nowrap>' . $row["tnd_submit_date"] . '</td>
-    <td nowrap>' . $row["tnd_announce_date"] . '</td>
-    <td nowrap>' . $row["tend_type_name"] . '</td>
-    <td nowrap>' . $row["tnd_creation_worker"] . '</td>
-     <td width=100>
-     <a href="offerors_update.php?off_id=' .  $_SESSION['paramid'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
-     <a href="delete.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
-     <a href="tasks.php?tnd_number=' . $row['tnd_number'] . '" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
-    </td>
-    </tr>
-  ';
+            <tr>
+            <td width nowrap>' . $row["offnames_name"] . '</td>
+            <td width = 400>' . $row["off_contract_value"] . '</td>   
+            <td width = 600>' . $row["jobval_name"] . '</td>
+            <td width = 1200>' . $row["off_tnd_name"] . '</td>
+            <td width=300>
+            <a href="offerors_update.php?off_id=' .  $_SESSION['paramid'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
+            <a href="delete.php?off_id=' . $row['off_id'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
+            </td>
+            </tr>
+            ';
+
+            $numerPrzetargu = $row['tnd_number'];
+            $zamawiajacy = $row['cnt_name'];
+            $numerZadania = $row['job_number'];
+            $numerOferenta =$row["off_id"];
         }
+        }
+        } 
+    else {
+    echo 'Data Not Found';
+    }
+    }
+
+    if (($numerOferenta > 0)) {
         echo $output;
-    } else {
-        echo 'Data Not Found';
     }
 
     ?>
 
+    <style>
+        .input-group-prepend {
+            width: 55%;
+            padding-right: 5%;
+        }
 
+        .btn {
+            margin: 0px 0px 10px 10px;
+
+        }
+    </style>
+
+
+    <div class="container">
+        <br />
+        <h2 align="center">Oferenci</h2><br />
+        <div class="form-row">
+
+            <div class="input-group-prepend">
+                <span class="input-group-addon"></span>
+                <h5 align="center">Jesteś w przetargu: <?php echo $numerPrzetargu . " - " . $zamawiajacy . " - " . $numerZadania; ?> </h5></br>
+            </div>
+
+            <a href="offeror_create.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowa oferta</a>
+            <a href="tasks.php" class="btn btn-secondary ml-2">Powrót</a>
+        </div>
+        <br />
+        <?php 
+        if (($numerOferenta <= 0)) {
+            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            } 
+        ?>
     </div>
-    </div>
-    </div>
-    </div>
+    <br />   
+    <div id="result"></div>
 </body>
 
 </html>
