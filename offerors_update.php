@@ -1,7 +1,7 @@
 <?php session_start();
 
-if (isset($_GET["job_id"])) {
-    $paramid = trim($_GET["job_id"]);
+if (isset($_GET["off_id"])) {
+    $paramid = trim($_GET["off_id"]);
     $_SESSION['paramid'] = $paramid;
 };
 
@@ -328,10 +328,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case when off_points_crit3 = 0 then null else off_points_crit3 end as off_points_crit3, 
         case when off_points_crit4 = 0 then null else off_points_crit4 end as off_points_crit4, 
         case when off_points_crit5 = 0 then null else off_points_crit5 end as off_points_crit5, 
-        off_remarks , off_tnd_name, off_output, off_creation_date, off_modification_date, off_creation_work, off_modification_work
+        off_remarks , off_tnd_name, off_output, off_creation_date, off_modification_date, off_creation_work, off_modification_work, off_job_id
          FROM  tenders_test.offerors
          left join tenders_test.offerors_tender_output on off_output=off_tnd_out
-           WHERE off_job_id = ? and off_id=12";
+           WHERE  off_id=?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -583,6 +583,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             }
                         }
                     }
+
+
+                    $jobid_sql = "select distinct off_job_id from tenders_test.offerors where off_id = ?";
+
+
+                    if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
+                        // Bind variables to the prepared statement as parameters
+                        mysqli_stmt_bind_param($stmt4, "i", $param_id);
+
+                        if (mysqli_stmt_execute($stmt4)) {
+                            $result_jobid = mysqli_stmt_get_result($stmt4);
+                            $row1 = mysqli_fetch_array($result_jobid);
+                            //
+                            if (!$row1 == NULL) {
+                                $result_jobid = $row1[0];
+                               
+                            } else {
+                                $result_jobid = NULL;
+                               
+                            }
+                        }
+                    }
                     ?>
 
 
@@ -821,7 +843,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="hidden" id="paramid" name="paramid" value=<?php echo $_SESSION['paramid'] ?>>
 
-        <a href="offerors.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-secondary ml-2">Powrót</a>
+        <a href="offerors.php?job_id=<?php echo $result_jobid ?>" class="btn btn-secondary ml-2">Powrót</a>
         </form>
     </div>
     </div>
