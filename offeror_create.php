@@ -545,6 +545,15 @@ if (empty($input_tenderoutput)) {
 
                 </div>
 
+                <style>
+                        .select2-container .select2-selection--single {
+
+                            height: calc(1.5em + 0.75rem + 2px);
+                            border: 1px solid #ced4da;
+                        }
+                    </style>
+
+                    
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="off1">Kluczowy oferent 1</label>

@@ -634,6 +634,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
 
 
+                    <style>
+                        .select2-container .select2-selection--single {
+
+                            height: calc(1.5em + 0.75rem + 2px);
+                            border: 1px solid #ced4da;
+                        }
+                    </style>
                     <!-- Dropdown -->
                     <div class="form-group col-md-4">
                         <label for="keyoff">Spółka wiodąca</label>
@@ -642,6 +649,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
+
 
 
 
