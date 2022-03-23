@@ -303,6 +303,13 @@ where tnd_number = ? ";
                     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
                     <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
 
+                    <style>
+                    .select2-container .select2-selection--single {
+
+                        height: calc(1.5em + 0.75rem + 2px);
+                        border: 1px solid #ced4da;
+                    }
+                        </style>
 
                     <!-- Dropdown -->
                     <div class="form-group col-md-4">
