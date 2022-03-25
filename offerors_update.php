@@ -63,7 +63,7 @@ where job_id = ?';
 
 if ($stmt_crit = mysqli_prepare($link, $sql_crit)) {
     // Bind variables to the prepared statement as parameters
-    mysqli_stmt_bind_param($stmt_crit, "i", $_SESSION['paramid']);
+    mysqli_stmt_bind_param($stmt_crit, "i", $_SESSION['jobid']);
 
     if (mysqli_stmt_execute($stmt_crit)) {
         $result_crit = mysqli_stmt_get_result($stmt_crit);
