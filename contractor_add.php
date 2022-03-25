@@ -10,6 +10,8 @@ if (isset($_SESSION["logid"])) {
  };
  
 
+
+
 // Define variables and initialize with empty values
 $cnt_name = $cnt_NIP = $cnt_city = $cnt_postal_code = $cnt_street =  "";
 $cnt_name_err = $cnt_NIP_err = $cnt_city_err = $cnt_postal_code_err = $cnt_street_err = "";

@@ -9,6 +9,76 @@ if (isset($_SESSION["logid"])) {
     header("location:login.php");
  };
 
+ $year = date("Y");
+
+ $sql = "SELECT * FROM  tenders_test.logins cnt  WHERE  log_name = ?";
+                    if ($stmt1 = mysqli_prepare($link, $sql)) {
+                        // Bind variables to the prepared statement as parameters
+                        mysqli_stmt_bind_param($stmt1, "s", $param_id);
+
+                        // Set parameters
+                        $param_id = $logid;
+
+                        // Attempt to execute the prepared statement
+                        if (mysqli_stmt_execute($stmt1)) {
+                            $result1 = mysqli_stmt_get_result($stmt1);
+
+                            if (mysqli_num_rows($result1) == 1) {
+                                /* Fetch result row as an associative array. Since the result set
+                contains only one row, we don't need to use while loop */
+                                $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+                                //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+                                // Retrieve individual field value
+                                $log_initials = $row["log_initials"];
+                               
+                                
+                            } else {
+                                // URL doesn't contain valid id. Redirect to error page
+                                header("location: error.php");
+                                exit();
+                            }
+                        } else {
+                            echo "Oops! Something went wrong. Please try again later.";
+                        }
+                        mysqli_stmt_close($stmt1);
+                    }
+
+                    $sql1 = "SELECT max(substring(tnd_number, 1 , position('/' in tnd_number)-1)) + 1 as number_lp ,tnd_creation_worker FROM tenders_test.tenders
+                 WHERE tnd_creation_worker = ? and year(tnd_record_creation_date) = year(now())
+                    group by tnd_creation_worker "
+                      ;
+                    if ($stmt2 = mysqli_prepare($link, $sql1)) {
+                        // Bind variables to the prepared statement as parameters
+                        mysqli_stmt_bind_param($stmt2, "s", $param_id);
+
+                        // Set parameters
+                        $param_id = $logid;
+
+                        // Attempt to execute the prepared statement
+                        if (mysqli_stmt_execute($stmt2)) {
+                            $result1 = mysqli_stmt_get_result($stmt2);
+
+                            if (mysqli_num_rows($result1) == 1) {
+                                /* Fetch result row as an associative array. Since the result set
+                contains only one row, we don't need to use while loop */
+                                $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+                                //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+                                // Retrieve individual field value
+                                $log_number = $row["number_lp"];
+                                
+                            } else {
+                                // URL doesn't contain valid id. Redirect to error page
+                                $log_number = 1;
+                            }
+                        } else {
+                            echo "Oops! Something went wrong. Please try again later.";
+                        }
+                        mysqli_stmt_close($stmt2);
+                    }
+
+
+
+$default_tender_number =   $log_number .'/' . $log_initials . '/' . $year ;
 
 // Define variables and initialize with empty values
 $tnd_number  = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
@@ -211,7 +281,7 @@ where tnd_number = ? ";
 
                     <div class="form-group col-md-2">
                         <label for="inputtendernumber">Numer przetargu</label>
-                        <input type="text" id="inputtendernumber" name="inputtendernumber" class="form-control <?php echo (!empty($tnd_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $tnd_number; ?>">
+                        <input type="text" placeholder=<?php echo $default_tender_number?> id="inputtendernumber" name="inputtendernumber" class="form-control  <?php echo (!empty($tnd_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $default_tender_number; ?>">
                         <span class="invalid-feedback"><?php echo $tnd_number_err; ?></span>
                     </div>
 
