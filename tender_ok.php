@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Udało się!</h2>
                     <div class="alert alert-success">Dodano nową ofertę </div>
-                    <a href="offerors.php" class="btn btn-success">Powrót</a>
+                    <a href="index.php" class="btn btn-success">Powrót</a>
                 </div>
             </div>
         </div>
