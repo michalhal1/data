@@ -31,8 +31,7 @@ $_SESSION['jobid'] = $result_jobid;
 
 if (isset($_POST["off_id"]) && !empty($_POST["off_id"])) {
     // Include config file
-   
-  
+     
 
 
 
