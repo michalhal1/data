@@ -531,7 +531,7 @@ where tnd_number = ? ";
 
         <input type="submit" class="btn btn-primary" value="Dodaj przetarg">
 
-        <a href="index.php" class="btn btn-secondary ml-2">Powrót</a>
+        <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
         </form>
     </div>
     </div>

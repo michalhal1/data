@@ -164,7 +164,7 @@ echo $_SESSION['logid'];
             </div>
 
             <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowe zadanie przetargowe</a>
-            <a href="index.php" class="btn btn-secondary ml-2">Powrót</a>
+            <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
         </div>
         </br>
         <?php 

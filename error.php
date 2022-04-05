@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3"> </h2>
                     <div class="alert alert-danger "> Błąd </div>
-                    <a href="index.php" class="btn btn-secondary">Powrót</a>
+                    <a href="tenders.php" class="btn btn-secondary">Powrót</a>
                 </div>
             </div>
         </div>

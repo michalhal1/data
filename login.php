@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Records created successfully. Redirect to landing page
             //echo "Dodano nowy przetarg";
           //  header("location: index.php?log_idlog=".$logid_sql);
-          header("location: index.php");
+          header("location: tenders.php");
             exit();
         } else {
             ?>

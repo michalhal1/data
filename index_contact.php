@@ -11,14 +11,20 @@
 <?php include("index_navigation.php");?>
 
 <div class="container" id="main-content">
-	<h2>Witamy na stronie Biura Organizacji i Wsparcia Sprzedaży!</h2>
+	<h2>Kontakt z pracownikami</h2>
 </br>
-	<p>Wybierz utrzymywany przez naszych pracowników moduł. Jeżeli nie masz uprawnień prosimy o kontakt.</p>
+	<p>Rafał Wilczkowski</p>
+    <p>tel. 510 014 979 </p>
+  
+</br>
+    <p>Michał Halama</p>
+    <p>tel. 510 014 529 </p>
+</br>
+    <p> e-mail: kalkulacja.i360@impel.pl </p>
 
 	<p>
 </br>
-    <a href="tenders.php" class="btn btn-outline-primary btn-lg"><i class="fa fa-plus"></i> Baza Przetargowa</a>
-
+   
 	</p>
 	
 </div>

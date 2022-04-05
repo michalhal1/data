@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Udało się!</h2>
                     <div class="alert alert-success">Zmodyfikowano przetarg </div>
-                    <a href="index.php" class="btn btn-success">Powrót</a>
+                    <a href="tenders.php" class="btn btn-success">Powrót</a>
                 </div>
             </div>
         </div>

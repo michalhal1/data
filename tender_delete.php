@@ -17,7 +17,7 @@ if (isset($_POST["tnd_number"]) && !empty($_POST["tnd_number"])) {
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Records deleted successfully. Redirect to landing page
-            header("location: index.php");
+            header("location: tenders.php");
             exit();
         } else {
             echo "Oops! Something went wrong. Please try again later.";
@@ -68,7 +68,7 @@ if (isset($_POST["tnd_number"]) && !empty($_POST["tnd_number"])) {
                             <p>Czy na pewno chcesz usunąć ten rekord?</p>
                             <p>
                                 <input type="submit" value="Tak" class="btn btn-danger">
-                                <a href="index.php" class="btn btn-secondary">Nie</a>
+                                <a href="tenders.php" class="btn btn-secondary">Nie</a>
                             </p>
                         </div>
                     </form>

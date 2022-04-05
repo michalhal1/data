@@ -464,7 +464,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="submit" class="btn btn-primary" value="Zmodyfikuj przetarg">
 
-        <a href="index.php" class="btn btn-secondary ml-2">Powrót</a>
+        <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
         </form>
     </div>
     </div>
