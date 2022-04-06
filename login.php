@@ -121,6 +121,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="submit" name="submit" value="Login" class="btn btn-primary btn-block" />
                         </div>
                         <div class="form-group">
+                        <a href="index_contact.php" class="btn btn-secondary btn-block">Kontakt</a>
+                        </div>
+
+                        <div class="form-group">
                             <hr />
 
 
