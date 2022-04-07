@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $off_key_offeror2 = trim($_POST["off2"]);
     $off_key_offeror3 = trim($_POST["off3"]);
     $off_key_offeror4 = trim($_POST["off4"]);
-
+    $off_key_offeror5= trim($_POST["off5"]);
 
     // VALIDATE point1
     if ($crit1_db == 0) {
@@ -300,12 +300,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $param_off_id = trim($_POST["paramid"]);
 
-        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=?";
+        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_key_offeror5=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiiddddddsisi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_modification_worker, $param_off_id);
+            mysqli_stmt_bind_param($stmt, "iiiiiisddddddsisi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4,  $param_off_key_offeror5,  $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_modification_worker, $param_off_id);
 
             $param_off_job_id = trim($_POST["jobid"]);
             $param_off_leading_offeror = $off_lead_off;
@@ -313,6 +313,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_key_offeror2 = $off_key_offeror2;
             $param_off_key_offeror3 = $off_key_offeror3;
             $param_off_key_offeror4 = $off_key_offeror4;
+            $param_off_key_offeror5 = $off_key_offeror5;
             $param_off_contract_value = $off_contract_value;
 
             $param_off_points1 = $off_points1;
@@ -357,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id =   $_SESSION['paramid'];
 
         $sql = "SELECT off_leading_offeror, off_key_offeror1, off_key_offeror2,off_key_offeror3
-        ,off_key_offeror4, off_contract_value, 
+        ,off_key_offeror4,off_key_offeror5, off_contract_value, 
         case when off_points_crit1 = 0 then null else off_points_crit1 end as off_points_crit1, 
         case when off_points_crit2 = 0 then null else off_points_crit2 end as off_points_crit2, 
         case when off_points_crit3 = 0 then null else off_points_crit3 end as off_points_crit3, 
@@ -389,6 +390,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $off_key_offeror2 = $row["off_key_offeror2"];
                     $off_key_offeror3 = $row["off_key_offeror3"];
                     $off_key_offeror4 = $row["off_key_offeror4"];
+                    $off_key_offeror5 = $row["off_key_offeror5"];
                     $off_contract_value = $row["off_contract_value"];
                     $off_points1 = $row["off_points_crit1"];
                     $off_points2 = $row["off_points_crit2"];
@@ -780,6 +782,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
+
+                    
+                    <div class="form-group col-md-4">
+                        <label for="off5">Kluczowy oferent 5</label>
+                        <input type = "text" id='off5' name='off5' class="form-control" value = <?php echo $off_key_offeror5 ?>>
+                           
+                        </select>
+                    </div>
+
                 </div>
 
 

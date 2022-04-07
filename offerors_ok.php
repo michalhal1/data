@@ -1,4 +1,11 @@
+<?php session_start();
 
+if (isset($_GET["job_id"])) {
+    $paramid = trim($_GET["job_id"]);
+    $_SESSION['paramid'] = $paramid;
+};
+
+?>
 
 
 <!DOCTYPE html>
@@ -23,7 +30,7 @@
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Udało się!</h2>
                     <div class="alert alert-success">Dodano nową ofertę </div>
-                    <a href="offerors.php" class="btn btn-success">Powrót</a>
+                    <a href="offerors.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success">Powrót</a>
                 </div>
             </div>
         </div>
