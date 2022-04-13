@@ -1,9 +1,9 @@
 <?php
- session_start();
-if (isset($_SESSION["logid"])) {
-   $logid = $_SESSION['logid'];
- } else {
-   header("location:login.php");
+session_start();
+
+if (isset($_GET["tnd_number"])) {
+    $paramid = trim($_GET["tnd_number"]);
+    $_SESSION['paramid'] = $paramid;
 };
 
 
@@ -12,7 +12,6 @@ if (isset($_SESSION["logid"])) {
  } else {
    header("location:login.php");
 };
-
 
 
 echo "<div style='text-align:right'>"; 
@@ -90,9 +89,8 @@ echo $_SESSION['logid'];
             if (mysqli_stmt_execute($stmt)) {
                 $result = mysqli_stmt_get_result($stmt);
             }
+
         //$result = mysqli_query($link, $query);
-        
-        
         if (mysqli_num_rows($result) > 0) {
             $output .= '
         <div class = "wrapper">
@@ -133,15 +131,21 @@ echo $_SESSION['logid'];
             $numerZadania =$row["job_number"];
           
         }
-    } else {
-        echo 'Data Not Found';
+        }
+        }
+    else {
+    echo 'Data Not Found';
     }
     if (($numerZadania > 0)) {
         echo $output;
     }
 
     }
+
+    if (($numerZadania > 0)) {
+        echo $output;
     }
+
     ?>
     
 
