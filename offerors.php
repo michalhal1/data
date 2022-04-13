@@ -35,19 +35,19 @@ echo $_SESSION['logid'];
 
 <style>
      .wrapper {
-        width: 1200px;
+        width: auto;
         white-space: nowrap;
     }
 
     .wrapper {
-        width: 85%;
+        width: 90%;
         padding-right: 5%;
         margin-left: 100px;
     }
 
 
     table tr td:last-child {
-        width: 100px;
+        width: 10%;
         padding: 0px;
         white-space: nowrap;
     }
@@ -108,9 +108,9 @@ echo $_SESSION['logid'];
             $output .= '
             <tr>
             <td width nowrap>' . $row["offnames_name"] . '</td>
-            <td width = 400>' . $row["off_contract_value"] . '</td>   
-            <td width = 600>' . $row["jobval_name"] . '</td>
-            <td width = 1200>' . $row["off_tnd_name"] . '</td>
+            <td nowrap>' . $row["off_contract_value"] . '</td>   
+            <td nowrap>' . $row["jobval_name"] . '</td>
+            <td nowrap>' . $row["off_tnd_name"] . '</td>
             <td width=300>
             <a href="offerors_update.php?off_id=' . $row['off_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
             <a href="offerors_delete.php?off_id=' . $row['off_id'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>

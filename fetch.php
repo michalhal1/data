@@ -10,7 +10,8 @@
     if (isset($_POST["query"])) {
         $search = mysqli_real_escape_string($link, $_POST["query"]);
         $query = "
- SELECT tnd_number, case when length(trim(cnt_name))>25 then concat(left(cnt_name,25), if(right(left(cnt_name,25),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
+ SELECT tnd_number,  case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, 
+  cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
  left join tenders_test.contractors on cnt_id=tnd_contractor_id
  left join tenders_test.tender_types on tend_type_id=tnd_type
  left join tenders_test.segments on segm_id=tnd_segment_id
@@ -19,7 +20,7 @@
   OR tnd_number LIKE '%" . $search . "%' ";
     } else {
         $query = "
- SELECT tnd_number, case when length(trim(cnt_name))>25 then concat(left(cnt_name,25), if(right(left(cnt_name,25),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
+ SELECT tnd_number,case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
  left join tenders_test.contractors on cnt_id=tnd_contractor_id
  left join tenders_test.tender_types on tend_type_id=tnd_type
  left join tenders_test.segments on segm_id=tnd_segment_id";
@@ -31,7 +32,7 @@
    <table class="table table bordered">
     <tr>
      <th>Numer przetargu</th>
-     <th>Zamawiający</th>
+     <th >Zamawiający</th>
      <th>NIP</th>
      <th>Data ogłoszenia</th>
      <th>Data złożenia</th>
@@ -67,50 +68,62 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+ <html lang="en">
 
-<head>
+ <head>
 
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
-    <style>
-        .wrapper {
-            width: 1200px;
-            white-space: nowrap;
-
-
-        }
-
-        table tr td:last-child {
-            width: 700px;
-            padding: 0px;
-            white-space: nowrap;
-        }
-    </style>
+     <meta charset="UTF-8">
+     <title>Dashboard</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 
+     <style>
+         .wrapper {
+             width: 1200px;
+             white-space: nowrap;
 
 
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-</head>
+         }
 
-<body>
+         .table-responsive {
+             table-layout: fixed;
+             width: 100%;
 
-    <!-- <div class="wrapper">
+
+         }
+
+         table tr td:last-child {
+             width: auto;
+             padding: 0px;
+             white-space: nowrap;
+         }
+
+         .a {
+             max-width: 20px;
+
+         }
+     </style>
+
+
+
+
+
+     <script>
+         $(document).ready(function() {
+             $('[data-toggle="tooltip"]').tooltip();
+         });
+     </script>
+ </head>
+
+ <body>
+
+     <!-- <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -120,12 +133,12 @@
                     </div> -->
 
 
-   
 
-    </div>
-    </div>
-    </div>
-    </div>
-</body>
 
-</html>
+     </div>
+     </div>
+     </div>
+     </div>
+ </body>
+
+ </html>

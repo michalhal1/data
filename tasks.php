@@ -82,7 +82,8 @@ echo $_SESSION['logid'];
         left join tenders_test.merchants on job_merchant_id=merch_id
         left join tenders_test.sales_types on job_sales_type=sal_type_id
         left join tenders_test.products on job_product_id=prod_id
-        WHERE tnd_number = ?";
+        WHERE tnd_number = ?
+        order by 3";
         if ($stmt = mysqli_prepare($link, $query)) {
             mysqli_stmt_bind_param($stmt, "s", $param_tnd_number);
             $param_tnd_number = $id;
@@ -116,7 +117,7 @@ echo $_SESSION['logid'];
             <td width=60>' . $row["job_number"] . '</td>
             <td nowrap>' . $row["job_name"] . '</td>  
             <td nowrap>' . $row["merchant_name"] . '</td>
-            <td>' . $row["reg_name"] . '</td> 
+            <td nowrap>' . $row["reg_name"] . '</td> 
             <td nowrap>' . $row["sal_type_name"] . '</td>
             <td nowrap>' . $row["prod_name"] . '</td>
             <td nowrap>' . $row["job_deadline"] . '</td>
@@ -130,13 +131,15 @@ echo $_SESSION['logid'];
         
             $zamawiajacy = $row['cnt_name'];
             $numerZadania =$row["job_number"];
-            if (($numerZadania > 0)) {
-                echo $output;
-            }
+          
         }
     } else {
         echo 'Data Not Found';
     }
+    if (($numerZadania > 0)) {
+        echo $output;
+    }
+
     }
     }
     ?>

@@ -42,9 +42,13 @@ echo $_SESSION['logid'];
 
     }
 
+    .container {
+      min-width: 90%;
+    }
+   
+
 
   </style>
-
 
   <div class="container">
     <br />

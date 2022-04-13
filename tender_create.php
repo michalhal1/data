@@ -24,12 +24,8 @@ if (isset($_SESSION["logid"])) {
                             $result1 = mysqli_stmt_get_result($stmt1);
 
                             if (mysqli_num_rows($result1) == 1) {
-                                /* Fetch result row as an associative array. Since the result set
-                contains only one row, we don't need to use while loop */
-                                $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
-                                //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
-                                // Retrieve individual field value
-                                $log_initials = $row["log_initials"];
+                                     $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+                                 $log_initials = $row["log_initials"];
                                
                                 
                             } else {
