@@ -81,8 +81,8 @@ echo $_SESSION['logid'];
         left join tenders_test.merchants on job_merchant_id=merch_id
         left join tenders_test.sales_types on job_sales_type=sal_type_id
         left join tenders_test.products on job_product_id=prod_id
-        order by 3
-        WHERE tnd_number = ?";
+        WHERE tnd_number = ?
+        order by 3";
         if ($stmt = mysqli_prepare($link, $query)) {
             mysqli_stmt_bind_param($stmt, "s", $param_tnd_number);
             $param_tnd_number = $id;
