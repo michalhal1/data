@@ -15,17 +15,29 @@
 
     <style>
         .wrapper {
-            width: 1200px;
+            width: auto;
             white-space: nowrap;
 
 
         }
 
         table tr td:last-child {
-            width: 200px;
+            width: 10%;
             padding: 0px;
             white-space: nowrap;
         }
+
+        .table-responsive {
+             table-layout: fixed;
+             width: 100%;
+
+
+         }
+
+         .a {
+             max-width: 20%;
+
+         }
     </style>
 
 
@@ -59,12 +71,12 @@
     if (isset($_POST["query"])) {
         $search = mysqli_real_escape_string($link, $_POST["query"]);
         $query = "
-    SELECT cnt_name,cnt_NIP, concat(cnt_street, cnt_postal_code, cnt_city) as adress, cnt_record_creation_work, cnt_id from tenders_test.contractors 
+    SELECT cnt_name,cnt_NIP, concat(cnt_street, cnt_postal_code, cnt_city) as adress, cnt_record_creation_work, cnt_id from contractors 
     WHERE (cnt_NIP LIKE '%" . $search . "%'
     OR cnt_name LIKE '%" . $search . "%') AND cnt_active=1";
     } else {
         $query = "
- SELECT cnt_name,cnt_NIP, concat(cnt_street, ' ',  cnt_postal_code, ' ',  cnt_city) as adress, cnt_record_creation_work, cnt_id from tenders_test.contractors WHERE cnt_active=1";
+ SELECT cnt_name,cnt_NIP, concat(cnt_street, ' ',  cnt_postal_code, ' ',  cnt_city) as adress, cnt_record_creation_work, cnt_id from contractors WHERE cnt_active=1";
     }
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) > 0) {
@@ -82,9 +94,9 @@
         while ($row = mysqli_fetch_array($result)) {
             $output .= '
    <tr>
-    <td width>' . $row["cnt_name"] . '</td>
+    <td class="a" nowrap>' . $row["cnt_name"] . '</td>
     <td nowrap>' . $row["cnt_NIP"] . '</td>
-    <td>' . $row["adress"] . '</td>
+    <td nowrap>' . $row["adress"] . '</td>
     <td nowrap>' . $row["cnt_record_creation_work"] . '</td>
     <td width=100>
     <a href="contractor_update.php?cnt_id=' . $row['cnt_id'] . '" class="mr-3" title="Edytuj rekord" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
