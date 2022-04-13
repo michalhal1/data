@@ -164,7 +164,7 @@ echo $_SESSION['logid'];
                 <h5 align="center">Jesteś w przetargu: <?php echo $_GET["tnd_number"] . " - " . $zamawiajacy; ?> </h5></br>
             </div>
 
-            <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowe zadanie przetargowe</a>
+            <a href="job_create.php?tnd_number=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowe zadanie przetargowe</a>
             <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
         </div>
         </br>
