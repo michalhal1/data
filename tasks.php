@@ -36,12 +36,12 @@ echo $_SESSION['logid'];
 
 <style>
      .wrapper {
-        width: 1200px;
+        width: 100%;
         white-space: nowrap;
     }
 
     .wrapper {
-        width: 85%;
+        width: 90%;
         padding-right: 5%;
         margin-left: 100px;
     }
@@ -81,6 +81,7 @@ echo $_SESSION['logid'];
         left join tenders_test.merchants on job_merchant_id=merch_id
         left join tenders_test.sales_types on job_sales_type=sal_type_id
         left join tenders_test.products on job_product_id=prod_id
+        order by 3
         WHERE tnd_number = ?";
         if ($stmt = mysqli_prepare($link, $query)) {
             mysqli_stmt_bind_param($stmt, "s", $param_tnd_number);
@@ -114,7 +115,7 @@ echo $_SESSION['logid'];
             <td width=60>' . $row["job_number"] . '</td>
             <td nowrap>' . $row["job_name"] . '</td>  
             <td nowrap>' . $row["merchant_name"] . '</td>
-            <td>' . $row["reg_name"] . '</td> 
+            <td nowrap>' . $row["reg_name"] . '</td> 
             <td nowrap>' . $row["sal_type_name"] . '</td>
             <td nowrap>' . $row["prod_name"] . '</td>
             <td nowrap>' . $row["job_deadline"] . '</td>
