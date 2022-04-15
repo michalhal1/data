@@ -13,7 +13,7 @@ if (isset($_SESSION["logid"])) {
    header("location:login.php");
 };
 
-
+// pobieramy sobie z bazy dane odonśnie daty stworzenia, modyfikacji oraz uzytkowników
 require_once "config.php";
 
 if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
@@ -62,6 +62,7 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
 }
 
 // Process delete operation after confirmation
+//sprawdzamy, czy aktualne użytkownik na sesji to ten sam, który założył przetarg LUB czy aktualne użytkownik jest adminem -- jeżeli tak nie jest przychodzimy do else
 if (isset($_POST["tnd_number"]) && !empty($_POST["tnd_number"]) and ($tnd_creation_emp == $_SESSION['logid'] or $_SESSION['logid'] == 'Administrator')  ) {
     // Include config file
     require_once "config.php";
@@ -100,6 +101,7 @@ if (isset($_POST["tnd_number"]) && !empty($_POST["tnd_number"]) and ($tnd_creati
 
         exit();
     } else {
+        // jeżeli aktualny użytkownik nie założył przetargu ani nie jest administratorem przechodzimy do tender_wrongauthority.php
         if($tnd_creation_emp <> $_SESSION['logid'] and $_SESSION['logid'] <> 'Administrator') {
         header("location: tender_wrongauthority.php?tnd_number=$paramid") ;
         }

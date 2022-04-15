@@ -14,7 +14,7 @@ if (isset($_GET["tnd_number"])) {
 };
 
 
-
+//pobieramy dane z bazt, potrzebny nam jest uzytkonik , który stworzył przetarg
 require_once "config.php";
 
 if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
@@ -42,9 +42,7 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
                 $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
                 //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
                 // Retrieve individual field value
-                $tnd_modification_date = $row1["tnd_record_modification_date"];
-                $tnd_creation_date = $row1["tnd_record_creation_date"];
-                $tnd_modification_emp = $row1["tnd_modification_worker"];
+            
                 $tnd_creation_emp = $row1["tnd_creation_worker"];
             } else {
 
