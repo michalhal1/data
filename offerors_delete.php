@@ -1,11 +1,18 @@
 <?php session_start();
 
+//zmienna sesyjna , po kliknięciu w stronę zapamiętuje parametr
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
+   header("location:login.php");
+};
+
 
  require_once "config.php";
 // Process delete operation after confirmation
 
 
-$jobid_sql = "select distinct off_job_id from tenders_test.offerors where off_id = ?";
+$jobid_sql = "select distinct off_job_id, off_creation_work from tenders_test.offerors where off_id = ?";
 
  
 if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
@@ -18,7 +25,7 @@ if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
         //
         if (!$row1 == NULL) {
             $result_jobid = $row1[0];
-           
+            $result_creation_work = $row1[1];
         } else {
             $result_jobid = null;
            
@@ -29,7 +36,7 @@ if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
 $_SESSION['jobid'] = $result_jobid;
 
 
-if (isset($_POST["off_id"]) && !empty($_POST["off_id"])) {
+if (isset($_POST["off_id"]) && !empty($_POST["off_id"]) and ($result_creation_work == $_SESSION['logid'] or $_SESSION['logid'] == 'Administrator')) {
     // Include config file
      
 
@@ -66,9 +73,11 @@ if (isset($_POST["off_id"]) && !empty($_POST["off_id"])) {
     if (empty(trim($_GET["off_id"]))) {
         // URL doesn't contain id parameter. Redirect to error page
         header("location: error.php");
-
-        exit();
+    } else {
+        if($result_creation_work <> $_SESSION['logid'] and $_SESSION['logid'] <> 'Administrator') {
+        header("location: offerors_wrongauthority.php?off_id=" .  $_GET["off_id"]);
     }
+}
 }
 ?>
 

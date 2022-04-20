@@ -901,7 +901,7 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
         mysqli_stmt_bind_param($stmt1a, "i", $param_id);
 
         // Set parameters
-        $param_id = 12;
+        $param_id = $_SESSION['paramid'];
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt1a)) {
