@@ -110,7 +110,7 @@ if (isset($_POST["job_id"]) and !empty($_POST["job_id"]) and ($result_creation_w
                             <p>Czy na pewno chcesz usunąć ten rekord?</p>
                             <p>
                                <input type="submit" value="Tak" class="btn btn-danger">
-                                <a href="tasks.php?job_id=<?php echo $_SESSION['tndid'] ; ?>" class="btn btn-secondary">Nie</a>
+                                <a href="tasks.php?tnd_id=<?php echo $_SESSION['tndid'] ; ?>" class="btn btn-secondary">Nie</a>
                             
                             </p>
                         </div>

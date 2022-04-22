@@ -64,7 +64,7 @@ if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3"> </h2>
                     <div class="alert alert-danger "> <?php echo " Nie masz uprawnień do tej operacji. Oferta został wprowadzona przez " . $result_creation_work; ?> </div>
-                    <a href="tasks.php?job_id= <?php echo   $result_tndid; ?>" class="btn btn-secondary">Powrót</a>
+                    <a href="tasks.php?tnd_id= <?php echo   $result_tndid; ?>" class="btn btn-secondary">Powrót</a>
                 </div>
             </div>
         </div>

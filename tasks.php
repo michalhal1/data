@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (isset($_GET["tnd_number"])) {
-    $paramid = trim($_GET["tnd_number"]);
+if (isset($_GET["tnd_id"])) {
+    $paramid = trim($_GET["tnd_id"]);
     $_SESSION['paramid'] = $paramid;
 };
 
@@ -70,8 +70,8 @@ echo $_SESSION['logid'];
     require_once "config.php";
     $output = '';
 
-    if (isset($_GET["tnd_number"]) && !empty(trim($_GET["tnd_number"]))) {
-        $id =  trim($_GET["tnd_number"]);
+    if (isset($_GET["tnd_id"]) && !empty(trim($_GET["tnd_id"]))) {
+        $id =  trim($_GET["tnd_id"]);
         $query = "
         Select tnd_number, cnt_name, job_number, job_id, case when length (trim(job_name))>35 then concat(left(job_name,35), if(right(left(job_name,35),1)='.', '', '...')) else job_name end as job_name, reg_name, concat(merch_name, ' ', merch_surname) as merchant_name, sal_type_name, prod_name, job_deadline
         from tenders_test.tenders
@@ -81,11 +81,11 @@ echo $_SESSION['logid'];
         left join tenders_test.merchants on job_merchant_id=merch_id
         left join tenders_test.sales_types on job_sales_type=sal_type_id
         left join tenders_test.products on job_product_id=prod_id
-        WHERE tnd_number = ?
+        WHERE tnd_id = ?
         order by 3";
         if ($stmt = mysqli_prepare($link, $query)) {
-            mysqli_stmt_bind_param($stmt, "s", $param_tnd_number);
-            $param_tnd_number = $id;
+            mysqli_stmt_bind_param($stmt, "s", $param_tnd_id);
+            $param_tnd_id = $id;
             if (mysqli_stmt_execute($stmt)) {
                 $result = mysqli_stmt_get_result($stmt);
             }
@@ -129,6 +129,7 @@ echo $_SESSION['logid'];
         
             $zamawiajacy = $row['cnt_name'];
             $numerZadania =$row["job_number"];
+            $tnd_number = $row["tnd_number"];
         }
         }
         }
@@ -162,10 +163,10 @@ echo $_SESSION['logid'];
 
             <div class="input-group-prepend">
                 <span class="input-group-addon"></span>
-                <h5 align="center">Jesteś w przetargu: <?php echo $_GET["tnd_number"] . " - " . $zamawiajacy; ?> </h5></br>
+                <h5 align="center">Jesteś w przetargu: <?php echo  $tnd_number . " - " . $zamawiajacy; ?> </h5></br>
             </div>
 
-            <a href="job_create.php?tnd_number=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowe zadanie przetargowe</a>
+            <a href="job_create.php?tnd_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowe zadanie przetargowe</a>
             <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
         </div>
         </br>

@@ -73,7 +73,7 @@ echo $_SESSION['logid'];
     if (isset($_GET["job_id"]) && !empty(trim($_GET["job_id"]))) {
         $id =  trim($_GET["job_id"]);
         $query = "
-        Select tnd_number, cnt_name, job_number, off_id, job_id, offnames_name, off_contract_value, jobval_name, off_tnd_name
+        Select tnd_id, tnd_number, cnt_name, job_number, off_id, job_id, offnames_name, off_contract_value, jobval_name, off_tnd_name
         from tenders_test.tenders_jobs
         left join tenders_test.job_value_types on job_value_type_id = jobval_type_id
         left join tenders_test.offerors on job_id = off_job_id
@@ -122,6 +122,7 @@ echo $_SESSION['logid'];
             $zamawiajacy = $row['cnt_name'];
             $numerZadania = $row['job_number'];
             $numerOferenta =$row["off_id"];
+            $tnd_number =$row["tnd_id"];
         }
         }
         } 
@@ -160,7 +161,7 @@ echo $_SESSION['logid'];
             </div>
 
             <a href="offeror_create.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowa oferta</a>
-            <a href="tasks.php?tnd_number=<?php echo $numerPrzetargu ?>" class="btn btn-secondary ml-2">Powrót</a>
+            <a href="tasks.php?tnd_id=<?php echo $tnd_number ?>" class="btn btn-secondary ml-2">Powrót</a>
         </div>
         <br />
         <?php 

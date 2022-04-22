@@ -10,7 +10,7 @@
     if (isset($_POST["query"])) {
         $search = mysqli_real_escape_string($link, $_POST["query"]);
         $query = "
- SELECT tnd_number,  case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, 
+ SELECT tnd_id, tnd_number,  case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, 
   cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
  left join tenders_test.contractors on cnt_id=tnd_contractor_id
  left join tenders_test.tender_types on tend_type_id=tnd_type
@@ -20,7 +20,7 @@
   OR tnd_number LIKE '%" . $search . "%' ";
     } else {
         $query = "
- SELECT tnd_number,case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
+ SELECT tnd_id, tnd_number,case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders_test.tenders
  left join tenders_test.contractors on cnt_id=tnd_contractor_id
  left join tenders_test.tender_types on tend_type_id=tnd_type
  left join tenders_test.segments on segm_id=tnd_segment_id";
@@ -54,7 +54,7 @@
      <td width=300>
      <a href="tender_update.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
      <a href="tender_delete.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
-     <a href="tasks.php?tnd_number=' . $row['tnd_number'] . '" title="Dodaj zadanie przetargowe" data-toggle="tooltip"><span class="fa fa-paperclip"></span></a>
+     <a href="tasks.php?tnd_id=' . $row['tnd_id'] . '" title="Dodaj zadanie przetargowe" data-toggle="tooltip"><span class="fa fa-paperclip"></span></a>
 </td>
    </tr>
   ';
