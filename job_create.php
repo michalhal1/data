@@ -750,7 +750,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <div class="form-group col-md-3">
                         <label for="jobresignationreason">Powód rezygnacji</label>
-                        <select id='jobresignationreason' name='jobresignationreason' class="form-control <?php echo (!empty($jobresignationreason_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobresignationreason' name='jobresignationreason' class="form-control <?php // echo (!empty($jobresignationreason_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" value=<?php echo $jobresignationreason; ?>> </option>
                             <option value="Ekonomiczne"> ekonomiczne </option>
                             <option value="Formalne"> formalne </option>    
@@ -770,7 +770,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-4">
                         <label for="jobresignationreasondetails">Powód rezygnacji - szczegółowo</label>
-                        <select id='jobresignationreasondetails' name='jobresignationreasondetails' class="form-control <?php echo (!empty($jobresignationreasondetails_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobresignationreasondetails' name='jobresignationreasondetails' class="form-control <?php // echo (!empty($jobresignationreasondetails_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobresignationreasondetails; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -819,7 +819,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobvaluetype">Typ wartości</label>
-                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php  echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -827,12 +827,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobunitsnumber">Liczba jednostek [mc]</label>
-                        <input type="text" id='jobunitsnumber' name='jobunitsnumber' class="form-control <?php echo (!empty($jobunitsnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobunitsnumber; ?>">
+                        <input type="text" id='jobunitsnumber' name='jobunitsnumber' class="form-control <?php // echo (!empty($jobunitsnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobunitsnumber; ?>">
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="jobcontractorbudget">Budżet zamawiającego</label>
-                        <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcontractorbudget; ?>">
+                        <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php // echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcontractorbudget; ?>">
                     </div>
                 </div>
 
@@ -840,7 +840,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobdeposit">Wadium - kwota</label>
-                        <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeposit; ?>">
+                        <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php // echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeposit; ?>">
                     </div>
                     
                     <?php
@@ -856,7 +856,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobdeposittype">Wadium - rodzaj</label>
-                        <select id='jobdeposittype' name='jobdeposittype' class="form-control <?php echo (!empty($jobdeposittype_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobdeposittype' name='jobdeposittype' class="form-control <?php // echo (!empty($jobdeposittype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobdeposittype; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -864,7 +864,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <div class="form-group col-md-2">
                         <label for="jobdepositvaliddate">Wadium - ważność</label>
-                        <input type="date" name="jobdepositvaliddate" min="2022-01-01" class="form-control <?php echo (!empty($jobdepositvaliddate_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdepositvaliddate; ?>">
+                        <input type="date" name="jobdepositvaliddate" min="2022-01-01" class="form-control <?php // echo (!empty($jobdepositvaliddate_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdepositvaliddate; ?>">
                         <span class="invalid-feedback"><?php echo $jobdepositvaliddate_err; ?></span>
                     </div>
                 </div>
@@ -884,7 +884,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-4">
                         <label for="jobcurrentoperator">Aktualny wykonawca</label>
-                        <select id='jobcurrentoperator' name='jobcurrentoperator' class="form-control <?php echo (!empty($jobcurrentoperator_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcurrentoperator' name='jobcurrentoperator' class="form-control <?php // echo (!empty($jobcurrentoperator_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcurrentoperator; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
@@ -924,7 +924,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-2">
                         <label for="jobindexname">Waloryzacja</label>
-                        <select id='jobindexname' name='jobindexname' class="form-control <?php echo (!empty($jobindexname_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobindexname' name='jobindexname' class="form-control <?php // echo (!empty($jobindexname_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobindexname; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -932,7 +932,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobtakeover23">Przejęcie 23</label>
-                        <select id='jobtakeover23' name='jobtakeover23' class="form-control <?php echo (!empty($jobtakeover23_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobtakeover23' name='jobtakeover23' class="form-control <?php // echo (!empty($jobtakeover23_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" value=<?php echo $jobtakeover23; ?>> </option>
                             <option value="tak"> tak </option>
                             <option value="nie"> nie </option>    
@@ -941,7 +941,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-3">
                         <label for="jobtookoverworkers">Liczba pracowników przejmowanych</label>
-                        <input type="text" id='jobtookoverworkers' name='jobtookoverworkers' class="form-control <?php echo (!empty($jobtookoverworkers_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobtookoverworkers; ?>">
+                        <input type="text" id='jobtookoverworkers' name='jobtookoverworkers' class="form-control <?php // echo (!empty($jobtookoverworkers_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobtookoverworkers; ?>">
                     </div>
                 </div>
                 
@@ -960,7 +960,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobZNWUtype">Rodzaj ZNWU</label>
-                        <select id='jobZNWUtype' name='jobZNWUtype' class="form-control <?php echo (!empty($jobZNWUtype_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobZNWUtype' name='jobZNWUtype' class="form-control <?php // echo (!empty($jobZNWUtype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobZNWUtype; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -968,7 +968,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobZNWUvalue">Wartość ZNWU [%]</label>
-                        <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobZNWUvalue; ?>">
+                        <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php // echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobZNWUvalue; ?>">
                     </div>
                     
                     <?php
@@ -984,7 +984,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobcontracttype">Rodzaj umowy</label>
-                        <select id='jobcontracttype' name='jobcontracttype' class="form-control <?php echo (!empty($jobcontracttype_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcontracttype' name='jobcontracttype' class="form-control <?php // echo (!empty($jobcontracttype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcontracttype; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1003,7 +1003,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobsubcontractor">Podwykonawstwo</label>
-                        <select id='jobsubcontractor' name='jobsubcontractor' class="form-control <?php echo (!empty($jobsubcontractor_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobsubcontractor' name='jobsubcontractor' class="form-control <?php // echo (!empty($jobsubcontractor_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobsubcontractor; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1014,12 +1014,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-3">
                         <label for="jobinternalareas">Tereny wewnętrzne</label>
-                        <input type="text" id='jobinternalareas' name='jobinternalareas' class="form-control <?php echo (!empty($jobinternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobinternalareas; ?>">
+                        <input type="text" id='jobinternalareas' name='jobinternalareas' class="form-control <?php // echo (!empty($jobinternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobinternalareas; ?>">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="jobexternalareas">Tereny zewnętrzne</label>
-                        <input type="text" id='jobexternalareas' name='jobexternalareas' class="form-control <?php echo (!empty($jobexternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobexternalareas; ?>">
+                        <input type="text" id='jobexternalareas' name='jobexternalareas' class="form-control <?php // echo (!empty($jobexternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobexternalareas; ?>">
                     </div>
                 </div>
 
@@ -1038,7 +1038,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobqualifiedworkers">Pracownicy kwalifikowani</label>
-                        <select id='jobqualifiedworkers' name='jobqualifiedworkers' class="form-control <?php echo (!empty($jobqualifiedworkers_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobqualifiedworkers' name='jobqualifiedworkers' class="form-control <?php // echo (!empty($jobqualifiedworkers_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobqualifiedworkers; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1057,7 +1057,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-2">
                         <label for="jobweapon">Broń</label>
-                        <select id='jobweapon' name='jobweapon' class="form-control <?php echo (!empty($jobweapon_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobweapon' name='jobweapon' class="form-control <?php // echo (!empty($jobweapon_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobweapon; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1076,7 +1076,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <div class="form-group col-md-3">
                         <label for="jobinterventiongroups">Grupy interwencyjne</label>
-                        <select id='jobinterventiongroups' name='jobinterventiongroups' class="form-control <?php echo (!empty($jobinterventiongroups_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobinterventiongroups' name='jobinterventiongroups' class="form-control <?php // echo (!empty($jobinterventiongroups_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobinterventiongroups; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1100,7 +1100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- tutaj zaczynamy ustawiać pola -->
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame1">Kryterium wyboru 1 - opis</label>
-                        <select id='jobcriterianame1' name='jobcriterianame1' class="form-control <?php echo (!empty($jobcriterianame1_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcriterianame1' name='jobcriterianame1' class="form-control <?php // echo (!empty($jobcriterianame1_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcriterianame1; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
@@ -1129,13 +1129,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight1">Waga kryterium 1 [%]</label>
-                        <input type="text" id='jobcriteriaweight1' name='jobcriteriaweight1' class="form-control <?php echo (!empty($jobcriteriaweight1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight1; ?>">
+                        <input type="text" id='jobcriteriaweight1' name='jobcriteriaweight1' class="form-control <?php // echo (!empty($jobcriteriaweight1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight1; ?>">
                     </div>
 
                     
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame2">Kryterium wyboru 2 - opis</label>
-                        <select id='jobcriterianame2' name='jobcriterianame2' class="form-control <?php echo (!empty($jobcriterianame2_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcriterianame2' name='jobcriterianame2' class="form-control <?php // echo (!empty($jobcriterianame2_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcriterianame2; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
@@ -1164,7 +1164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight2">Waga kryterium 2 [%]</label>
-                        <input type="text" id='jobcriteriaweight2' name='jobcriteriaweight2' class="form-control <?php echo (!empty($jobcriteriaweight2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight2; ?>">
+                        <input type="text" id='jobcriteriaweight2' name='jobcriteriaweight2' class="form-control <?php // echo (!empty($jobcriteriaweight2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight2; ?>">
                     </div>
                 </div>
 
@@ -1172,7 +1172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame3">Kryterium wyboru 3 - opis</label>
-                        <select id='jobcriterianame3' name='jobcriterianame3' class="form-control <?php echo (!empty($jobcriterianame3_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcriterianame3' name='jobcriterianame3' class="form-control <?php // echo (!empty($jobcriterianame3_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcriterianame3; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
@@ -1201,12 +1201,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight3">Waga kryterium 3 [%]</label>
-                        <input type="text" id='jobcriteriaweight3' name='jobcriteriaweight3' class="form-control <?php echo (!empty($jobcriteriaweight3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight3; ?>">
+                        <input type="text" id='jobcriteriaweight3' name='jobcriteriaweight3' class="form-control <?php // echo (!empty($jobcriteriaweight3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight3; ?>">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame4">Kryterium wyboru 4 - opis</label>
-                        <select id='jobcriterianame4' name='jobcriterianame4' class="form-control <?php echo (!empty($jobcriterianame4_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcriterianame4' name='jobcriterianame4' class="form-control <?php // echo (!empty($jobcriterianame4_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcriterianame4; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
@@ -1235,7 +1235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight4">Waga kryterium 4 [%]</label>
-                        <input type="text" id='jobcriteriaweight4' name='jobcriteriaweight4' class="form-control <?php echo (!empty($jobcriteriaweight4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight4; ?>">
+                        <input type="text" id='jobcriteriaweight4' name='jobcriteriaweight4' class="form-control <?php // echo (!empty($jobcriteriaweight4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight4; ?>">
                     </div>
                 </div>
 
@@ -1243,7 +1243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame5">Kryterium wyboru 5 - opis</label>
-                        <select id='jobcriterianame5' name='jobcriterianame5' class="form-control <?php echo (!empty($jobcriterianame5_err)) ? 'is-invalid' : ''; ?>">>
+                        <select id='jobcriterianame5' name='jobcriterianame5' class="form-control <?php // echo (!empty($jobcriterianame5_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcriterianame5; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
@@ -1272,7 +1272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight5">Waga kryterium 5 [%]</label>
-                        <input type="text" id='jobcriteriaweight5' name='jobcriteriaweight5' class="form-control <?php echo (!empty($jobcriteriaweight5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight5; ?>">
+                        <input type="text" id='jobcriteriaweight5' name='jobcriteriaweight5' class="form-control <?php // echo (!empty($jobcriteriaweight5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight5; ?>">
                     </div>
                 </div>
 
