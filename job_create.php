@@ -16,8 +16,8 @@ require_once "config.php";
 
 
 // Define variables and initialize with empty values
-$jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresinationreason = $jobresinationreasondetails = $jobestimatedvalue = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = "";
-$jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresinationreason_err = $jobresinationreasondetails_err = $jobestimatedvalue_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = "";
+$jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = "";
+$jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = "";
 
 
 // Processing form data when form is submitted
@@ -119,20 +119,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobstatus = $input_job_status;
     }
 
-    //validate jobresinationreason
-    $input_job_resinationreason = trim($_POST["jobresinationreason"]);
-    if (empty($input_job_resinationreason)) {
-        $jobresinationreason_err = "Wybierz powód rezygnacji";
+    //validate jobresignationreason
+    $input_job_resignationreason = trim($_POST["jobresignationreason"]);
+    if (empty($input_job_resignationreason)) {
+        $jobresignationreason_err = "Wybierz powód rezygnacji";
     } else {
-        $jobresinationreason = $input_job_resinationreason;
+        $jobresignationreason = $input_job_resignationreason;
     }
 
-    //validate jobresinationreasondetails
-    $input_job_resinationreasondetails = trim($_POST["jobresinationreasondetails"]);
-    if (empty($input_job_resinationreasondetails)) {
-        $jobresinationreasondetails_err = "Wpisz szczegółowy powód rezygnacji";
+    //validate jobresignationreasondetails
+    $input_job_resignationreasondetails = trim($_POST["jobresignationreasondetails"]);
+    if (empty($input_job_resignationreasondetails)) {
+        $jobresignationreasondetails_err = "Wpisz szczegółowy powód rezygnacji";
     } else {
-        $jobresinationreasondetails = $input_job_resinationreasondetails;
+        $jobresignationreasondetails = $input_job_resignationreasondetails;
     }
 
     //validate jobestimatedvalue
@@ -143,6 +143,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobestimatedvalue_err = "Wpisz wartość szacunkową";
     } else {
         $jobestimatedvalue = $input_job_estimatedvalue;
+    }
+
+    //validate jobvaluetype
+    $input_job_valuetype = trim($_POST["jobvaluetype"]);
+    if (empty($input_job_valuetype)) {
+        $jobvaluetype_err = "Wybierz typ wartości";
+    } else {
+        $jobvaluetype = $input_job_valuetype;
     }
 
     //validate jobunitsnumber
@@ -212,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($input_job_takeover23)) {
         $jobtakeover23_err = "Uzupełnij pole przejęcie23";
     } else {
-        $jobdeposittype = $input_job_takeover23;
+        $jobtakeover23 = $input_job_takeover23;
     }
 
     //validate jobtookoverworkers
@@ -404,12 +412,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //$job_tnd_id = trim($_POST["paramid"]);
         $job_tnd_id = 3;
 
-        $sql = "INSERT INTO tenders_test.tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_property_type_id, job_sales_type, job_deadline ,job_region, job_department_id, job_merchant_id, job_SAP_chance_number,job_status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tenders_test.tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_property_type_id, job_sales_type, job_deadline ,job_region, job_department_id, job_merchant_id, job_SAP_chance_number, job_status, job_resignation_reason, job_resignation_reason_details, job_estimated_value, job_value_type_id, job_units_number, job_contractor_budget, job_deposit, job_deposit_id, job_deposit_valid_date, job_current_operator, job_indexation_type_id, job_takeover23, job_tookover_workers, job_ZNWU_type, job_ZNWU_value, job_contract_type, job_subcontractor, job_internal_areas, job_external_areas, job_qualified_workers, job_weapon, job_intervention_groups, job_criteria_id1, job_criteria_weight1, job_criteria_id2, job_criteria_weight2, job_criteria_id3, job_criteria_weight3, job_criteria_id4, job_criteria_weight4, job_criteria_id5, job_criteria_weight5) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iisiiiiiiiii", $param_job_tnd_id, $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus);
+            mysqli_stmt_bind_param($stmt, "iisiiiiiiiiisididddisiisiidiiddiiiididididid", $param_job_tnd_id, $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5);
                
             $param_job_tnd_id = $job_tnd_id;
             $param_jobnumber = $jobnumber ;
@@ -423,13 +431,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_jobmerchant = $jobmerchant;
             $param_jobSAPnumber = $jobSAPnumber;
             $param_jobstatus = $jobstatus;
+            $param_jobresignationreason = $jobresignationreason;
+            $param_jobresignationreasondetails = $jobresignationreasondetails;
+            $param_jobestimatedvalue = $jobestimatedvalue;
+            $param_jobvaluetype = $jobvaluetype;
+            $param_jobunitsnumber = $jobunitsnumber;
+            $param_jobcontractorbudget = $jobcontractorbudget;
+            $param_jobdeposit = $jobdeposit;
+            $param_jobdeposittype = $jobdeposittype;
+            $param_jobdepositvaliddate = $jobdepositvaliddate;
+            $param_jobcurrentoperator = $jobcurrentoperator;
+            $param_jobindexname = $jobindexname;
+            $param_jobtakeover23 = $jobtakeover23;
+            $param_jobtookoverworkers = $jobtookoverworkers;
+            $param_jobZNWUtype = $jobZNWUtype;
+            $param_jobZNWUvalue = $jobZNWUvalue;
+            $param_jobcontracttype = $jobcontracttype;
+            $param_jobsubcontractor = $jobsubcontractor;
+            $param_jobinternalareas = $jobinternalareas;
+            $param_jobexternalareas = $jobexternalareas;
+            $param_jobqualifiedworkers  = $jobqualifiedworkers;
+            $param_jobweapon = $jobweapon;
+            $param_jobinterventiongroups = $jobinterventiongroups;
+            $param_jobcriterianame1 = $jobcriterianame1;
+            $param_jobcriteriaweight1 = $jobcriteriaweight1;
+            $param_jobcriterianame2 = $jobcriterianame2;
+            $param_jobcriteriaweight2 = $jobcriteriaweight2;
+            $param_jobcriterianame3 = $jobcriterianame3;
+            $param_jobcriteriaweight3 = $jobcriteriaweight3;
+            $param_jobcriterianame4 = $jobcriterianame4;
+            $param_jobcriteriaweight4 = $jobcriteriaweight4;
+            $param_jobcriterianame5 = $jobcriterianame5;
+            $param_jobcriteriaweight5 = $jobcriteriaweight5;
+            
             
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Records created successfully. Redirect to landing page
                 //echo "Dodano nowy przetarg";
-                header("location: job_create_ok.php");
+                header("location: job_ok.php");
                 // echo $_POST['off_winner'];
                 // echo trim($_POST["inputname"]); 
                 // echo $off_points1;
@@ -477,7 +518,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2 class="mt-5">Dodaj zadanie przetargowe</h2>
             <p>Uzupełnij formularz i zatwierdź</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
+                
                 <div class="form-row">
                     <!-- Select2 CSS -->
                     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -489,7 +530,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
                     <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
 
-                    <!-- Dropdown -->
+                    <!-- nadajemy tutaj styl obramowań list rozwijanych z możliwością wyszukiwania - na taki sam jak reszta z bootstrapa -->
+                    <style>
+                    .select2-container .select2-selection--single {
+                        height: calc(1.5em + 0.75rem + 2px);
+                        border: 1px solid #ced4da;
+                    }
+                    </style>
+
+                    <!-- formujemy przyciski -->
                     <div class="form-group col-md-2">
                         <label for="jobnumber">Numer zadania</label>
                         <input type="text" id='jobnumber' name='jobnumber' class="form-control <?php echo (!empty($jobnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobnumber; ?>">
@@ -513,6 +562,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
                     }
                     ?>
+
+                    
 
                     <div class="form-group col-md-3">
                         <label for="jobproduct">Produkt</label>
@@ -698,29 +749,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <div class="form-group col-md-3">
-                        <label for="jobresinationreason">Powód rezygnacji</label>
-                        <select id='jobresinationreason' name='jobresinationreason' class="form-control <?php echo (!empty($jobresinationreason_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobresinationreason; ?>> </option>
+                        <label for="jobresignationreason">Powód rezygnacji</label>
+                        <select id='jobresignationreason' name='jobresignationreason' class="form-control <?php echo (!empty($jobresignationreason_err)) ? 'is-invalid' : ''; ?>">>
+                            <option selected="selected" value=<?php echo $jobresignationreason; ?>> </option>
                             <option value="Ekonomiczne"> ekonomiczne </option>
                             <option value="Formalne"> formalne </option>    
                         </select>
                     </div>
 
                     <?php
-                    $jobresinationreasondetails_sql = "SELECT jobresign_name, jobresign_id FROM tenders_test.job_resignations where jobresign_active=1";
+                    $jobresignationreasondetails_sql = "SELECT jobresign_name, jobresign_id FROM tenders_test.job_resignations where jobresign_active=1";
 
-                    $jobresinationreasondetails_result = mysqli_query($link, $jobresinationreasondetails_sql);
+                    $jobresignationreasondetails_result = mysqli_query($link, $jobresignationreasondetails_sql);
 
                     $options = "";
                     
-                    while ($row2 = mysqli_fetch_array($jobresinationreasondetails_result)) {
+                    while ($row2 = mysqli_fetch_array($jobresignationreasondetails_result)) {
                         $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
                     }
                     ?>
                     <div class="form-group col-md-4">
-                        <label for="jobresinationreasondetails">Powód rezygnacji - szczegółowo</label>
-                        <select id='jobresinationreasondetails' name='jobresinationreasondetails' class="form-control <?php echo (!empty($jobresinationreasondetails_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobresinationreasondetails; ?>> </option>
+                        <label for="jobresignationreasondetails">Powód rezygnacji - szczegółowo</label>
+                        <select id='jobresignationreasondetails' name='jobresignationreasondetails' class="form-control <?php echo (!empty($jobresignationreasondetails_err)) ? 'is-invalid' : ''; ?>">>
+                            <option selected="selected" hidden value=<?php echo $jobresignationreasondetails; ?>> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -733,7 +784,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $(document).ready(function() {
 
                             // Initialize select2
-                            $("#jobresinationreasondetails").select2();
+                            $("#jobresignationreasondetails").select2();
 
                             // Read selected option
                             $('#but_read').click(function() {
@@ -755,12 +806,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
                     </div>
 
+                    <?php
+                    $jobvaluetype_sql = "SELECT jobval_name, jobval_type_id FROM tenders_test.job_value_types where jobval_active=1";
+
+                    $jobvaluetype_result = mysqli_query($link, $jobvaluetype_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobvaluetype_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
+                    <div class="form-group col-md-3">
+                        <label for="jobvaluetype">Typ wartości</label>
+                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
+                            <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
+                        </select>
+                    </div>
+
                     <div class="form-group col-md-2">
                         <label for="jobunitsnumber">Liczba jednostek [mc]</label>
                         <input type="text" id='jobunitsnumber' name='jobunitsnumber' class="form-control <?php echo (!empty($jobunitsnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobunitsnumber; ?>">
                     </div>
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <label for="jobcontractorbudget">Budżet zamawiającego</label>
                         <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcontractorbudget; ?>">
                     </div>
@@ -772,10 +842,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="jobdeposit">Wadium - kwota</label>
                         <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeposit; ?>">
                     </div>
+                    
+                    <?php
+                    $jobdeposittype_sql = "SELECT jobdeposit_name, jobdeposit_id FROM tenders_test.job_deposit_types where jobdeposit_active=1";
 
+                    $jobdeposittype_result = mysqli_query($link, $jobdeposittype_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobdeposittype_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-3">
                         <label for="jobdeposittype">Wadium - rodzaj</label>
-                        <input type="text" id='jobdeposittype' name='jobdeposittype' class="form-control">
+                        <select id='jobdeposittype' name='jobdeposittype' class="form-control <?php echo (!empty($jobdeposittype_err)) ? 'is-invalid' : ''; ?>">>
+                            <option selected="selected" hidden value=<?php echo $jobdeposittype; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
+                        </select>
                     </div>
                     
                     <div class="form-group col-md-2">
@@ -862,13 +946,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 
                 <div class="form-row">
+                    
+                    <?php
+                    $jobZNWUtype_sql = "SELECT jobZNWU_name, jobZNWU_id FROM tenders_test.job_ZNWU_types where jobZNWU_active=1";
 
+                    $jobZNWUtype_result = mysqli_query($link, $jobZNWUtype_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobZNWUtype_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-3">
                         <label for="jobZNWUtype">Rodzaj ZNWU</label>
                         <select id='jobZNWUtype' name='jobZNWUtype' class="form-control <?php echo (!empty($jobZNWUtype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobZNWUtype; ?>> </option>
-                            <option value="gotówka"> gotówka </option>
-                            <option value="gwarancja bankowa"> gwarancja bankowa </option>    
+                            <option selected="selected" hidden value=<?php echo $jobZNWUtype; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
 
@@ -876,26 +970,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="jobZNWUvalue">Wartość ZNWU [%]</label>
                         <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobZNWUvalue; ?>">
                     </div>
+                    
+                    <?php
+                    $jobcontracttype_sql = "SELECT jobcontract_name, jobcontract_id FROM tenders_test.job_contract_types where jobcontract_active=1";
 
+                    $jobcontracttype_result = mysqli_query($link, $jobcontracttype_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobcontracttype_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-3">
                         <label for="jobcontracttype">Rodzaj umowy</label>
                         <select id='jobcontracttype' name='jobcontracttype' class="form-control <?php echo (!empty($jobcontracttype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobZNWUtype; ?>> </option>
-                            <option value="UoP"> UoP </option>
-                            <option value="UZ"> UZ </option>
-                            <option value="UoP/UZ"> UoP/UZ </option>
-                            <option value="b/d"> b/d </option>   
+                            <option selected="selected" hidden value=<?php echo $jobcontracttype; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
+                    
+                    <?php
+                    $jobsubcontractor_sql = "SELECT jobsubcontractor_name, jobsubcontractor_id FROM tenders_test.job_subcontractors where jobsubcontractor_active=1";
 
+                    $jobsubcontractor_result = mysqli_query($link, $jobsubcontractor_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobsubcontractor_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-3">
                         <label for="jobsubcontractor">Podwykonawstwo</label>
                         <select id='jobsubcontractor' name='jobsubcontractor' class="form-control <?php echo (!empty($jobsubcontractor_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobZNWUtype; ?>> </option>
-                            <option value="tak"> tak </option>
-                            <option value="nie"> nie </option>
-                            <option value="częściowe"> częściowe </option>
-                            <option value="b/d"> b/d </option>   
+                            <option selected="selected" hidden value=<?php echo $jobsubcontractor; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
                 </div>
@@ -914,34 +1024,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="form-row">
+                    
+                    <?php
+                    $jobqualifiedworkers_sql = "SELECT jobqualifiedworker_name, jobqualifiedworker_id FROM tenders_test.job_qualifiedworkers where jobqualifiedworker_active=1";
 
+                    $jobqualifiedworkers_result = mysqli_query($link, $jobqualifiedworkers_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobqualifiedworkers_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-3">
                         <label for="jobqualifiedworkers">Pracownicy kwalifikowani</label>
                         <select id='jobqualifiedworkers' name='jobqualifiedworkers' class="form-control <?php echo (!empty($jobqualifiedworkers_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobqualifiedworkers; ?>> </option>
-                            <option value="tak"> tak </option>
-                            <option value="nie"> nie </option>
-                            <option value="tak/nie"> tak/nie </option>   
+                            <option selected="selected" hidden value=<?php echo $jobqualifiedworkers; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
+                    
+                    <?php
+                    $jobweapon_sql = "SELECT jobweapon_name, jobweapon_id FROM tenders_test.job_weapons where jobweapon_active=1";
 
+                    $jobweapon_result = mysqli_query($link, $jobweapon_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobweapon_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-2">
                         <label for="jobweapon">Broń</label>
                         <select id='jobweapon' name='jobweapon' class="form-control <?php echo (!empty($jobweapon_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobweapon; ?>> </option>
-                            <option value="tak"> tak </option>
-                            <option value="nie"> nie </option>
-                            <option value="tak/nie"> tak/nie </option>
+                            <option selected="selected" hidden value=<?php echo $jobweapon; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
+                    
+                    <?php
+                    $jobinterventiongroups_sql = "SELECT jobinterventiongroup_name, jobinterventiongroup_id FROM tenders_test.job_interventiongroup_types where jobinterventiongroup_active=1";
 
+                    $jobinterventiongroups_result = mysqli_query($link, $jobinterventiongroups_sql);
+
+                    $options = "";
+                    
+                    while ($row2 = mysqli_fetch_array($jobinterventiongroups_result)) {
+                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
+                    }
+                    ?>
                     <div class="form-group col-md-3">
                         <label for="jobinterventiongroups">Grupy interwencyjne</label>
                         <select id='jobinterventiongroups' name='jobinterventiongroups' class="form-control <?php echo (!empty($jobinterventiongroups_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobinterventiongroups; ?>> </option>
-                            <option value="tak - uzbrojone"> tak - uzbrojone </option>
-                            <option value="tak - patrol"> tak - patrol </option>
-                            <option value="nie"> nie </option> 
+                            <option selected="selected" hidden value=<?php echo $jobinterventiongroups; ?>> </option>
+                            <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
                 </div>
