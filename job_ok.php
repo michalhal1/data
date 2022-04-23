@@ -1,3 +1,12 @@
+<?php session_start();
+
+if (isset($_GET["tnd_id"])) {
+    $paramid = trim($_GET["tnd_id"]);
+    $_SESSION['paramid'] = $paramid;
+};
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +29,7 @@
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Udało się!</h2>
                     <div class="alert alert-success">Dodano nowe zadanie przetargowe!</div>
-                    <a href="job_create.php" class="btn btn-success">Powrót</a>
+                    <a href="tasks.php?tnd_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-success">Powrót</a>
                 </div>
             </div>
         </div>

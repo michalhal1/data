@@ -20,20 +20,19 @@ $jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdea
 $jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = NULL;
 
 
-//
-$id =  trim($_GET["tnd_id"]);
-$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_test.tenders_jobs WHERE job_tnd_id = ?";
+// nadajemy do zmiennej log_number kolejny numer zadania w danym przetargu
+$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_test.tenders_jobs WHERE job_tnd_id = ? GROUP BY job_tnd_id";
 
-if ($stmt2 = mysqli_prepare($link, $sql)) {
+if ($stmt = mysqli_prepare($link, $sql)) {
     // Bind variables to the prepared statement as parameters
-    mysqli_stmt_bind_param($stmt2, "i", $param_tnd_id);
+    mysqli_stmt_bind_param($stmt, "i", $param_tnd_id);
 
     // Set parameters
-    $param_tnd_id = $id;
+    $param_tnd_id = $paramid;
 
     // Attempt to execute the prepared statement
-    if (mysqli_stmt_execute($stmt2)) {
-        $result1 = mysqli_stmt_get_result($stmt2);
+    if (mysqli_stmt_execute($stmt)) {
+        $result1 = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result1) == 1) {
             /* Fetch result row as an associative array. Since the result set
@@ -51,15 +50,15 @@ if ($stmt2 = mysqli_prepare($link, $sql)) {
     else {
     echo "Oops! Something went wrong. Please try again later.";
     }
-mysqli_stmt_close($stmt2);
+mysqli_stmt_close($stmt);
 }
 
-echo $log_number;
+$default_job_number = $log_number;
 
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     // Validate jobnumber
     $input_job_number = trim($_POST["jobnumber"]);
     if (empty($input_job_number)) {
@@ -447,8 +446,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($jobnumber_err) && empty($jobname_err)  && empty($jobproduct_err) && empty($jobpropertyname_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobregion_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobstatus_err)) {
     // Prepare an insert statement
 
-        //$job_tnd_id = trim($_POST["paramid"]);
-        $job_tnd_id = 3;
+        $job_tnd_id = trim($_POST["paramid"]);
 
         $sql = "INSERT INTO tenders_test.tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_property_type_id, job_sales_type, job_deadline ,job_region, job_department_id, job_merchant_id, job_SAP_chance_number, job_status, job_resignation_reason, job_resignation_reason_details, job_estimated_value, job_value_type_id, job_units_number, job_contractor_budget, job_deposit, job_deposit_id, job_deposit_valid_date, job_current_operator, job_indexation_type_id, job_takeover23, job_tookover_workers, job_ZNWU_type, job_ZNWU_value, job_contract_type, job_subcontractor, job_internal_areas, job_external_areas, job_qualified_workers, job_weapon, job_intervention_groups, job_criteria_id1, job_criteria_weight1, job_criteria_id2, job_criteria_weight2, job_criteria_id3, job_criteria_weight3, job_criteria_id4, job_criteria_weight4, job_criteria_id5, job_criteria_weight5, job_creation_work) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -579,7 +577,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- formujemy przyciski -->
                     <div class="form-group col-md-2">
                         <label for="jobnumber">Numer zadania*</label>
-                        <input type="text" id='jobnumber' name='jobnumber' class="form-control <?php echo (!empty($jobnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobnumber; ?>">
+                        <input type="text" id='jobnumber' name='jobnumber' class="form-control <?php echo (!empty($jobnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $default_job_number; ?>">
                         <span class="invalid-feedback"><?php echo $jobnumber_err; ?></span>
                     </div>
 
