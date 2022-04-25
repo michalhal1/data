@@ -180,7 +180,7 @@ echo $_SESSION['logid'];
         </br>
         <?php
         if (($numerZadania <= 0)) {
-            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            echo '<div class="alert alert-danger"><em>Brak zadań przetargowych</em></div>';
         }
         ?>
     </div>

@@ -15,7 +15,7 @@
  left join tenders_test.contractors on cnt_id=tnd_contractor_id
  left join tenders_test.tender_types on tend_type_id=tnd_type
  left join tenders_test.segments on segm_id=tnd_segment_id
-  WHERE tnd_NIP LIKE '%" . $search . "%'
+  WHERE cnt_NIP LIKE '%" . $search . "%'
   OR tnd_announce_date LIKE '%" . $search . "%' 
   OR tnd_number LIKE '%" . $search . "%' ";
     } else {

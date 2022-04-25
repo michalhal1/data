@@ -847,7 +847,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-row">
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="jobestimatedvalue">Wartość szacunkowa [mc]*</label>
                         <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
                         <span class="invalid-feedback"><?php echo $jobestimatedvalue_err; ?></span>

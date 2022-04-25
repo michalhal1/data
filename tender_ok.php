@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Udało się!</h2>
-                    <div class="alert alert-success">Dodano nową ofertę </div>
+                    <div class="alert alert-success">Dodano nowy przetarg </div>
                     <a href="tenders.php" class="btn btn-success">Powrót</a>
                 </div>
             </div>
