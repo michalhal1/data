@@ -41,7 +41,7 @@ $_SESSION['tndid'] = $result_tnd_id;
 
 
 // Define variables and initialize with empty values
-$jobproperty_name = $jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = NULL;
+$jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = NULL;
 $jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = NULL;
 
 
@@ -473,14 +473,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $param_job_id = trim($_POST["paramid"]);
 
-        $sql = "UPDATE tenders_test.tenders_jobs SET job_tnd_id=?, job_number=?, job_name=?, job_product_id=?, job_property_type_id=?, job_sales_type=?, job_deadline=? ,job_region=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
+        $sql = "UPDATE tenders_test.tenders_jobs SET job_number=?, job_name=?, job_product_id=?, job_property_type_id=?, job_sales_type=?, job_deadline=? ,job_region=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iisiiiiiiiiisididddisiisiidiiddiiiidididididss", $param_job_tnd_id, $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobmodificationworker, $param_job_id);
+            mysqli_stmt_bind_param($stmt, "isiiiiiiiiisididddisiisiidiiddiiiidididididss", $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobmodificationworker, $param_job_id);
                
-            $param_job_tnd_id = trim($_POST["tndid"]);
             $param_jobnumber = $jobnumber;
             $param_jobname = $jobname;
             $param_jobproduct = $jobproduct;
@@ -530,9 +529,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+
+                $param_tnd_id = $_SESSION['tndid'];
                 // Records created successfully. Redirect to landing page
                 //echo "Dodano nowy przetarg";
-                header("location: job_ok.php");
+                header("location: job_update_ok.php?tnd_id=" . $param_tnd_id);
                 // echo $_POST['off_winner'];
                 // echo trim($_POST["inputname"]); 
                 // echo $off_points1;
@@ -585,7 +586,7 @@ else {
         left join tenders_test.job_criteria Crit3 on job_criteria_id3= Crit3.jobcrit_id
         left join tenders_test.job_criteria Crit4 on job_criteria_id4= Crit4.jobcrit_id
         left join tenders_test.job_criteria Crit5 on job_criteria_id5= Crit5.jobcrit_id
-        left join tenders_test.job_value_types on job_value_type_id=jobval_name
+        left join tenders_test.job_value_types on job_value_type_id=jobval_type_id
         left join tenders_test.job_ZNWU_types on job_ZNWU_type=jobZNWU_id
         WHERE job_id=?";
 
@@ -607,48 +608,70 @@ else {
                     //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
                     // Retrieve individual field value
                     $jobnumber = $row["job_number"];
+                    $jobname = $row["job_name"];
                     $jobproduct = $row["job_product_id"];
-                    $jobproduct_name = $row["prod_name"];
+                    $jobproduct_text = $row["prod_name"];
                     $jobpropertyname = $row["job_property_type_id"];
-                    $jobproperty_name = $row["jobproperty_name"];
+                    $jobpropertyname_text = $row["jobproperty_name"];
                     $jobsalestype = $row["job_sales_type"];
+                    $jobsalestype_text = $row["sal_type_name"];
                     $jobdeadline = $row["job_deadline"];
                     $jobregion = $row["job_region"];
+                    $jobregion_text = $row["reg_name"];
                     $jobdepartment = $row["job_department_id"];
+                    $jobdepartment_text = $row["dep_name"];
                     $jobmerchant = $row["job_merchant_id"];
+                    $jobmerchant_text = $row["merchant_name"];
                     $jobSAPnumber = $row["job_SAP_chance_number"];
                     $jobstatus = $row["job_status"];
+                    $jobstatus_text = $row["jobstat_name"];
                     $jobresignationreason = $row["job_resignation_reason"];
                     $jobresignationreasondetails = $row["job_resignation_reason_details"];
+                    $jobresignationreasondetails_text = $row["jobresign_name"];
                     $jobestimatedvalue = $row["job_estimated_value"];
                     $jobvaluetype = $row["job_value_type_id"];
+                    $jobvaluetype_text = $row["jobval_name"];
                     $jobunitsnumber = $row["job_units_number"];
                     $jobcontractorbudget = $row["job_contractor_budget"];
                     $jobdeposit = $row["job_deposit"];
                     $jobdeposittype = $row["job_deposit_id"];
+                    $jobdeposittype_text = $row["jobdeposit_name"];
                     $jobdepositvaliddate = $row["job_deposit_valid_date"];
                     $jobcurrentoperator = $row["job_current_operator"];
+                    $jobcurrentoperator_text = $row["offnames_name"];
                     $jobindexname = $row["job_indexation_type_id"];
+                    $jobindexname_text = $row["jobindex_name"];
                     $jobtakeover23 = $row["job_takeover23"];
                     $jobtookoverworkers = $row["job_tookover_workers"];
                     $jobZNWUtype = $row["job_ZNWU_type"];
+                    $jobZNWUtype_text = $row["jobZNWU_name"];
                     $jobZNWUvalue = $row["job_ZNWU_value"];
                     $jobcontracttype = $row["job_contract_type"];
+                    $jobcontracttype_text = $row["jobcontract_name"];
                     $jobsubcontractor = $row["job_subcontractor"];
+                    $jobsubcontractor_text = $row["jobsubcontractor_name"];
                     $jobinternalareas = $row["job_internal_areas"];
                     $jobexternalareas = $row["job_external_areas"];
                     $jobqualifiedworkers = $row["job_qualified_workers"];
+                    $jobqualifiedworkers_text = $row["jobqualifiedworker_name"];
                     $jobweapon = $row["job_weapon"];
+                    $jobweapon_text = $row["jobweapon_name"];
                     $jobinterventiongroups = $row["job_intervention_groups"];
+                    $jobinterventiongroups_text = $row["jobinterventiongroup_name"];
                     $jobcriterianame1 = $row["job_criteria_id1"];
+                    $jobcriterianame1_text = $row["jobcrit_name1"];
                     $jobcriteriaweight1 = $row["job_criteria_weight1"];
                     $jobcriterianame2 = $row["job_criteria_id2"];
+                    $jobcriterianame2_text = $row["jobcrit_name2"];
                     $jobcriteriaweight2 = $row["job_criteria_weight2"];
                     $jobcriterianame3 = $row["job_criteria_id3"];
+                    $jobcriterianame3_text = $row["jobcrit_name3"];
                     $jobcriteriaweight3 = $row["job_criteria_weight3"];
                     $jobcriterianame4 = $row["job_criteria_id4"];
+                    $jobcriterianame4_text = $row["jobcrit_name4"];
                     $jobcriteriaweight4 = $row["job_criteria_weight4"];
                     $jobcriterianame5 = $row["job_criteria_id5"];
+                    $jobcriterianame5_text = $row["jobcrit_name5"];
                     $jobcriteriaweight5 = $row["job_criteria_weight5"];
                     
                 } else {
@@ -747,7 +770,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobproduct">Produkt*</label>
                         <select id='jobproduct' name='jobproduct' class="form-control <?php echo (!empty($jobproduct_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobproduct; ?>> <?php echo $jobproduct_name; ?> </option>
+                            <option selected="selected" hidden value=<?php echo $jobproduct; ?>> <?php echo $jobproduct_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                         <span class="invalid-feedback"><?php echo $jobproduct_err; ?></span>
@@ -791,7 +814,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobpropertyname">Rodzaj obiektu*</label>
                         <select id='jobpropertyname' name='jobpropertyname' class="form-control <?php echo (!empty($jobpropertyname_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobpropertyname; ?>> <?php echo $jobproperty_name; ?> </option>
+                            <option selected="selected" hidden value=<?php echo $jobpropertyname; ?>> <?php echo $jobpropertyname_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>    
                         </select>
                         <span class="invalid-feedback"><?php echo $jobpropertyname_err; ?></span>
@@ -815,7 +838,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobsalestype">Typ sprzedaży*</label>
                         <select id='jobsalestype' name='jobsalestype' class="form-control <?php echo (!empty($jobsalestype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobsalestype; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobsalestype; ?>> <?php echo $jobsalestype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobsalestype_err; ?></span>
@@ -841,7 +864,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobregion">Region*</label>
                         <select id='jobregion' name='jobregion' class="form-control <?php echo (!empty($jobregion_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobregion; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobregion; ?>> <?php echo $jobregion_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobregion_err; ?></span>
@@ -861,7 +884,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobdepartment">Oddział*</label>
                         <select id='jobdepartment' name='jobdepartment' class="form-control <?php echo (!empty($jobdepartment_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobdepartment; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobdepartment; ?>> <?php echo $jobdepartment_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobdepartment_err; ?></span>
@@ -881,7 +904,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobmerchant">Handlowiec*</label>
                         <select id='jobmerchant' name='jobmerchant' class="form-control <?php echo (!empty($jobmerchant_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobmerchant; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobmerchant; ?>> <?php echo $jobmerchant_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobmerchant_err; ?></span>
@@ -931,7 +954,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobstatus">Status*</label>
                         <select id='jobstatus' name='jobstatus' class="form-control <?php echo (!empty($jobstatus_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobstatus; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobstatus; ?>> <?php echo $jobstatus_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobstatus_err; ?></span>
@@ -939,8 +962,8 @@ else {
                     
                     <div class="form-group col-md-3">
                         <label for="jobresignationreason">Powód rezygnacji</label>
-                        <select id='jobresignationreason' name='jobresignationreason' class="form-control <?php // echo (!empty($jobresignationreason_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobresignationreason; ?>> </option>
+                        <select id='jobresignationreason' name='jobresignationreason' class="form-control <?php // echo (!empty($jobresignationreason_err)) ? 'is-invalid' : ''; ?>">
+                            <option selected="selected" hidden value=<?php echo $jobresignationreason; ?>> <?php echo $jobresignationreason; ?> </option>
                             <option value="Ekonomiczne"> ekonomiczne </option>
                             <option value="Formalne"> formalne </option>    
                         </select>
@@ -960,7 +983,7 @@ else {
                     <div class="form-group col-md-4">
                         <label for="jobresignationreasondetails">Powód rezygnacji - szczegółowo</label>
                         <select id='jobresignationreasondetails' name='jobresignationreasondetails' class="form-control <?php // echo (!empty($jobresignationreasondetails_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobresignationreasondetails; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobresignationreasondetails; ?>> <?php echo $jobresignationreasondetails_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1010,7 +1033,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobvaluetype">Typ wartości*</label>
                         <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php  echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> <?php echo $jobvaluetype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobvaluetype_err; ?></span>
@@ -1048,7 +1071,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobdeposittype">Wadium - rodzaj</label>
                         <select id='jobdeposittype' name='jobdeposittype' class="form-control <?php // echo (!empty($jobdeposittype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobdeposittype; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobdeposittype; ?>> <?php echo $jobdeposittype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1076,7 +1099,7 @@ else {
                     <div class="form-group col-md-4">
                         <label for="jobcurrentoperator">Aktualny wykonawca</label>
                         <select id='jobcurrentoperator' name='jobcurrentoperator' class="form-control <?php // echo (!empty($jobcurrentoperator_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcurrentoperator; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcurrentoperator; ?>> <?php echo $jobcurrentoperator_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
@@ -1116,7 +1139,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobindexname">Waloryzacja</label>
                         <select id='jobindexname' name='jobindexname' class="form-control <?php // echo (!empty($jobindexname_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobindexname; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobindexname; ?>> <?php echo $jobindexname_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1124,7 +1147,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobtakeover23">Przejęcie 23</label>
                         <select id='jobtakeover23' name='jobtakeover23' class="form-control <?php // echo (!empty($jobtakeover23_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" value=<?php echo $jobtakeover23; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobtakeover23; ?>> <?php echo $jobtakeover23; ?> </option>
                             <option value="tak"> tak </option>
                             <option value="nie"> nie </option>    
                         </select>
@@ -1152,7 +1175,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobZNWUtype">Rodzaj ZNWU</label>
                         <select id='jobZNWUtype' name='jobZNWUtype' class="form-control <?php // echo (!empty($jobZNWUtype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobZNWUtype; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobZNWUtype; ?>> <?php echo $jobZNWUtype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1176,7 +1199,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobcontracttype">Rodzaj umowy</label>
                         <select id='jobcontracttype' name='jobcontracttype' class="form-control <?php // echo (!empty($jobcontracttype_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcontracttype; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcontracttype; ?>> <?php echo $jobcontracttype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1195,7 +1218,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobsubcontractor">Podwykonawstwo</label>
                         <select id='jobsubcontractor' name='jobsubcontractor' class="form-control <?php // echo (!empty($jobsubcontractor_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobsubcontractor; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobsubcontractor; ?>> <?php echo $jobsubcontractor_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1230,7 +1253,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobqualifiedworkers">Pracownicy kwalifikowani</label>
                         <select id='jobqualifiedworkers' name='jobqualifiedworkers' class="form-control <?php // echo (!empty($jobqualifiedworkers_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobqualifiedworkers; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobqualifiedworkers; ?>> <?php echo $jobqualifiedworkers_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1249,7 +1272,7 @@ else {
                     <div class="form-group col-md-2">
                         <label for="jobweapon">Broń</label>
                         <select id='jobweapon' name='jobweapon' class="form-control <?php // echo (!empty($jobweapon_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobweapon; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobweapon; ?>> <?php echo $jobweapon_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1268,7 +1291,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobinterventiongroups">Grupy interwencyjne</label>
                         <select id='jobinterventiongroups' name='jobinterventiongroups' class="form-control <?php // echo (!empty($jobinterventiongroups_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobinterventiongroups; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobinterventiongroups; ?>> <?php echo $jobinterventiongroups_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                     </div>
@@ -1292,7 +1315,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame1">Kryterium wyboru 1 - opis</label>
                         <select id='jobcriterianame1' name='jobcriterianame1' class="form-control <?php // echo (!empty($jobcriterianame1_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcriterianame1; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcriterianame1; ?>> <?php echo $jobcriterianame1_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
@@ -1327,7 +1350,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame2">Kryterium wyboru 2 - opis</label>
                         <select id='jobcriterianame2' name='jobcriterianame2' class="form-control <?php // echo (!empty($jobcriterianame2_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcriterianame2; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcriterianame2; ?>> <?php echo $jobcriterianame2_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
@@ -1364,7 +1387,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame3">Kryterium wyboru 3 - opis</label>
                         <select id='jobcriterianame3' name='jobcriterianame3' class="form-control <?php // echo (!empty($jobcriterianame3_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcriterianame3; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcriterianame3; ?>> <?php echo $jobcriterianame3_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
@@ -1398,7 +1421,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame4">Kryterium wyboru 4 - opis</label>
                         <select id='jobcriterianame4' name='jobcriterianame4' class="form-control <?php // echo (!empty($jobcriterianame4_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcriterianame4; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcriterianame4; ?>> <?php echo $jobcriterianame4_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
@@ -1435,7 +1458,7 @@ else {
                     <div class="form-group col-md-3">
                         <label for="jobcriterianame5">Kryterium wyboru 5 - opis</label>
                         <select id='jobcriterianame5' name='jobcriterianame5' class="form-control <?php // echo (!empty($jobcriterianame5_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobcriterianame5; ?>> </option>
+                            <option selected="selected" hidden value=<?php echo $jobcriterianame5; ?>> <?php echo $jobcriterianame5_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
