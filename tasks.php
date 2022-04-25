@@ -26,6 +26,7 @@ echo $_SESSION['logid'];
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,7 +42,7 @@ echo $_SESSION['logid'];
         width: auto;
         white-space: nowrap;
         padding-right: 5%;
-        margin-left: 100px;
+        margin-left: 30px;
     }
 
     table tr td:last-child {
@@ -49,6 +50,12 @@ echo $_SESSION['logid'];
         padding: 0px;
         white-space: nowrap;
     }
+
+    .tr {
+        width: auto; 
+    }
+   
+
 </style>
 
 <body>
@@ -111,13 +118,13 @@ echo $_SESSION['logid'];
                     $output .= '
             <tr>
             <td width=60>' . $row["job_number"] . '</td>
-            <td nowrap>' . $row["job_name"] . '</td>  
+            <td>' . $row["job_name"] . '</td>  
             <td nowrap>' . $row["merchant_name"] . '</td>
             <td nowrap>' . $row["reg_name"] . '</td> 
             <td nowrap>' . $row["sal_type_name"] . '</td>
             <td nowrap>' . $row["prod_name"] . '</td>
             <td nowrap>' . $row["job_deadline"] . '</td>
-            <td width=300>
+            <td >
             <a href="job_update.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
             <a href="job_delete.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
             <a href="offerors.php?job_id=' . $row['job_id'] . '" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
@@ -144,7 +151,7 @@ echo $_SESSION['logid'];
 
     <style>
         .input-group-prepend {
-            width: 55%;
+            width: 70%;
             padding-right: 5%;
         }
 
