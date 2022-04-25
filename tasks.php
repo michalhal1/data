@@ -8,20 +8,20 @@ if (isset($_GET["tnd_id"])) {
 
 
 if (isset($_SESSION["logid"])) {
-   $logid = $_SESSION['logid'];
- } else {
-   header("location:login.php");
+    $logid = $_SESSION['logid'];
+} else {
+    header("location:login.php");
 };
 
 
-echo "<div style='text-align:right'>"; 
+echo "<div style='text-align:right'>";
 echo "<div style='padding-right:30px';>";
 echo $_SESSION['logid'];
 ?>
 
- <a href="log_out.php" title="Wyloguj się"  data-toggle="tooltip"><span class="fa fa-sign-out"></span></a>
+<a href="log_out.php" title="Wyloguj się" data-toggle="tooltip"><span class="fa fa-sign-out"></span></a>
 
- </div>
+</div>
 <html>
 
 <head>
@@ -35,19 +35,17 @@ echo $_SESSION['logid'];
 </head>
 
 <style>
-     .wrapper {
-        width: 100%;
-        white-space: nowrap;
-    }
+   
 
     .wrapper {
-        width: 90%;
+        width: auto;
+        white-space: nowrap;
         padding-right: 5%;
         margin-left: 100px;
     }
 
     table tr td:last-child {
-        width: 700px;
+        width: auto;
         padding: 0px;
         white-space: nowrap;
     }
@@ -90,9 +88,9 @@ echo $_SESSION['logid'];
                 $result = mysqli_stmt_get_result($stmt);
             }
 
-        //$result = mysqli_query($link, $query);
-        if (mysqli_num_rows($result) > 0) {
-            $output .= '
+            //$result = mysqli_query($link, $query);
+            if (mysqli_num_rows($result) > 0) {
+                $output .= '
         <div class = "wrapper">
         <div class="table-responsive">
         <table class="table table bordered">
@@ -109,8 +107,8 @@ echo $_SESSION['logid'];
         ';
 
 
-        while ($row = mysqli_fetch_array($result)) {
-            $output .= '
+                while ($row = mysqli_fetch_array($result)) {
+                    $output .= '
             <tr>
             <td width=60>' . $row["job_number"] . '</td>
             <td nowrap>' . $row["job_name"] . '</td>  
@@ -126,16 +124,15 @@ echo $_SESSION['logid'];
             </td>
             </tr>
             ';
-        
-            $zamawiajacy = $row['cnt_name'];
-            $numerZadania =$row["job_number"];
-            $tnd_number = $row["tnd_number"];
+
+                    $zamawiajacy = $row['cnt_name'];
+                    $numerZadania = $row["job_number"];
+                    $tnd_number = $row["tnd_number"];
+                }
+            }
+        } else {
+            echo 'Data Not Found';
         }
-        }
-        }
-    else {
-    echo 'Data Not Found';
-    }
     }
 
     if (($numerZadania > 0)) {
@@ -143,17 +140,21 @@ echo $_SESSION['logid'];
     }
 
     ?>
-    
+
 
     <style>
-    .input-group-prepend {
-        width: 55%;
-        padding-right: 5%;
-    }
+        .input-group-prepend {
+            width: 55%;
+            padding-right: 5%;
+        }
 
-    .btn {
-        margin: 0px 0px 10px 10px;
-    }
+        .btn {
+            margin: 0px 0px 10px 10px;
+        }
+
+        .container {
+            min-width: auto;
+        }
     </style>
 
     <div class="container">
@@ -170,15 +171,15 @@ echo $_SESSION['logid'];
             <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
         </div>
         </br>
-        <?php 
+        <?php
         if (($numerZadania <= 0)) {
             echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
-            } 
+        }
         ?>
     </div>
     <br />
     <div id="result"></div>
-    
+
 </body>
 
 </html>

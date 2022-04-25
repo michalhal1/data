@@ -85,7 +85,7 @@
 
      <style>
          .wrapper {
-             width: 1200px;
+             width: auto;
              white-space: nowrap;
 
 

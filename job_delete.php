@@ -61,7 +61,7 @@ if (isset($_POST["job_id"]) and !empty($_POST["job_id"]) and ($result_creation_w
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Records deleted successfully. Redirect to landing page
-            header("location: tasks.php?job_id=" . $_POST["job_id"]);
+            header("location: tasks.php?tnd_id=" . $_SESSION['tndid']);
             exit();
         } else {
             echo "Oops! Something went wrong. Please try again later.";
