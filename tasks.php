@@ -47,7 +47,7 @@ echo $_SESSION['logid'];
     }
 
     table tr td:last-child {
-        width: 700px;
+        width: auto;
         padding: 0px;
         white-space: nowrap;
     }
@@ -120,7 +120,7 @@ echo $_SESSION['logid'];
             <td nowrap>' . $row["prod_name"] . '</td>
             <td nowrap>' . $row["job_deadline"] . '</td>
             <td width=300>
-            <a href="update.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
+            <a href="job_update.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
             <a href="job_delete.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
             <a href="offerors.php?job_id=' . $row['job_id'] . '" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
             </td>
