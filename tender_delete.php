@@ -105,7 +105,7 @@ if (isset($_POST["tnd_number"]) && !empty($_POST["tnd_number"]) and ($tnd_creati
         if($tnd_creation_emp <> $_SESSION['logid'] and $_SESSION['logid'] <> 'Administrator') {
         header("location: tender_wrongauthority.php?tnd_number=$paramid") ;
         }
-        echo "hhvr";
+    
     }
 }
 ?>
