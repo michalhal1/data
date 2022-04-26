@@ -351,7 +351,7 @@ if (empty($input_tenderoutput)) {
 
     <div class="wrapper">
         <div class="container-fluid">
-            <h2 class="mt-5">Dodaj oferenta</h2>
+            <h2 class="mt-5">Dodaj ofertę</h2>
             <p>Uzupełnij formularz i zatwierdź</p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
@@ -746,7 +746,7 @@ if (empty($input_tenderoutput)) {
 
 
 
-                <input type="submit" class="btn btn-primary" value="Dodaj przetarg">
+                <input type="submit" class="btn btn-primary" value="Dodaj ofertę">
 
                 <input type="hidden" id="paramid" name="paramid" value=<?php echo $_SESSION['paramid'] ?>>
 

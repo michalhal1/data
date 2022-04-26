@@ -509,7 +509,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: job_ok.php");
                 // echo $_POST['off_winner'];
                 // echo trim($_POST["inputname"]); 
-                // echo $off_points1;
+               
                 exit();}
             else {
                 echo "Ups! Wystąpił błąd";
