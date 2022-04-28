@@ -41,7 +41,7 @@ echo $_SESSION['logid'];
 
     .wrapper {
         width: 90%;
-        padding-right: 5%;
+        padding-right: 3%;
         margin-left: 100px;
     }
 
@@ -141,12 +141,12 @@ echo $_SESSION['logid'];
 
     <style>
         .input-group-prepend {
-            width: 70%;
+            width: 65%;
             padding-right: 5%;
         }
 
         .btn {
-            margin: 0px 0px 10px 10px;
+            margin: 0px 0px 5px 5px;
 
         }
     </style>

@@ -46,7 +46,12 @@ echo $_SESSION['logid'];
       min-width: 90%;
     }
    
-
+    div.horizontalgap {
+  float: left;
+  overflow: hidden;
+  height: 1px;
+  width: 40px;
+}
 
   </style>
 
@@ -64,8 +69,9 @@ echo $_SESSION['logid'];
       </div>
 
       <a href="tender_create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy przetarg</a>
+      <div class="horizontalgap" style="width:2%"></div>
       <a href="contractor_new.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Nowy zamawiający</a>
-
+      <a href="offname_new.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Nowy realizujący</a>
     </div>
     <br />
     <div id="result"></div>
