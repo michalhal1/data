@@ -43,7 +43,7 @@ $_SESSION['tndid'] = $result_tnd_id;
 // Define variables and initialize with empty values
 $jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = NULL;
 $jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = NULL;
-
+$jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobregion_text = $jobdepartment_text = $jobmerchant_text = $jobstatus_text = $jobresignationreason_text = $jobresignationreasondetails_text = $jobvaluetype_text = $jobdeposittype_text = $jobcurrentoperator_text = $jobindexname_text = $jobtakeover23_text = $jobZNWUtype_text = $jobcontracttype_text = $jobsubcontractor_text = $jobqualifiedworkers_text = $jobweapon_text = $jobinterventiongroups_text = $jobcriterianame1_text = $jobcriterianame2_text = $jobcriterianame3_text = $jobcriterianame4_text = $jobcriterianame5_text = NULL;
 
 // nadajemy do zmiennej log_number kolejny numer zadania w danym przetargu
 //$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_test.tenders_jobs WHERE job_tnd_id = ? GROUP BY job_tnd_id";
@@ -546,6 +546,436 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Close statement
             mysqli_stmt_close($stmt);
+        }
+    } else {
+
+        $selected_jobproduct_sql = "select distinct prod_name from tenders_test.products where prod_active=1 and prod_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobproduct_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobproduct);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobproduct_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobproduct_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobproduct_text = $row1[0];
+                } else {
+                    $jobproduct_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobpropertyname_sql = "select distinct jobproperty_name from tenders_test.job_properties where jobproperty_active=1 and jobproperty_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobpropertyname_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobpropertyname);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobpropertyname_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobpropertyname_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobpropertyname_text = $row1[0];
+                } else {
+                    $jobpropertyname_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobsalestype_sql = "select distinct sal_type_name from tenders_test.sales_types where sal_type_active=1 and sal_type_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobsalestype_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobsalestype);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobsalestype_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobsalestype_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobsalestype_text = $row1[0];
+                } else {
+                    $jobsalestype_text = NULL;
+                }
+            }
+        }
+        
+        $selected_jobregion_sql = "select distinct reg_name from tenders_test.regions where reg_active=1 and reg_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobregion_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobregion);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobregion_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobregion_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobregion_text = $row1[0];
+                } else {
+                    $jobregion_text = NULL;
+                }
+            }
+        }  
+        
+        $selected_jobdepartment_sql = "select distinct dep_name from tenders_test.departments where dep_active=1 and dep_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobdepartment_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobdepartment);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobdepartment_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobdepartment_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobdepartment_text = $row1[0];
+                } else {
+                    $jobdepartment_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobmerchant_sql = "select distinct concat(merch_name, ' ', merch_surname) as merchant_name from tenders_test.merchants where merch_active=1 and merch_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobmerchant_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobmerchant);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobmerchant_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobmerchant_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobmerchant_text = $row1[0];
+                } else {
+                    $jobmerchant_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobstatus_sql = "select distinct jobstat_name from tenders_test.job_statuses where jobstat_active=1 and jobstat_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobstatus_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobstatus);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobstatus_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobstatus_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobstatus_text = $row1[0];
+                } else {
+                    $jobstatus_text = NULL;
+                }
+            }
+        }
+
+        /*
+        $selected_jobresignationreason_sql = "select distinct jobresign_group from tenders_test.job_resignations where jobresign_active=1 and jobresign_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobresignationreason_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobresignationreason);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobresignationreason_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobresignationreason_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobresignationreason_text = $row1[0];
+                } else {
+                    $jobresignationreason_text = NULL;
+                }
+            }
+        }
+        */
+
+        $selected_jobresignationreasondetails_sql = "select distinct jobresign_name from tenders_test.job_resignations where jobresign_active=1 and jobresign_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobresignationreasondetails_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobresignationreasondetails);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobresignationreasondetails_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobresignationreasondetails_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobresignationreasondetails_text = $row1[0];
+                } else {
+                    $jobresignationreasondetails_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobvaluetype_sql = "select distinct jobval_name from tenders_test.job_value_types where jobval_active=1 and jobval_type_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobvaluetype_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobvaluetype);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobvaluetype_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobvaluetype_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobvaluetype_text = $row1[0];
+                } else {
+                    $jobvaluetype_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobdeposittype_sql = "select distinct jobdeposit_name from tenders_test.job_deposit_types where jobdeposit_active=1 and jobdeposit_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobdeposittype_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobdeposittype);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobdeposittype_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobdeposittype_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobdeposittype_text = $row1[0];
+                } else {
+                    $jobdeposittype_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcurrentoperator_sql = "select distinct offnames_name from tenders_test.offerors_names where offnames_active=1 and offnames_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcurrentoperator_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcurrentoperator);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcurrentoperator_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcurrentoperator_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcurrentoperator_text = $row1[0];
+                } else {
+                    $jobcurrentoperator_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobindexname_sql = "select distinct jobindex_name from tenders_test.job_indexation_types where jobindex_active=1 and jobindex_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobindexname_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobindexname);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobindexname_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobindexname_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobindexname_text = $row1[0];
+                } else {
+                    $jobindexname_text = NULL;
+                }
+            }
+        }
+
+        /*
+        $selected_jobtakeover23_sql = "select distinct offnames_name from tenders_test.offerors_names where offnames_active=1 and offnames_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobtakeover23_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobtakeover23);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobtakeover23_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobtakeover23_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobtakeover23_text = $row1[0];
+                } else {
+                    $jobtakeover23_text = NULL;
+                }
+            }
+        }
+        */
+
+        $selected_jobZNWUtype_sql = "select distinct jobZNWU_name from tenders_test.job_ZNWU_types where jobZNWU_active=1 and jobZNWU_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobZNWUtype_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobZNWUtype);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobZNWUtype_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobZNWUtype_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobZNWUtype_text = $row1[0];
+                } else {
+                    $jobZNWUtype_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcontracttype_sql = "select distinct jobcontract_name from tenders_test.job_contract_types where jobcontract_active=1 and jobcontract_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcontracttype_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcontracttype);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcontracttype_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcontracttype_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcontracttype_text = $row1[0];
+                } else {
+                    $jobcontracttype_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobsubcontractor_sql = "select distinct jobsubcontractor_name from tenders_test.job_subcontractors where jobsubcontractor_active=1 and jobsubcontractor_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobsubcontractor_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobsubcontractor);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobsubcontractor_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobsubcontractor_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobsubcontractor_text = $row1[0];
+                } else {
+                    $jobsubcontractor_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobqualifiedworkers_sql = "select distinct jobqualifiedworker_name from tenders_test.job_qualifiedworkers where jobqualifiedworker_active=1 and jobqualifiedworker_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobqualifiedworkers_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobqualifiedworkers);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobqualifiedworkers_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobqualifiedworkers_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobqualifiedworkers_text = $row1[0];
+                } else {
+                    $jobqualifiedworkers_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobweapon_sql = "select distinct jobweapon_name from tenders_test.job_weapons where jobweapon_active=1 and jobweapon_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobweapon_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobweapon);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobweapon_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobweapon_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobweapon_text = $row1[0];
+                } else {
+                    $jobweapon_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobinterventiongroups_sql = "select distinct jobinterventiongroup_name from tenders_test.job_interventiongroup_types where jobinterventiongroup_active=1 and jobinterventiongroup_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobinterventiongroups_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobinterventiongroups);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobinterventiongroups_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobinterventiongroups_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobinterventiongroups_text = $row1[0];
+                } else {
+                    $jobinterventiongroups_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcriterianame1_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcriterianame1_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcriterianame1);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcriterianame1_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcriterianame1_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcriterianame1_text = $row1[0];
+                } else {
+                    $jobcriterianame1_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcriterianame2_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcriterianame2_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcriterianame2);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcriterianame2_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcriterianame2_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcriterianame2_text = $row1[0];
+                } else {
+                    $jobcriterianame2_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcriterianame3_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcriterianame3_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcriterianame3);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcriterianame3_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcriterianame3_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcriterianame3_text = $row1[0];
+                } else {
+                    $jobcriterianame3_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcriterianame4_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcriterianame4_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcriterianame4);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcriterianame4_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcriterianame4_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcriterianame4_text = $row1[0];
+                } else {
+                    $jobcriterianame4_text = NULL;
+                }
+            }
+        }
+
+        $selected_jobcriterianame5_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        if ($stmt = mysqli_prepare($link, $selected_jobcriterianame5_sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $jobcriterianame5);
+
+            if (mysqli_stmt_execute($stmt)) {
+                $result_jobcriterianame5_text = mysqli_stmt_get_result($stmt);
+                $row1 = mysqli_fetch_array($result_jobcriterianame5_text);
+                //
+                if (!$row1 == NULL) {
+                    $jobcriterianame5_text = $row1[0];
+                } else {
+                    $jobcriterianame5_text = NULL;
+                }
+            }
         }
     }
 }
