@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare an insert statement
 
 
-        $sql = "INSERT INTO tenders_test.offerors_names (offnames_name, offnames_active, offnames_isimpel, offnames_record_creation_worker) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO offerors_names (offnames_name, offnames_active, offnames_isimpel, offnames_record_creation_worker) VALUES (?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 

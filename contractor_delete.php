@@ -5,7 +5,7 @@ if (isset($_POST["cnt_id"]) && !empty($_POST["cnt_id"])) {
     require_once "config.php";
 
     // Prepare a delete statement
-    $sql = "update tenders_test.contractors set cnt_active=0 WHERE cnt_id = ?";
+    $sql = "update contractors set cnt_active=0 WHERE cnt_id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters

@@ -34,7 +34,7 @@ case when job_criteria_id2 is null  or length(job_criteria_id2) = 0 then 1 else 
 case when job_criteria_id3 is null  or length(job_criteria_id3) = 0 then 1 else 0 end as crit3,
 case when job_criteria_id4 is null  or length(job_criteria_id4) = 0 then 1 else 0 end as crit4,
 case when job_criteria_id5 is null  or length(job_criteria_id5) = 0 then 1 else 0 end as crit5
-FROM tenders_test.tenders_jobs
+FROM tenders_jobs
 where job_id = ?';
 
 if ($stmt_crit = mysqli_prepare($link, $sql_crit)) {
@@ -208,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 // validate tender output wygrany musi miec id =1 
 
-$sql_winn = 'SELECT min(off_output) as output_winner FROM tenders_test.offerors
+$sql_winn = 'SELECT min(off_output) as output_winner FROM offerors
 where off_job_id=?';
 
 if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
@@ -245,7 +245,7 @@ if (empty($input_tenderoutput)) {
 
         $off_job_id = trim($_POST["paramid"]);
 
-        $sql = "INSERT INTO tenders_test.offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_key_offeror5 , off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_output, off_creation_work) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_key_offeror5 , off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_output, off_creation_work) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -361,7 +361,7 @@ if (empty($input_tenderoutput)) {
 
                     <?php
 
-                    $offnames_sql = "SELECT offnames_name, offnames_id  FROM tenders_test.offerors_names where offnames_active=1";
+                    $offnames_sql = "SELECT offnames_name, offnames_id  FROM offerors_names where offnames_active=1";
 
                     $offnames_result = mysqli_query($link, $offnames_sql);
 
@@ -372,7 +372,7 @@ if (empty($input_tenderoutput)) {
                     }
 
                     //tutaj pobieramy z bazy nazwę oferenta, który ma się wyświetlić jeżeli pojawi się bład w innym polu 
-                    $selected_keyoff_sql = "select distinct offnames_name from tenders_test.offerors_names where offnames_active=1 and offnames_id = ?";
+                    $selected_keyoff_sql = "select distinct offnames_name from offerors_names where offnames_active=1 and offnames_id = ?";
 
                     if ($stmt3 = mysqli_prepare($link, $selected_keyoff_sql)) {
                         // Bind variables to the prepared statement as parameters
@@ -393,7 +393,7 @@ if (empty($input_tenderoutput)) {
                     
                     //outputs options
 
-                    $output_options_sql = "SELECT off_tnd_name,off_tnd_out  FROM tenders_test.offerors_tender_output where off_tnd_active=1";
+                    $output_options_sql = "SELECT off_tnd_name,off_tnd_out  FROM offerors_tender_output where off_tnd_active=1";
 
                     $output_options_results = mysqli_query($link, $output_options_sql);
 
@@ -453,7 +453,7 @@ if (empty($input_tenderoutput)) {
                         }
                     }
 
-                    $selected_output_sql = "select distinct off_tnd_name, off_tnd_out from tenders_test.offerors_tender_output where off_tnd_active=1 and off_tnd_out = ?";
+                    $selected_output_sql = "select distinct off_tnd_name, off_tnd_out from offerors_tender_output where off_tnd_active=1 and off_tnd_out = ?";
 
 
                     if ($stmt4 = mysqli_prepare($link, $selected_output_sql)) {

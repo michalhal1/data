@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_log_email = trim($_POST["email"]);
     $input_log_password = trim($_POST["password"]);
 
-    $sql_login = "SELECT log_idlog, log_password, log_name FROM tenders_test.logins t 
+    $sql_login = "SELECT log_idlog, log_password, log_name FROM logins t 
     where log_active = 1 and log_mail = ? ";
 
 

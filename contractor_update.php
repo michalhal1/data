@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-        $sql = "UPDATE tenders_test.contractors SET cnt_name=?, cnt_NIP=?, cnt_city=?, cnt_postal_code=?, cnt_street=?, cnt_record_modification_work=? , cnt_record_modification_date= now() WHERE cnt_id=?";
+        $sql = "UPDATE contractors SET cnt_name=?, cnt_NIP=?, cnt_city=?, cnt_postal_code=?, cnt_street=?, cnt_record_modification_work=? , cnt_record_modification_date= now() WHERE cnt_id=?";
 
 
         if ($stmt = mysqli_prepare($link, $sql)) {
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get URL parameter
         $id =  trim($_GET["cnt_id"]);
         // Prepare a select statement
-        $sql = "SELECT * FROM  tenders_test.contractors cnt  WHERE cnt_id = ?";
+        $sql = "SELECT * FROM  contractors cnt  WHERE cnt_id = ?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_id);
@@ -280,7 +280,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Get URL parameter
                     $id =  $_SESSION['paramid'];
                     // Prepare a select statement
-                    $sql = "SELECT * FROM  tenders_test.contractors cnt  WHERE cnt_id = ?";
+                    $sql = "SELECT * FROM  contractors cnt  WHERE cnt_id = ?";
                     if ($stmt1 = mysqli_prepare($link, $sql)) {
                         // Bind variables to the prepared statement as parameters
                         mysqli_stmt_bind_param($stmt1, "s", $param_id);

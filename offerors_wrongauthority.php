@@ -20,7 +20,7 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
     // Get URL parameter
     $id =  $_SESSION['paramid'];
     // Prepare a select statement
-    $sql = "select distinct off_job_id, off_creation_work from tenders_test.offerors where off_id = ?";
+    $sql = "select distinct off_job_id, off_creation_work from offerors where off_id = ?";
     if ($stmt1 = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt1, "s", $param_id);

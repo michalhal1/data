@@ -18,7 +18,7 @@ require_once "config.php";
 // Process delete operation after confirmation
 
 
-$jobid_sql = "select distinct job_tnd_id, job_creation_work from tenders_test.tenders_jobs where job_id = ?";
+$jobid_sql = "select distinct job_tnd_id, job_creation_work from tenders_jobs where job_id = ?";
 
 
 if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
@@ -52,7 +52,7 @@ if (isset($_POST["job_id"]) and !empty($_POST["job_id"]) and ($result_creation_w
 
 
     // Prepare a delete statement
-    $sql = "DELETE FROM tenders_test.tenders_jobs WHERE job_id = ?";
+    $sql = "DELETE FROM tenders_jobs WHERE job_id = ?";
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "s", $param_id);

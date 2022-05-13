@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare an insert statement
 
 
-        $sql = "UPDATE tenders_test.tenders set tnd_contractor_id=?, tnd_segment_id=?, tnd_type=?, tnd_announce_date=?, tnd_submit_date=?, tnd_e_invoice_correction=? ,tnd_modification_worker=? ,  tnd_binding_date=? , tnd_record_modification_date= now() where tnd_number=?";
+        $sql = "UPDATE tenders set tnd_contractor_id=?, tnd_segment_id=?, tnd_type=?, tnd_announce_date=?, tnd_submit_date=?, tnd_e_invoice_correction=? ,tnd_modification_worker=? ,  tnd_binding_date=? , tnd_record_modification_date= now() where tnd_number=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     // jeżeli był błąd to ściągnij dane z bazy z dotychczasowymi danymi i załaduj je do pól w czesci HTML
-    $selected_segment_name_sql = "select distinct segm_name, segm_id from tenders_test.segments where segm_id=?";
+    $selected_segment_name_sql = "select distinct segm_name, segm_id from segments where segm_id=?";
 
     if ($stmt5 = mysqli_prepare($link, $selected_segment_name_sql)) {
         // Bind variables to the prepared statement as parameters
@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $selected_cotractor_name_sql = "select distinct cnt_name, cnt_id from tenders_test.contractors where cnt_id = ?";
+    $selected_cotractor_name_sql = "select distinct cnt_name, cnt_id from contractors where cnt_id = ?";
 
 
     if ($stmt3 = mysqli_prepare($link, $selected_cotractor_name_sql)) {
@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $selected_type_name_sql = "select distinct tend_type_name, tend_type_id from tenders_test.tender_types where tend_type_id=?";
+    $selected_type_name_sql = "select distinct tend_type_name, tend_type_id from tender_types where tend_type_id=?";
 
     if ($stmt4 = mysqli_prepare($link, $selected_type_name_sql)) {
         // Bind variables to the prepared statement as parameters
@@ -223,10 +223,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get URL parameter
         $id =  trim($_GET["tnd_number"]);
         // Prepare a select statement
-        $sql = "SELECT * FROM tenders_test.tenders t 
-        left join tenders_test.tender_types tt on tt.tend_type_id = t.tnd_type
-        left join tenders_test.contractors cnt on t.tnd_contractor_id= cnt.cnt_id
-        left join tenders_test.segments seg on seg.segm_id= t.tnd_segment_id WHERE tnd_number = ?";
+        $sql = "SELECT * FROM tenders t 
+        left join tender_types tt on tt.tend_type_id = t.tnd_type
+        left join contractors cnt on t.tnd_contractor_id= cnt.cnt_id
+        left join segments seg on seg.segm_id= t.tnd_segment_id WHERE tnd_number = ?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_tnd_number);
@@ -350,7 +350,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php
 
                     //pętla która ładuje liste (opcje) zamawiających 
-                    $tender_contractor_sql = "SELECT cnt_name, cnt_id  FROM tenders_test.contractors where cnt_active=1";
+                    $tender_contractor_sql = "SELECT cnt_name, cnt_id  FROM contractors where cnt_active=1";
 
                     $tender_contractor_result = mysqli_query($link, $tender_contractor_sql);
 
@@ -425,7 +425,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php
 
-                    $tender_types_sql = "SELECT  tend_type_name ,tend_type_id FROM tenders_test.tender_types";
+                    $tender_types_sql = "SELECT  tend_type_name ,tend_type_id FROM tender_types";
 
                     $tender_types_result = mysqli_query($link, $tender_types_sql);
 
@@ -453,7 +453,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php
 
-                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM tenders_test.segments";
+                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM segments";
 
                     $tender_segment_result = mysqli_query($link, $tender_segment_sql);
 
@@ -523,10 +523,10 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
     // Get URL parameter
     $id =  $_SESSION['paramid'];
     // Prepare a select statement
-    $sql = "SELECT * FROM tenders_test.tenders t 
-        left join tenders_test.tender_types tt on tt.tend_type_id = t.tnd_type
-        left join tenders_test.contractors cnt on t.tnd_contractor_id= cnt.cnt_id
-        left join tenders_test.segments seg on seg.segm_id= t.tnd_segment_id WHERE tnd_number = ?";
+    $sql = "SELECT * FROM tenders t 
+        left join tender_types tt on tt.tend_type_id = t.tnd_type
+        left join contractors cnt on t.tnd_contractor_id= cnt.cnt_id
+        left join segments seg on seg.segm_id= t.tnd_segment_id WHERE tnd_number = ?";
     if ($stmt1 = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt1, "s", $param_id);

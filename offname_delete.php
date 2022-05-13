@@ -23,7 +23,7 @@ if (isset($_POST["offnames_id"]) && !empty($_POST["offnames_id"])) {
     
 
     // Prepare a delete statement
-    $sql = "update tenders_test.offerors_names set offnames_active=0 WHERE offnames_id = ?";
+    $sql = "update offerors_names set offnames_active=0 WHERE offnames_id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters

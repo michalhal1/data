@@ -18,7 +18,7 @@ require_once "config.php";
 // Process delete operation after confirmation
 
 
-$jobid_sql = "select distinct off_job_id, off_creation_work from tenders_test.offerors where off_id = ?";
+$jobid_sql = "select distinct off_job_id, off_creation_work from offerors where off_id = ?";
 
 
 if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
@@ -52,7 +52,7 @@ $_SESSION['offid'] = $_GET["off_id"];
   
 
         // Prepare a delete statement
-        $sql = "DELETE FROM tenders_test.offerors WHERE off_id = ?";
+        $sql = "DELETE FROM offerors WHERE off_id = ?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_id);

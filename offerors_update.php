@@ -15,7 +15,7 @@ if (isset($_SESSION["logid"])) {
 
 require_once "config.php";
 
-$jobid_sql = "select distinct off_job_id from tenders_test.offerors where off_id = ?";
+$jobid_sql = "select distinct off_job_id from offerors where off_id = ?";
 
  
 if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {
@@ -58,7 +58,7 @@ case when job_criteria_id2 is null  or length(job_criteria_id2) = 0 then 1 else 
 case when job_criteria_id3 is null  or length(job_criteria_id3) = 0 then 1 else 0 end as crit3,
 case when job_criteria_id4 is null  or length(job_criteria_id4) = 0 then 1 else 0 end as crit4,
 case when job_criteria_id5 is null  or length(job_criteria_id5) = 0 then 1 else 0 end as crit5
-FROM tenders_test.tenders_jobs
+FROM tenders_jobs
 where job_id = ?';
 
 if ($stmt_crit = mysqli_prepare($link, $sql_crit)) {
@@ -229,8 +229,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_points5 = $input_off_points4;
     }
 
-    // $sql_winn = 'SELECT sum(off_iswinner) as iswinner FROM tenders_test.tenders_jobs
-    // join tenders_test.offerors on job_id=off_job_id
+    // $sql_winn = 'SELECT sum(off_iswinner) as iswinner FROM tenders_jobs
+    // join offerors on job_id=off_job_id
     // where job_id=?';
 
     // if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
@@ -262,7 +262,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $sql_winn = 'SELECT min(off_output) as output_winner FROM tenders_test.offerors
+    $sql_winn = 'SELECT min(off_output) as output_winner FROM offerors
     where off_job_id=?';
     
     if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
@@ -300,7 +300,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $param_off_id = trim($_POST["paramid"]);
 
-        $sql = "Update tenders_test.offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_key_offeror5=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=?";
+        $sql = "Update offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_key_offeror5=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -365,8 +365,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case when off_points_crit4 = 0 then null else off_points_crit4 end as off_points_crit4, 
         case when off_points_crit5 = 0 then null else off_points_crit5 end as off_points_crit5, 
         off_remarks , off_tnd_name, off_output, off_creation_date, off_modification_date, off_creation_work, off_modification_work, off_job_id
-         FROM  tenders_test.offerors
-         left join tenders_test.offerors_tender_output on off_output=off_tnd_out
+         FROM  offerors
+         left join offerors_tender_output on off_output=off_tnd_out
            WHERE  off_id=?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
@@ -493,7 +493,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php
 
-                    $offnames_sql = "SELECT offnames_name, offnames_id  FROM tenders_test.offerors_names where offnames_active=1";
+                    $offnames_sql = "SELECT offnames_name, offnames_id  FROM offerors_names where offnames_active=1";
 
                     $offnames_result = mysqli_query($link, $offnames_sql);
 
@@ -506,7 +506,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     //outputs options
 
-                    $output_options_sql = "SELECT off_tnd_name,off_tnd_out  FROM tenders_test.offerors_tender_output where off_tnd_active=1";
+                    $output_options_sql = "SELECT off_tnd_name,off_tnd_out  FROM offerors_tender_output where off_tnd_active=1";
 
                     $output_options_results = mysqli_query($link, $output_options_sql);
 
@@ -518,7 +518,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                     //tutaj pobieramy z bazy nazwę oferenta, który ma się wyświetlić jeżeli pojawi się bład w innym polu 
-                    $selected_keyoff_sql = "select distinct offnames_name from tenders_test.offerors_names where offnames_active=1 and offnames_id = ?";
+                    $selected_keyoff_sql = "select distinct offnames_name from offerors_names where offnames_active=1 and offnames_id = ?";
 
                     if ($stmt3 = mysqli_prepare($link, $selected_keyoff_sql)) {
                         // Bind variables to the prepared statement as parameters
@@ -600,7 +600,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
 
-                    $selected_output_sql = "select distinct off_tnd_name, off_tnd_out from tenders_test.offerors_tender_output where off_tnd_active=1 and off_tnd_out = ?";
+                    $selected_output_sql = "select distinct off_tnd_name, off_tnd_out from offerors_tender_output where off_tnd_active=1 and off_tnd_out = ?";
 
 
                     if ($stmt4 = mysqli_prepare($link, $selected_output_sql)) {
@@ -895,7 +895,7 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
     // Get URL parameter
     $id =  $_SESSION['paramid'];
     // Prepare a select statement
-    $sql = "SELECT * FROM tenders_test.offerors WHERE off_id = ?";
+    $sql = "SELECT * FROM offerors WHERE off_id = ?";
     if ($stmt1a = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt1a, "i", $param_id);

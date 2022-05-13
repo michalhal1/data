@@ -76,13 +76,13 @@ echo $_SESSION['logid'];
         $id =  trim($_GET["job_id"]);
         $query = "
         Select tnd_id, tnd_number, cnt_name, job_number, off_id, job_id, offnames_name, off_contract_value, jobval_name, off_tnd_name
-        from tenders_test.tenders_jobs
-        left join tenders_test.job_value_types on job_value_type_id = jobval_type_id
-        left join tenders_test.offerors on job_id = off_job_id
-        left join tenders_test.offerors_names on off_leading_offeror = offnames_id
-        left join tenders_test.offerors_tender_output on off_output = off_tnd_out
-        left join tenders_test.tenders on tnd_id = job_tnd_id
-        left join tenders_test.contractors on tnd_contractor_id = cnt_id
+        from tenders_jobs
+        left join job_value_types on job_value_type_id = jobval_type_id
+        left join offerors on job_id = off_job_id
+        left join offerors_names on off_leading_offeror = offnames_id
+        left join offerors_tender_output on off_output = off_tnd_out
+        left join tenders on tnd_id = job_tnd_id
+        left join contractors on tnd_contractor_id = cnt_id
         WHERE job_id = ?";
         if ($stmt = mysqli_prepare($link, $query)) {
             mysqli_stmt_bind_param($stmt, "s", $param_job_id);

@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare an insert statement
 
 
-        $sql = "INSERT INTO tenders_test.contractors (cnt_name, cnt_NIP, cnt_city, cnt_postal_code, cnt_street, cnt_record_creation_work) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO contractors (cnt_name, cnt_NIP, cnt_city, cnt_postal_code, cnt_street, cnt_record_creation_work) VALUES (?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 

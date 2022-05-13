@@ -20,7 +20,7 @@ require_once "config.php";
 // Process delete operation after confirmation
 
 
-$jobid_sql = "select distinct job_tnd_id, job_creation_work from tenders_test.tenders_jobs where job_id = ?";
+$jobid_sql = "select distinct job_tnd_id, job_creation_work from tenders_jobs where job_id = ?";
 
 
 if ($stmt4 = mysqli_prepare($link, $jobid_sql)) {

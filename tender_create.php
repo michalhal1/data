@@ -11,7 +11,7 @@ if (isset($_SESSION["logid"])) {
 
  $year = date("Y");
 
- $sql = "SELECT * FROM  tenders_test.logins cnt  WHERE  log_name = ?";
+ $sql = "SELECT * FROM  logins cnt  WHERE  log_name = ?";
                     if ($stmt1 = mysqli_prepare($link, $sql)) {
                         // Bind variables to the prepared statement as parameters
                         mysqli_stmt_bind_param($stmt1, "s", $param_id);
@@ -39,7 +39,7 @@ if (isset($_SESSION["logid"])) {
                         mysqli_stmt_close($stmt1);
                     }
 
-                    $sql1 = "SELECT max(substring(tnd_number, 1 , position('/' in tnd_number)-1)) + 1 as number_lp ,tnd_creation_worker FROM tenders_test.tenders
+                    $sql1 = "SELECT max(substring(tnd_number, 1 , position('/' in tnd_number)-1)) + 1 as number_lp ,tnd_creation_worker FROM tenders
                  WHERE tnd_creation_worker = ? and year(tnd_record_creation_date) = year(now())
                     group by tnd_creation_worker "
                       ;
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $input_tnd_number = trim($_POST["inputtendernumber"]);
 
-    $sql_duplikaty = "SELECT count(tnd_number) as duplikat FROM tenders_test.tenders t 
+    $sql_duplikaty = "SELECT count(tnd_number) as duplikat FROM tenders t 
 where tnd_number = ? ";
 
     if ($stmt = mysqli_prepare($link, $sql_duplikaty)) {
@@ -202,7 +202,7 @@ where tnd_number = ? ";
         // Prepare an insert statement
 
 
-        $sql = "INSERT INTO tenders_test.tenders (tnd_number, tnd_contractor_id, tnd_segment_id, tnd_type, tnd_announce_date, tnd_submit_date, tnd_e_invoice_correction ,tnd_creation_worker, tnd_binding_date) VALUES ( ?, ?, ?, ?, ?, ? ,?, ?,?)";
+        $sql = "INSERT INTO tenders (tnd_number, tnd_contractor_id, tnd_segment_id, tnd_type, tnd_announce_date, tnd_submit_date, tnd_e_invoice_correction ,tnd_creation_worker, tnd_binding_date) VALUES ( ?, ?, ?, ?, ?, ? ,?, ?,?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -285,7 +285,7 @@ where tnd_number = ? ";
 
                     <?php
 
-                    $tender_contractor_sql = "SELECT cnt_name, cnt_id  FROM tenders_test.contractors where cnt_active=1";
+                    $tender_contractor_sql = "SELECT cnt_name, cnt_id  FROM contractors where cnt_active=1";
 
                     $tender_contractor_result = mysqli_query($link, $tender_contractor_sql);
 
@@ -300,7 +300,7 @@ where tnd_number = ? ";
 
 
                     //tutaj pobieramy z bazy nazwę contractora/typu/segmentu, który ma się wyświetlić jeżeli pojawi się bład w innym polu 
-                    $selected_cotractor_name_sql = "select distinct cnt_name from tenders_test.contractors where cnt_active=1 and cnt_id = ?";
+                    $selected_cotractor_name_sql = "select distinct cnt_name from contractors where cnt_active=1 and cnt_id = ?";
 
                     if ($stmt3 = mysqli_prepare($link, $selected_cotractor_name_sql)) {
                         // Bind variables to the prepared statement as parameters
@@ -318,7 +318,7 @@ where tnd_number = ? ";
                         }
                     }
 
-                    $selected_type_name_sql = "select distinct tend_type_name from tenders_test.tender_types where tend_type_id=?";
+                    $selected_type_name_sql = "select distinct tend_type_name from tender_types where tend_type_id=?";
 
                     if ($stmt4 = mysqli_prepare($link, $selected_type_name_sql)) {
                         // Bind variables to the prepared statement as parameters
@@ -336,7 +336,7 @@ where tnd_number = ? ";
                         }
                     }
 
-                    $selected_segment_name_sql = "select distinct segm_name from tenders_test.segments where segm_id=?";
+                    $selected_segment_name_sql = "select distinct segm_name from segments where segm_id=?";
 
                     if ($stmt5 = mysqli_prepare($link, $selected_segment_name_sql)) {
                         // Bind variables to the prepared statement as parameters
@@ -435,7 +435,7 @@ where tnd_number = ? ";
 
                     <?php
 
-                    $tender_types_sql = "SELECT  tend_type_name ,tend_type_id FROM tenders_test.tender_types";
+                    $tender_types_sql = "SELECT  tend_type_name ,tend_type_id FROM tender_types";
 
                     $tender_types_result = mysqli_query($link, $tender_types_sql);
 
@@ -470,7 +470,7 @@ where tnd_number = ? ";
 
                     <?php
 
-                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM tenders_test.segments";
+                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM segments";
 
                     $tender_segment_result = mysqli_query($link, $tender_segment_sql);
 

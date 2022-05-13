@@ -79,13 +79,13 @@ echo $_SESSION['logid'];
         $id =  trim($_GET["tnd_id"]);
         $query = "
         Select tnd_number, cnt_name, job_number, job_id, case when length (trim(job_name))>35 then concat(left(job_name,35), if(right(left(job_name,35),1)='.', '', '...')) else job_name end as job_name, reg_name, concat(merch_name, ' ', merch_surname) as merchant_name, sal_type_name, prod_name, job_deadline
-        from tenders_test.tenders
-        join tenders_test.contractors on cnt_id = tnd_contractor_id
-        left join tenders_test.tenders_jobs on tnd_id = job_tnd_id
-        left join tenders_test.regions on job_region=reg_id
-        left join tenders_test.merchants on job_merchant_id=merch_id
-        left join tenders_test.sales_types on job_sales_type=sal_type_id
-        left join tenders_test.products on job_product_id=prod_id
+        from tenders
+        join contractors on cnt_id = tnd_contractor_id
+        left join tenders_jobs on tnd_id = job_tnd_id
+        left join regions on job_region=reg_id
+        left join merchants on job_merchant_id=merch_id
+        left join sales_types on job_sales_type=sal_type_id
+        left join products on job_product_id=prod_id
         WHERE tnd_id = ?
         order by 3";
         if ($stmt = mysqli_prepare($link, $query)) {

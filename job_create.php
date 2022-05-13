@@ -21,7 +21,7 @@ $jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsal
 $jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobregion_text = $jobdepartment_text = $jobmerchant_text = $jobstatus_text = $jobresignationreason_text = $jobresignationreasondetails_text = $jobvaluetype_text = $jobdeposittype_text = $jobcurrentoperator_text = $jobindexname_text = $jobtakeover23_text = $jobZNWUtype_text = $jobcontracttype_text = $jobsubcontractor_text = $jobqualifiedworkers_text = $jobweapon_text = $jobinterventiongroups_text = $jobcriterianame1_text = $jobcriterianame2_text = $jobcriterianame3_text = $jobcriterianame4_text = $jobcriterianame5_text = NULL;
 
 // nadajemy do zmiennej log_number kolejny numer zadania w danym przetargu
-$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_test.tenders_jobs WHERE job_tnd_id = ? GROUP BY job_tnd_id";
+$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_jobs WHERE job_tnd_id = ? GROUP BY job_tnd_id";
 
 if ($stmt = mysqli_prepare($link, $sql)) {
     // Bind variables to the prepared statement as parameters
@@ -448,7 +448,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $job_tnd_id = trim($_POST["paramid"]);
 
-        $sql = "INSERT INTO tenders_test.tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_property_type_id, job_sales_type, job_deadline ,job_region, job_department_id, job_merchant_id, job_SAP_chance_number, job_status, job_resignation_reason, job_resignation_reason_details, job_estimated_value, job_value_type_id, job_units_number, job_contractor_budget, job_deposit, job_deposit_id, job_deposit_valid_date, job_current_operator, job_indexation_type_id, job_takeover23, job_tookover_workers, job_ZNWU_type, job_ZNWU_value, job_contract_type, job_subcontractor, job_internal_areas, job_external_areas, job_qualified_workers, job_weapon, job_intervention_groups, job_criteria_id1, job_criteria_weight1, job_criteria_id2, job_criteria_weight2, job_criteria_id3, job_criteria_weight3, job_criteria_id4, job_criteria_weight4, job_criteria_id5, job_criteria_weight5, job_creation_work) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_property_type_id, job_sales_type, job_deadline ,job_region, job_department_id, job_merchant_id, job_SAP_chance_number, job_status, job_resignation_reason, job_resignation_reason_details, job_estimated_value, job_value_type_id, job_units_number, job_contractor_budget, job_deposit, job_deposit_id, job_deposit_valid_date, job_current_operator, job_indexation_type_id, job_takeover23, job_tookover_workers, job_ZNWU_type, job_ZNWU_value, job_contract_type, job_subcontractor, job_internal_areas, job_external_areas, job_qualified_workers, job_weapon, job_intervention_groups, job_criteria_id1, job_criteria_weight1, job_criteria_id2, job_criteria_weight2, job_criteria_id3, job_criteria_weight3, job_criteria_id4, job_criteria_weight4, job_criteria_id5, job_criteria_weight5, job_creation_work) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -522,7 +522,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
 
-        $selected_jobproduct_sql = "select distinct prod_name from tenders_test.products where prod_active=1 and prod_id = ?";
+        $selected_jobproduct_sql = "select distinct prod_name from products where prod_active=1 and prod_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobproduct_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobproduct);
@@ -539,7 +539,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobpropertyname_sql = "select distinct jobproperty_name from tenders_test.job_properties where jobproperty_active=1 and jobproperty_id = ?";
+        $selected_jobpropertyname_sql = "select distinct jobproperty_name from job_properties where jobproperty_active=1 and jobproperty_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobpropertyname_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobpropertyname);
@@ -556,7 +556,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobsalestype_sql = "select distinct sal_type_name from tenders_test.sales_types where sal_type_active=1 and sal_type_id = ?";
+        $selected_jobsalestype_sql = "select distinct sal_type_name from sales_types where sal_type_active=1 and sal_type_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobsalestype_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobsalestype);
@@ -573,7 +573,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         
-        $selected_jobregion_sql = "select distinct reg_name from tenders_test.regions where reg_active=1 and reg_id = ?";
+        $selected_jobregion_sql = "select distinct reg_name from regions where reg_active=1 and reg_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobregion_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobregion);
@@ -590,7 +590,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }  
         
-        $selected_jobdepartment_sql = "select distinct dep_name from tenders_test.departments where dep_active=1 and dep_id = ?";
+        $selected_jobdepartment_sql = "select distinct dep_name from departments where dep_active=1 and dep_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobdepartment_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobdepartment);
@@ -607,7 +607,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobmerchant_sql = "select distinct concat(merch_name, ' ', merch_surname) as merchant_name from tenders_test.merchants where merch_active=1 and merch_id = ?";
+        $selected_jobmerchant_sql = "select distinct concat(merch_name, ' ', merch_surname) as merchant_name from merchants where merch_active=1 and merch_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobmerchant_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobmerchant);
@@ -624,7 +624,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobstatus_sql = "select distinct jobstat_name from tenders_test.job_statuses where jobstat_active=1 and jobstat_id = ?";
+        $selected_jobstatus_sql = "select distinct jobstat_name from job_statuses where jobstat_active=1 and jobstat_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobstatus_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobstatus);
@@ -642,7 +642,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         /*
-        $selected_jobresignationreason_sql = "select distinct jobresign_group from tenders_test.job_resignations where jobresign_active=1 and jobresign_id = ?";
+        $selected_jobresignationreason_sql = "select distinct jobresign_group from job_resignations where jobresign_active=1 and jobresign_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobresignationreason_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobresignationreason);
@@ -660,7 +660,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         */
 
-        $selected_jobresignationreasondetails_sql = "select distinct jobresign_name from tenders_test.job_resignations where jobresign_active=1 and jobresign_id = ?";
+        $selected_jobresignationreasondetails_sql = "select distinct jobresign_name from job_resignations where jobresign_active=1 and jobresign_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobresignationreasondetails_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobresignationreasondetails);
@@ -677,7 +677,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobvaluetype_sql = "select distinct jobval_name from tenders_test.job_value_types where jobval_active=1 and jobval_type_id = ?";
+        $selected_jobvaluetype_sql = "select distinct jobval_name from job_value_types where jobval_active=1 and jobval_type_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobvaluetype_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobvaluetype);
@@ -694,7 +694,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobdeposittype_sql = "select distinct jobdeposit_name from tenders_test.job_deposit_types where jobdeposit_active=1 and jobdeposit_id = ?";
+        $selected_jobdeposittype_sql = "select distinct jobdeposit_name from job_deposit_types where jobdeposit_active=1 and jobdeposit_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobdeposittype_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobdeposittype);
@@ -711,7 +711,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcurrentoperator_sql = "select distinct offnames_name from tenders_test.offerors_names where offnames_active=1 and offnames_id = ?";
+        $selected_jobcurrentoperator_sql = "select distinct offnames_name from offerors_names where offnames_active=1 and offnames_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcurrentoperator_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcurrentoperator);
@@ -728,7 +728,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobindexname_sql = "select distinct jobindex_name from tenders_test.job_indexation_types where jobindex_active=1 and jobindex_id = ?";
+        $selected_jobindexname_sql = "select distinct jobindex_name from job_indexation_types where jobindex_active=1 and jobindex_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobindexname_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobindexname);
@@ -746,7 +746,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         /*
-        $selected_jobtakeover23_sql = "select distinct offnames_name from tenders_test.offerors_names where offnames_active=1 and offnames_id = ?";
+        $selected_jobtakeover23_sql = "select distinct offnames_name from offerors_names where offnames_active=1 and offnames_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobtakeover23_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobtakeover23);
@@ -764,7 +764,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         */
 
-        $selected_jobZNWUtype_sql = "select distinct jobZNWU_name from tenders_test.job_ZNWU_types where jobZNWU_active=1 and jobZNWU_id = ?";
+        $selected_jobZNWUtype_sql = "select distinct jobZNWU_name from job_ZNWU_types where jobZNWU_active=1 and jobZNWU_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobZNWUtype_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobZNWUtype);
@@ -781,7 +781,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcontracttype_sql = "select distinct jobcontract_name from tenders_test.job_contract_types where jobcontract_active=1 and jobcontract_id = ?";
+        $selected_jobcontracttype_sql = "select distinct jobcontract_name from job_contract_types where jobcontract_active=1 and jobcontract_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcontracttype_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcontracttype);
@@ -798,7 +798,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobsubcontractor_sql = "select distinct jobsubcontractor_name from tenders_test.job_subcontractors where jobsubcontractor_active=1 and jobsubcontractor_id = ?";
+        $selected_jobsubcontractor_sql = "select distinct jobsubcontractor_name from job_subcontractors where jobsubcontractor_active=1 and jobsubcontractor_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobsubcontractor_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobsubcontractor);
@@ -815,7 +815,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobqualifiedworkers_sql = "select distinct jobqualifiedworker_name from tenders_test.job_qualifiedworkers where jobqualifiedworker_active=1 and jobqualifiedworker_id = ?";
+        $selected_jobqualifiedworkers_sql = "select distinct jobqualifiedworker_name from job_qualifiedworkers where jobqualifiedworker_active=1 and jobqualifiedworker_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobqualifiedworkers_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobqualifiedworkers);
@@ -832,7 +832,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobweapon_sql = "select distinct jobweapon_name from tenders_test.job_weapons where jobweapon_active=1 and jobweapon_id = ?";
+        $selected_jobweapon_sql = "select distinct jobweapon_name from job_weapons where jobweapon_active=1 and jobweapon_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobweapon_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobweapon);
@@ -849,7 +849,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobinterventiongroups_sql = "select distinct jobinterventiongroup_name from tenders_test.job_interventiongroup_types where jobinterventiongroup_active=1 and jobinterventiongroup_id = ?";
+        $selected_jobinterventiongroups_sql = "select distinct jobinterventiongroup_name from job_interventiongroup_types where jobinterventiongroup_active=1 and jobinterventiongroup_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobinterventiongroups_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobinterventiongroups);
@@ -866,7 +866,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcriterianame1_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        $selected_jobcriterianame1_sql = "select distinct jobcrit_name from job_criteria where jobcrit_active=1 and jobcrit_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcriterianame1_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcriterianame1);
@@ -883,7 +883,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcriterianame2_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        $selected_jobcriterianame2_sql = "select distinct jobcrit_name from job_criteria where jobcrit_active=1 and jobcrit_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcriterianame2_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcriterianame2);
@@ -900,7 +900,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcriterianame3_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        $selected_jobcriterianame3_sql = "select distinct jobcrit_name from job_criteria where jobcrit_active=1 and jobcrit_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcriterianame3_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcriterianame3);
@@ -917,7 +917,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcriterianame4_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        $selected_jobcriterianame4_sql = "select distinct jobcrit_name from job_criteria where jobcrit_active=1 and jobcrit_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcriterianame4_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcriterianame4);
@@ -934,7 +934,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        $selected_jobcriterianame5_sql = "select distinct jobcrit_name from tenders_test.job_criteria where jobcrit_active=1 and jobcrit_id = ?";
+        $selected_jobcriterianame5_sql = "select distinct jobcrit_name from job_criteria where jobcrit_active=1 and jobcrit_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobcriterianame5_sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $jobcriterianame5);
@@ -1023,7 +1023,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- lista z możliwością wpisywania dla PRODUKTU -->
                     <?php
 
-                    $jobproduct_sql = "SELECT prod_name, prod_id  FROM tenders_test.products where prod_active=1";
+                    $jobproduct_sql = "SELECT prod_name, prod_id  FROM products where prod_active=1";
 
                     $jobproduct_result = mysqli_query($link, $jobproduct_sql);
 
@@ -1067,7 +1067,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <!-- lista dla RODZAJ OBIEKTU -->
                     <?php
-                    $jobpropertyname_sql = "SELECT jobproperty_name, jobproperty_id  FROM tenders_test.job_properties where jobproperty_active=1";
+                    $jobpropertyname_sql = "SELECT jobproperty_name, jobproperty_id  FROM job_properties where jobproperty_active=1";
 
                     $jobpropertyname_result = mysqli_query($link, $jobpropertyname_sql);
 
@@ -1091,7 +1091,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-row">
                     <!-- lista dla TYP SPRZEDAŻY -->
                     <?php
-                    $jobsalestype_sql = "SELECT sal_type_name, sal_type_id  FROM tenders_test.sales_types where sal_type_active=1";
+                    $jobsalestype_sql = "SELECT sal_type_name, sal_type_id  FROM sales_types where sal_type_active=1";
 
                     $jobsalestype_result = mysqli_query($link, $jobsalestype_sql);
 
@@ -1118,7 +1118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <?php
-                    $jobregion_sql = "SELECT reg_name, reg_id  FROM tenders_test.regions where reg_active=1";
+                    $jobregion_sql = "SELECT reg_name, reg_id  FROM regions where reg_active=1";
 
                     $jobregion_result = mysqli_query($link, $jobregion_sql);
 
@@ -1138,7 +1138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <?php
-                    $jobdepartment_sql = "SELECT dep_name, dep_id  FROM tenders_test.departments where dep_active=1";
+                    $jobdepartment_sql = "SELECT dep_name, dep_id  FROM departments where dep_active=1";
 
                     $jobdepartment_result = mysqli_query($link, $jobdepartment_sql);
 
@@ -1158,7 +1158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobmerchant_sql = "SELECT concat(merch_name, ' ', merch_surname) as merchant_name, merch_id  FROM tenders_test.merchants where merch_active=1";
+                    $jobmerchant_sql = "SELECT concat(merch_name, ' ', merch_surname) as merchant_name, merch_id  FROM merchants where merch_active=1";
 
                     $jobmerchant_result = mysqli_query($link, $jobmerchant_sql);
 
@@ -1208,7 +1208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobstatus_sql = "SELECT jobstat_name, jobstat_id FROM tenders_test.job_statuses where jobstat_active=1";
+                    $jobstatus_sql = "SELECT jobstat_name, jobstat_id FROM job_statuses where jobstat_active=1";
 
                     $jobstatus_result = mysqli_query($link, $jobstatus_sql);
 
@@ -1237,7 +1237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <?php
-                    $jobresignationreasondetails_sql = "SELECT jobresign_name, jobresign_id FROM tenders_test.job_resignations where jobresign_active=1";
+                    $jobresignationreasondetails_sql = "SELECT jobresign_name, jobresign_id FROM job_resignations where jobresign_active=1";
 
                     $jobresignationreasondetails_result = mysqli_query($link, $jobresignationreasondetails_sql);
 
@@ -1287,7 +1287,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <?php
-                    $jobvaluetype_sql = "SELECT jobval_name, jobval_type_id FROM tenders_test.job_value_types where jobval_active=1";
+                    $jobvaluetype_sql = "SELECT jobval_name, jobval_type_id FROM job_value_types where jobval_active=1";
 
                     $jobvaluetype_result = mysqli_query($link, $jobvaluetype_sql);
 
@@ -1325,7 +1325,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobdeposittype_sql = "SELECT jobdeposit_name, jobdeposit_id FROM tenders_test.job_deposit_types where jobdeposit_active=1";
+                    $jobdeposittype_sql = "SELECT jobdeposit_name, jobdeposit_id FROM job_deposit_types where jobdeposit_active=1";
 
                     $jobdeposittype_result = mysqli_query($link, $jobdeposittype_sql);
 
@@ -1353,7 +1353,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-row">
 
                     <?php
-                    $jobcurrentoperator_sql = "SELECT offnames_name, offnames_id FROM tenders_test.offerors_names where offnames_active=1";
+                    $jobcurrentoperator_sql = "SELECT offnames_name, offnames_id FROM offerors_names where offnames_active=1";
 
                     $jobcurrentoperator_result = mysqli_query($link, $jobcurrentoperator_sql);
 
@@ -1393,7 +1393,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </script>
 
                     <?php
-                    $jobindexname_sql = "SELECT jobindex_name, jobindex_id FROM tenders_test.job_indexation_types where jobindex_active=1";
+                    $jobindexname_sql = "SELECT jobindex_name, jobindex_id FROM job_indexation_types where jobindex_active=1";
 
                     $jobindexname_result = mysqli_query($link, $jobindexname_sql);
 
@@ -1429,7 +1429,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-row">
                     
                     <?php
-                    $jobZNWUtype_sql = "SELECT jobZNWU_name, jobZNWU_id FROM tenders_test.job_ZNWU_types where jobZNWU_active=1";
+                    $jobZNWUtype_sql = "SELECT jobZNWU_name, jobZNWU_id FROM job_ZNWU_types where jobZNWU_active=1";
 
                     $jobZNWUtype_result = mysqli_query($link, $jobZNWUtype_sql);
 
@@ -1453,7 +1453,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobcontracttype_sql = "SELECT jobcontract_name, jobcontract_id FROM tenders_test.job_contract_types where jobcontract_active=1";
+                    $jobcontracttype_sql = "SELECT jobcontract_name, jobcontract_id FROM job_contract_types where jobcontract_active=1";
 
                     $jobcontracttype_result = mysqli_query($link, $jobcontracttype_sql);
 
@@ -1472,7 +1472,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobsubcontractor_sql = "SELECT jobsubcontractor_name, jobsubcontractor_id FROM tenders_test.job_subcontractors where jobsubcontractor_active=1";
+                    $jobsubcontractor_sql = "SELECT jobsubcontractor_name, jobsubcontractor_id FROM job_subcontractors where jobsubcontractor_active=1";
 
                     $jobsubcontractor_result = mysqli_query($link, $jobsubcontractor_sql);
 
@@ -1507,7 +1507,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-row">
                     
                     <?php
-                    $jobqualifiedworkers_sql = "SELECT jobqualifiedworker_name, jobqualifiedworker_id FROM tenders_test.job_qualifiedworkers where jobqualifiedworker_active=1";
+                    $jobqualifiedworkers_sql = "SELECT jobqualifiedworker_name, jobqualifiedworker_id FROM job_qualifiedworkers where jobqualifiedworker_active=1";
 
                     $jobqualifiedworkers_result = mysqli_query($link, $jobqualifiedworkers_sql);
 
@@ -1526,7 +1526,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobweapon_sql = "SELECT jobweapon_name, jobweapon_id FROM tenders_test.job_weapons where jobweapon_active=1";
+                    $jobweapon_sql = "SELECT jobweapon_name, jobweapon_id FROM job_weapons where jobweapon_active=1";
 
                     $jobweapon_result = mysqli_query($link, $jobweapon_sql);
 
@@ -1545,7 +1545,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <?php
-                    $jobinterventiongroups_sql = "SELECT jobinterventiongroup_name, jobinterventiongroup_id FROM tenders_test.job_interventiongroup_types where jobinterventiongroup_active=1";
+                    $jobinterventiongroups_sql = "SELECT jobinterventiongroup_name, jobinterventiongroup_id FROM job_interventiongroup_types where jobinterventiongroup_active=1";
 
                     $jobinterventiongroups_result = mysqli_query($link, $jobinterventiongroups_sql);
 
@@ -1568,7 +1568,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <?php
                     // tutaj zadeklarujemy tabelę do zaciągania dla wszystkich 5 pól z wyborem kryteriów
-                    $jobcriterianame_sql = "SELECT jobcrit_name, jobcrit_id FROM tenders_test.job_criteria where jobcrit_active=1";
+                    $jobcriterianame_sql = "SELECT jobcrit_name, jobcrit_id FROM job_criteria where jobcrit_active=1";
 
                     $jobcriterianame_result = mysqli_query($link, $jobcriterianame_sql);
 

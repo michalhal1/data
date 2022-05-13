@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare an insert statement
 
 
-        $sql = "update tenders_test.offerors_names set offnames_name=?, offnames_active=?, offnames_isimpel=?, offnames_record_creation_worker=? where offnames_id = ?";
+        $sql = "update offerors_names set offnames_name=?, offnames_active=?, offnames_isimpel=?, offnames_record_creation_worker=? where offnames_id = ?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_GET["offnames_id"]) && !empty(trim($_GET["offnames_id"]))) {
     $id =  trim($_GET["offnames_id"]);
 
-    $sql = "SELECT * FROM tenders_test.offerors_names t  WHERE offnames_id = ?";
+    $sql = "SELECT * FROM offerors_names t  WHERE offnames_id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters

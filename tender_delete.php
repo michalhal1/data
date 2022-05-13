@@ -20,10 +20,10 @@ if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
     // Get URL parameter
     $id =  $_SESSION['paramid'];
     // Prepare a select statement
-    $sql = "SELECT * FROM tenders_test.tenders t 
-        left join tenders_test.tender_types tt on tt.tend_type_id = t.tnd_type
-        left join tenders_test.contractors cnt on t.tnd_contractor_id= cnt.cnt_id
-        left join tenders_test.segments seg on seg.segm_id= t.tnd_segment_id WHERE tnd_number = ?";
+    $sql = "SELECT * FROM tenders t 
+        left join tender_types tt on tt.tend_type_id = t.tnd_type
+        left join contractors cnt on t.tnd_contractor_id= cnt.cnt_id
+        left join segments seg on seg.segm_id= t.tnd_segment_id WHERE tnd_number = ?";
     if ($stmt1 = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt1, "s", $param_id);
@@ -68,7 +68,7 @@ if (isset($_POST["tnd_number"]) && !empty($_POST["tnd_number"]) and ($tnd_creati
     require_once "config.php";
 
     // Prepare a delete statement
-    $sql = "DELETE FROM tenders_test.tenders WHERE tnd_number = ?";
+    $sql = "DELETE FROM tenders WHERE tnd_number = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
