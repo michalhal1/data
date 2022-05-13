@@ -299,6 +299,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
+                    <!-- Select2 CSS -->
+                    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+                    <!-- jQuery -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                    <!-- Select2 JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+                    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
+                    
+                    <style>
+                    .select2-container .select2-selection--single {
+
+                        height: calc(1.5em + 0.75rem + 2px);
+                        border: 1px solid #ced4da;
+                    }
+                        </style>
 
     <div class="wrapper">
 
@@ -353,6 +370,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
+
+                    <br />
+                    <div id='result'></div>
+
+                    <script>
+                        $(document).ready(function() {
+
+                            // Initialize select2
+                            $("#inputcnt").select2();
+
+                            // Read selected option
+                            $('#but_read').click(function() {
+                                var username = $('#inputcnt option:selected').text();
+                                var userid = $('#inputcnt').val();
+
+                                $('#result').html("id : " + userid + ", name : " + username);
+
+                            });
+                        });
+                    </script>
+
 
                 </div>
 

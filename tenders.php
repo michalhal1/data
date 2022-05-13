@@ -65,7 +65,7 @@ echo $_SESSION['logid'];
         <span class="input-group-addon"></span>
 
 
-        <input type="text" name="search_text" id="search_text" placeholder="Szukaj po numerze przetargu, NIP lub dacie złożenia..." class="form-control" />
+        <input type="text" name="search_text" id="search_text" placeholder="Szukaj po numerze przetargu, nazwie zamawiającego lub dacie złożenia..." class="form-control" />
       </div>
 
       <a href="tender_create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy przetarg</a>
