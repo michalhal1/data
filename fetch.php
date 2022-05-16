@@ -17,13 +17,13 @@
  left join segments on segm_id=tnd_segment_id
   WHERE cnt_name LIKE '%" . $search . "%'
   OR tnd_announce_date LIKE '%" . $search . "%' 
-  OR tnd_number LIKE '%" . $search . "%' ";
+  OR tnd_number LIKE '%" . $search . "%' limit 100";
     } else {
         $query = "
- SELECT tnd_id, tnd_number,case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders
- left join contractors on cnt_id=tnd_contractor_id
- left join tender_types on tend_type_id=tnd_type
- left join segments on segm_id=tnd_segment_id";
+        SELECT tnd_id, tnd_number,case when length(trim(cnt_name))>30 then concat(left(cnt_name,30), if(right(left(cnt_name,30),1)='.', '', '...')) else cnt_name end as cnt_name, cnt_NIP, tnd_submit_date, tnd_announce_date, tend_type_name, segm_name, tnd_creation_worker FROM tenders
+        left join contractors on cnt_id=tnd_contractor_id
+        left join tender_types on tend_type_id=tnd_type
+        left join segments on segm_id=tnd_segment_id order by tnd_id desc limit 100 ";
     }
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) > 0) {
