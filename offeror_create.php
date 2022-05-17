@@ -94,13 +94,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_lead_off = $input_lead_off;
     }
 
-
+  
     // VALIDATE lead off
     $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value) or (!is_numeric($input_contract_value))) {
+    if (empty($input_contract_value) or (!is_numeric(str_replace(',', '.',$input_contract_value)))) {
         $off_contract_value_err = "Wpisz wartość oferty";
     } else {
-        $off_contract_value = $input_contract_value;
+        $off_contract_value = str_replace(',', '.',$input_contract_value);
     }
 
 
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point1
     if ($crit1_db == 0) {
-        $input_off_points1 = trim($_POST["points1"]);
+        $input_off_points1 = str_replace(',', '.',trim($_POST["points1"]));
     }
 
 
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point2
     if ($crit2_db == 0) {
-        $input_off_points2 = trim($_POST["points2"]);
+        $input_off_points2 = str_replace(',', '.',trim($_POST["points2"]));
     }
 
     if (empty($input_off_points2)) {
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point3
     if ($crit3_db == 0) {
-        $input_off_points3 = trim($_POST["points3"]);
+        $input_off_points3 = str_replace(',', '.',trim($_POST["points3"]));
     }
 
     if (empty($input_off_points3)) {
@@ -162,13 +162,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point4
     if ($crit4_db == 0) {
-        $input_off_points4 = trim($_POST["points4"]);
+        $input_off_points4 =str_replace(',', '.',trim($_POST["points4"]));
     }
 
-
-    if ($crit3_db == 0) {
-        $input_off_points4 = trim($_POST["points4"]);
-    }
 
     if (empty($input_off_points4)) {
         $off_points4 = NULL;
@@ -183,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point5
     if ($crit5_db == 0) {
-        $input_off_points5 = trim($_POST["points5"]);
+        $input_off_points5 = str_replace(',', '.',trim($_POST["points5"]));
     }
 
     if (empty($input_off_points5)) {
@@ -289,7 +285,7 @@ if (empty($input_tenderoutput)) {
             mysqli_stmt_close($stmt);
         }
     }
-
+    
     // Close connection
 }
 
@@ -538,7 +534,7 @@ if (empty($input_tenderoutput)) {
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_contract_value; ?>">
+                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_contract_value; ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 

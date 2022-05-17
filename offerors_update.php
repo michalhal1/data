@@ -679,7 +679,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_contract_value; ?>">
+                        <input type="text" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo str_replace('.', ',',$off_contract_value) ; ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 
@@ -816,32 +816,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="points1">Punkty kryterium 1</label>
-                        <input type="text" id="points1" name="points1" class="form-control <?php echo (!empty($off_points1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points1; ?>" <?php echo ($crit1_db == 1) ? 'disabled' : ''; ?>>
+                        <input type="float"  id="points1" name="points1" class="form-control <?php echo (!empty($off_points1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo str_replace('.', ',',$off_points1); ?>" <?php echo ($crit1_db == 1) ? 'disabled' : ''; ?>>
                         <span class="invalid-feedback"><?php echo $off_points1_err; ?></span>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points2">Punkty kryterium 2</label>
-                        <input type="text" id="points2" name="points2" class="form-control <?php echo (!empty($off_points2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points2; ?>" <?php echo ($crit2_db == 1) ? 'disabled' : ''; ?>>
+                        <input type="text" id="points2" name="points2" class="form-control <?php echo (!empty($off_points2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo str_replace('.', ',',$off_points2); ?>" <?php echo ($crit2_db == 1) ? 'disabled' : ''; ?>>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points3">Punkty kryterium 3</label>
-                        <input type="text" id="points3" name="points3" class="form-control <?php echo (!empty($off_points3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points3; ?>" <?php echo ($crit3_db == 1) ? 'disabled' : ''; ?>>
+                        <input type="text" id="points3" name="points3" class="form-control <?php echo (!empty($off_points3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo str_replace('.', ',',$off_points3); ?>" <?php echo ($crit3_db == 1) ? 'disabled' : ''; ?>>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points4">Punkty kryterium 4</label>
-                        <input type="text" id="points4" name="points4" class="form-control <?php echo (!empty($off_points4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points4; ?>" <?php echo ($crit4_db == 1) ? 'disabled' : '' ?>>
+                        <input type="text" id="points4" name="points4" class="form-control <?php echo (!empty($off_points4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo str_replace('.', ',',$off_points4); ?>" <?php echo ($crit4_db == 1) ? 'disabled' : '' ?>>
                         </select>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="points5">Punkty kryterium 5</label>
-                        <input type="text" id="points5" name="points5" class="form-control <?php echo (!empty($off_points5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_points5; ?>" <?php echo ($crit5_db == 1) ? 'disabled' : '' ?>>
+                        <input type="text" id="points5" name="points5" class="form-control <?php echo (!empty($off_points5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo str_replace('.', ',',$off_points5); ?>" <?php echo ($crit5_db == 1) ? 'disabled' : '' ?>>
                         </select>
                     </div>
                 </div>
