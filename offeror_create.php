@@ -534,7 +534,7 @@ if (empty($input_tenderoutput)) {
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $off_contract_value; ?>">
+                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($off_contract_value, 2, ',', ' ') ; ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 
