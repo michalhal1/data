@@ -47,15 +47,15 @@
     <td width=60>' . $row["tnd_number"] . '</td>
     <td nowrap>' . $row["cnt_name"] . '</td>
     <td>' . $row["cnt_NIP"] . '</td>
-    <td nowrap>' . $row["tnd_submit_date"] . '</td>
     <td nowrap>' . $row["tnd_announce_date"] . '</td>
+    <td nowrap>' . $row["tnd_submit_date"] . '</td>
     <td nowrap>' . $row["tend_type_name"] . '</td>
     <td nowrap>' . $row["tnd_creation_worker"] . '</td>
      <td width=300>
      <a href="tender_update.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
      <a href="tender_delete.php?tnd_number=' . $row['tnd_number'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
      <a href="tasks.php?tnd_id=' . $row['tnd_id'] . '" title="Dodaj zadanie przetargowe" data-toggle="tooltip"><span class="fa fa-paperclip"></span></a>
-</td>
+</td> 
    </tr>
   ';
         }
