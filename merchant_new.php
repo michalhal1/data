@@ -40,10 +40,10 @@
 
                 <div class="input-group-prepend">
                     <span class="input-group-addon"></span>
-                    <input type="text" name="search_text" id="search_text" placeholder="Szukaj po nazwie lub NIP..." class="form-control" />
+                    <input type="text" name="search_text" id="search_text" placeholder="Wpisz imię lub nazwisko..." class="form-control" />
                 </div>
 
-                <a href="contractor_add.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy zamawiający</a>
+                <a href="merchant_add.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy handlowiec</a>
                 <a href="lists.php" class="btn btn-secondary ml-2">Powrót</a>
 
             </div>
@@ -62,7 +62,7 @@
 
         function load_data(query) {
             $.ajax({
-                url: "contractor_fetch.php",
+                url: "merchant_fetch.php",
                 method: "POST",
                 data: {
                     query: query

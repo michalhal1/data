@@ -44,7 +44,7 @@
                 </div>
 
                 <a href="offname_add.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy realizujący</a>
-                <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a>
+                <a href="lists.php" class="btn btn-secondary ml-2">Powrót</a>
 
             </div>
             <br />

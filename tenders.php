@@ -70,8 +70,9 @@ echo $_SESSION['logid'];
 
       <a href="tender_create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy przetarg</a>
       <div class="horizontalgap" style="width:2%"></div>
-      <a href="contractor_new.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Nowy zamawiający</a>
-      <a href="offname_new.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Nowy realizujący</a>
+
+      <a href="lists.php" class="btn btn-primary pull-right"><i class="fa fa-list"></i> Listy rozwijane</a>
+
     </div>
     <br />
     <div id="result"></div>
