@@ -453,7 +453,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php
 
-                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM segments";
+                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM segments where segm_active=1";
 
                     $tender_segment_result = mysqli_query($link, $tender_segment_sql);
 
