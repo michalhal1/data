@@ -5,76 +5,72 @@ require_once "config.php";
 
 if (isset($_SESSION["logid"])) {
     $logid = $_SESSION['logid'];
-  } else {
+} else {
     header("location:login.php");
- };
+};
 
- $year = date("Y");
+$year = date("Y");
 
- $sql = "SELECT * FROM  logins cnt  WHERE  log_name = ?";
-                    if ($stmt1 = mysqli_prepare($link, $sql)) {
-                        // Bind variables to the prepared statement as parameters
-                        mysqli_stmt_bind_param($stmt1, "s", $param_id);
+$sql = "SELECT * FROM  logins cnt  WHERE  log_name = ?";
+if ($stmt1 = mysqli_prepare($link, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt1, "s", $param_id);
 
-                        // Set parameters
-                        $param_id = $logid;
+    // Set parameters
+    $param_id = $logid;
 
-                        // Attempt to execute the prepared statement
-                        if (mysqli_stmt_execute($stmt1)) {
-                            $result1 = mysqli_stmt_get_result($stmt1);
+    // Attempt to execute the prepared statement
+    if (mysqli_stmt_execute($stmt1)) {
+        $result1 = mysqli_stmt_get_result($stmt1);
 
-                            if (mysqli_num_rows($result1) == 1) {
-                                     $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
-                                 $log_initials = $row["log_initials"];
-                               
-                                
-                            } else {
-                                // URL doesn't contain valid id. Redirect to error page
-                                header("location: error.php");
-                                exit();
-                            }
-                        } else {
-                            echo "Oops! Something went wrong. Please try again later.";
-                        }
-                        mysqli_stmt_close($stmt1);
-                    }
+        if (mysqli_num_rows($result1) == 1) {
+            $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+            $log_initials = $row["log_initials"];
+        } else {
+            // URL doesn't contain valid id. Redirect to error page
+            header("location: error.php");
+            exit();
+        }
+    } else {
+        echo "Oops! Something went wrong. Please try again later.";
+    }
+    mysqli_stmt_close($stmt1);
+}
 
-                    $sql1 = "SELECT max(substring(tnd_number, 1 , position('/' in tnd_number)-1)) + 1 as number_lp ,tnd_creation_worker FROM tenders
+$sql1 = "SELECT max(substring(tnd_number, 1 , position('/' in tnd_number)-1)) + 1 as number_lp ,tnd_creation_worker FROM tenders
                  WHERE tnd_creation_worker = ? and year(tnd_record_creation_date) = year(now())
-                    group by tnd_creation_worker "
-                      ;
-                    if ($stmt2 = mysqli_prepare($link, $sql1)) {
-                        // Bind variables to the prepared statement as parameters
-                        mysqli_stmt_bind_param($stmt2, "s", $param_id);
+                    group by tnd_creation_worker ";
+if ($stmt2 = mysqli_prepare($link, $sql1)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt2, "s", $param_id);
 
-                        // Set parameters
-                        $param_id = $logid;
+    // Set parameters
+    $param_id = $logid;
 
-                        // Attempt to execute the prepared statement
-                        if (mysqli_stmt_execute($stmt2)) {
-                            $result1 = mysqli_stmt_get_result($stmt2);
+    // Attempt to execute the prepared statement
+    if (mysqli_stmt_execute($stmt2)) {
+        $result1 = mysqli_stmt_get_result($stmt2);
 
-                            if (mysqli_num_rows($result1) == 1) {
-                                /* Fetch result row as an associative array. Since the result set
+        if (mysqli_num_rows($result1) == 1) {
+            /* Fetch result row as an associative array. Since the result set
                 contains only one row, we don't need to use while loop */
-                                $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
-                                //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
-                                // Retrieve individual field value
-                                $log_number = $row["number_lp"];
-                                
-                            } else {
-                                // URL doesn't contain valid id. Redirect to error page
-                                $log_number = 1;
-                            }
-                        } else {
-                            echo "Oops! Something went wrong. Please try again later.";
-                        }
-                        mysqli_stmt_close($stmt2);
-                    }
+            $row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+            //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+            // Retrieve individual field value
+            $log_number = $row["number_lp"];
+        } else {
+            // URL doesn't contain valid id. Redirect to error page
+            $log_number = 1;
+        }
+    } else {
+        echo "Oops! Something went wrong. Please try again later.";
+    }
+    mysqli_stmt_close($stmt2);
+}
 
 
 
-$default_tender_number =   $log_number .'/' . $log_initials . '/' . $year ;
+$default_tender_number =   $log_number . '/' . $log_initials . '/' . $year;
 
 // Define variables and initialize with empty values
 $tnd_number  = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
@@ -277,11 +273,11 @@ where tnd_number = ? ";
 
                     <div class="form-group col-md-2">
                         <label for="inputtendernumber">Numer przetargu</label>
-                        <input type="text" placeholder=<?php echo $default_tender_number?> id="inputtendernumber" name="inputtendernumber" class="form-control  <?php echo (!empty($tnd_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $default_tender_number; ?>">
+                        <input type="text" placeholder=<?php echo $default_tender_number ?> id="inputtendernumber" name="inputtendernumber" class="form-control  <?php echo (!empty($tnd_number_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $default_tender_number; ?>">
                         <span class="invalid-feedback"><?php echo $tnd_number_err; ?></span>
                     </div>
 
-               
+
 
                     <?php
 
@@ -370,12 +366,12 @@ where tnd_number = ? ";
                     <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" -->
 
                     <style>
-                    .select2-container .select2-selection--single {
+                        .select2-container .select2-selection--single {
 
-                        height: calc(1.5em + 0.75rem + 2px);
-                        border: 1px solid #ced4da;
-                    }
-                        </style>
+                            height: calc(1.5em + 0.75rem + 2px);
+                            border: 1px solid #ced4da;
+                        }
+                    </style>
 
                     <!-- Dropdown -->
                     <div class="form-group col-md-4">
@@ -470,7 +466,7 @@ where tnd_number = ? ";
 
                     <?php
 
-                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM segments";
+                    $tender_segment_sql = "SELECT  segm_name ,segm_id FROM segments where segm_active=1";
 
                     $tender_segment_result = mysqli_query($link, $tender_segment_sql);
 
@@ -485,22 +481,33 @@ where tnd_number = ? ";
                     ?>
 
 
-
                     <div class="form-group col-md-4">
                         <label for="inputsegm">Segment</label>
-
-
-
-                        <select id="exampleFormControlSelect1" name="inputsegm" class="form-control <?php echo (!empty($tnd_segment_err)) ? 'is-invalid' : ''; ?>">
+                        <select id='inputsegm' name='inputsegm' class="form-control <?php echo (!empty($tnd_segment_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $tnd_segment; ?>> <?php echo $tnd_segm_name; ?> </option>
-                            <div class="invalid-feedback"><?php echo $tnd_segment_err; ?></div>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
                     </div>
 
 
+                    <div id='result'></div>
 
+                    <script>
+                        $(document).ready(function() {
 
+                            // Initialize select2
+                            $("#inputsegm").select2();
+
+                            // Read selected option
+                            $('#but_read').click(function() {
+                                var username = $('#inputsegm option:selected').text();
+                                var userid = $('#inputsegm').val();
+
+                                $('#result').html("id : " + userid + ", name : " + username);
+
+                            });
+                        });
+                    </script>
 
                     <?php //jezeli ktoś po raz pierwszy wchodzi w create to przypisz nulla inaczej będzie bład
 
