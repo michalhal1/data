@@ -106,7 +106,6 @@ echo $_SESSION['logid'];
         <th>Numer zadania</th>
         <th>Przedmiot zamówienia</th>
         <th>Handlowiec</th>
-        <th>Region</th>
         <th>Typ sprzedaży</th>
         <th>Produkt</th>
         <th>Status</th>
@@ -122,7 +121,6 @@ echo $_SESSION['logid'];
             <td width=60>' . $row["job_number"] . '</td>
             <td>' . $row["job_name"] . '</td>  
             <td nowrap>' . $row["merchant_name"] . '</td>
-            <td nowrap>' . $row["reg_name"] . '</td> 
             <td nowrap>' . $row["sal_type_name"] . '</td>
             <td nowrap>' . $row["prod_name"] . '</td>
             <td nowrap>' . $row["jobstat_name"] . '</td>

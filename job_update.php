@@ -41,9 +41,9 @@ $_SESSION['tndid'] = $result_tnd_id;
 
 
 // Define variables and initialize with empty values
-$jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = NULL;
-$jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = NULL;
-$jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobregion_text = $jobdepartment_text = $jobmerchant_text = $jobstatus_text = $jobresignationreason_text = $jobresignationreasondetails_text = $jobvaluetype_text = $jobdeposittype_text = $jobcurrentoperator_text = $jobindexname_text = $jobtakeover23_text = $jobZNWUtype_text = $jobcontracttype_text = $jobsubcontractor_text = $jobqualifiedworkers_text = $jobweapon_text = $jobinterventiongroups_text = $jobcriterianame1_text = $jobcriterianame2_text = $jobcriterianame3_text = $jobcriterianame4_text = $jobcriterianame5_text = NULL;
+$jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobdifferentVAT = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobecars = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = NULL;
+$jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobdifferentVAT_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobecars_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = NULL;
+$jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobregion_text = $jobdepartment_text = $jobmerchant_text = $jobstatus_text = $jobresignationreason_text = $jobresignationreasondetails_text = $jobvaluetype_text = $jobdifferentVAT_text = $jobdeposittype_text = $jobcurrentoperator_text = $jobindexname_text = $jobtakeover23_text = $jobZNWUtype_text = $jobcontracttype_text = $jobsubcontractor_text = $jobqualifiedworkers_text = $jobweapon_text = $jobinterventiongroups_text = $jobcriterianame1_text = $jobcriterianame2_text = $jobcriterianame3_text = $jobcriterianame4_text = $jobcriterianame5_text = NULL;
 
 // nadajemy do zmiennej log_number kolejny numer zadania w danym przetargu
 //$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_jobs WHERE job_tnd_id = ? GROUP BY job_tnd_id";
@@ -214,6 +214,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobvaluetype = $input_job_valuetype;
     }
 
+    //validate jobdifferentVAT
+    $input_job_differentVAT = trim($_POST["jobdifferentVAT"]);
+    if (empty($input_job_differentVAT)) {
+        $jobdifferentVAT_err = "Wybierz stawkę VAT";
+    } else {
+        $jobdifferentVAT = $input_job_differentVAT;
+    }
+
     //validate jobunitsnumber
     $input_job_unitsnumber = trim($_POST["jobunitsnumber"]);
     if (empty($input_job_unitsnumber)) {
@@ -371,6 +379,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $jobinterventiongroups = $input_job_interventiongroups;
     }
+
+    //validate jobecars
+    $input_job_ecars = trim($_POST["jobecars"]);
+    if (empty($input_job_ecars)) {
+        $jobecars_err = "Wpisz liczbę pojazdów elektrycznych";
+    } elseif (!is_numeric($input_job_ecars)) {
+        $jobecars_err = "Wpisz liczbę pojazdów elektrycznych";
+    } else {
+        $jobecars = $input_job_ecars;
+    }
     
     //validate jobcriterianame1
     $input_job_criterianame1 = trim($_POST["jobcriterianame1"]);
@@ -473,12 +491,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $param_job_id = trim($_POST["paramid"]);
 
-        $sql = "UPDATE tenders_jobs SET job_number=?, job_name=?, job_product_id=?, job_property_type_id=?, job_sales_type=?, job_deadline=? ,job_region=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
+        $sql = "UPDATE tenders_jobs SET job_number=?, job_name=?, job_product_id=?, job_property_type_id=?, job_sales_type=?, job_deadline=? ,job_region=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_differentVAT=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_eCars=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "isiiiiiiiiisididddisiisiidiiddiiiidididididss", $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobmodificationworker, $param_job_id);
+            mysqli_stmt_bind_param($stmt, "isiiiiiiiiisidisdddisiisiidiiddiiiiidididididss", $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobdifferentVAT, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobecars, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobmodificationworker, $param_job_id);
                
             $param_jobnumber = $jobnumber;
             $param_jobname = $jobname;
@@ -495,6 +513,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_jobresignationreasondetails = $jobresignationreasondetails;
             $param_jobestimatedvalue = $jobestimatedvalue;
             $param_jobvaluetype = $jobvaluetype;
+            $param_jobdifferentVAT = $jobdifferentVAT;
             $param_jobunitsnumber = $jobunitsnumber;
             $param_jobcontractorbudget = $jobcontractorbudget;
             $param_jobdeposit = $jobdeposit;
@@ -513,6 +532,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_jobqualifiedworkers  = $jobqualifiedworkers;
             $param_jobweapon = $jobweapon;
             $param_jobinterventiongroups = $jobinterventiongroups;
+            $param_jobecars = $jobecars;
             $param_jobcriterianame1 = $jobcriterianame1;
             $param_jobcriteriaweight1 = $jobcriteriaweight1;
             $param_jobcriterianame2 = $jobcriterianame2;
@@ -993,7 +1013,7 @@ else {
         job_deposit_valid_date, job_ZNWU_value, job_contract_type, jobcontract_name, job_subcontractor, jobsubcontractor_name, job_internal_areas, job_external_areas,
         job_qualified_workers, jobqualifiedworker_name, job_weapon, jobweapon_name, job_intervention_groups, jobinterventiongroup_name,
         job_criteria_id1, Crit1.jobcrit_name as jobcrit_name1, job_criteria_weight1, job_criteria_id2, Crit2.jobcrit_name as jobcrit_name2, job_criteria_weight2, job_criteria_id3, Crit3.jobcrit_name as jobcrit_name3, job_criteria_weight3, job_criteria_id4, Crit4.jobcrit_name as jobcrit_name4, job_criteria_weight4, job_criteria_id5, Crit5.jobcrit_name as jobcrit_name5, job_criteria_weight5,
-        job_value_type_id, jobval_name, job_selection_date, job_contractor_budget, job_SAP_chance_number, job_contract_startdate, job_creation_date, job_modification_date, job_creation_work, job_modification_work, job_ZNWU_type, jobZNWU_name
+        job_value_type_id, jobval_name, job_selection_date, job_contractor_budget, job_SAP_chance_number, job_contract_startdate, job_creation_date, job_modification_date, job_creation_work, job_modification_work, job_ZNWU_type, jobZNWU_name, job_eCars, job_differentVAT
         FROM tenders_jobs
         left join job_statuses on job_status=jobstat_id
         left join job_resignations on job_resignation_reason_details=jobresign_id
@@ -1061,6 +1081,7 @@ else {
                     $jobestimatedvalue = $row["job_estimated_value"];
                     $jobvaluetype = $row["job_value_type_id"];
                     $jobvaluetype_text = $row["jobval_name"];
+                    $jobdifferentVAT = $row["job_differentVAT"];
                     $jobunitsnumber = $row["job_units_number"];
                     $jobcontractorbudget = $row["job_contractor_budget"];
                     $jobdeposit = $row["job_deposit"];
@@ -1088,6 +1109,7 @@ else {
                     $jobweapon_text = $row["jobweapon_name"];
                     $jobinterventiongroups = $row["job_intervention_groups"];
                     $jobinterventiongroups_text = $row["jobinterventiongroup_name"];
+                    $jobecars = $row["job_eCars"];
                     $jobcriterianame1 = $row["job_criteria_id1"];
                     $jobcriterianame1_text = $row["jobcrit_name1"];
                     $jobcriteriaweight1 = $row["job_criteria_weight1"];
@@ -1460,13 +1482,22 @@ else {
                         $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
                     }
                     ?>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <label for="jobvaluetype">Typ wartości</label>
                         <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php // echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> <?php echo $jobvaluetype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
                         <span class="invalid-feedback"><?php echo $jobvaluetype_err; ?></span>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="job">Różne stawki VAT</label>
+                        <select id='jobdifferentVAT' name='jobdifferentVAT' class="form-control <?php // echo (!empty($jobdifferentVAT_err)) ? 'is-invalid' : ''; ?>">>
+                            <option selected="selected" value=<?php echo $jobdifferentVAT; ?>> <?php echo $jobdifferentVAT; ?> </option>
+                            <option value="tak"> tak </option>
+                            <option value="nie"> nie </option>    
+                        </select>
                     </div>
 
                     <div class="form-group col-md-2">
@@ -1725,6 +1756,11 @@ else {
                             <option selected="selected" hidden value=<?php echo $jobinterventiongroups; ?>> <?php echo $jobinterventiongroups_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="jobecars">Liczba pojazdów elektrycznych</label>
+                        <input type="text" id='jobecars' name='jobecars' class="form-control <?php // echo (!empty($jobecars_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobecars; ?>">
                     </div>
                 </div>
 
