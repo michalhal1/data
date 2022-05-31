@@ -1,4 +1,3 @@
-
 <?php session_start();
 
 if (isset($_GET["job_id"])) {
@@ -9,9 +8,9 @@ if (isset($_GET["job_id"])) {
 
 
 if (isset($_SESSION["logid"])) {
-   $logid = $_SESSION['logid'];
- } else {
-   header("location:login.php");
+    $logid = $_SESSION['logid'];
+} else {
+    header("location:login.php");
 };
 
 //echo  $_SESSION['paramid'];
@@ -94,28 +93,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_lead_off = $input_lead_off;
     }
 
-  
+
     // VALIDATE lead off
     $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.',$input_contract_value))))) {
+    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.', $input_contract_value))))) {
         $off_contract_value_err = "Wpisz wartość oferty";
     } else {
-        $off_contract_value = str_replace(' ', '' , str_replace(',', '.',$input_contract_value));
+        $off_contract_value = str_replace(' ', '', str_replace(',', '.', $input_contract_value));
     }
 
 
- 
+
 
     $off_key_offeror1 = trim($_POST["off1"]);
     $off_key_offeror2 = trim($_POST["off2"]);
     $off_key_offeror3 = trim($_POST["off3"]);
     $off_key_offeror4 = trim($_POST["off4"]);
-    $off_key_offeror5= trim($_POST["off5"]);
+    $off_key_offeror5 = trim($_POST["off5"]);
 
 
     // VALIDATE point1
     if ($crit1_db == 0) {
-        $input_off_points1 = str_replace(',', '.',trim($_POST["points1"]));
+        $input_off_points1 = str_replace(',', '.', trim($_POST["points1"]));
     }
 
 
@@ -131,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point2
     if ($crit2_db == 0) {
-        $input_off_points2 = str_replace(',', '.',trim($_POST["points2"]));
+        $input_off_points2 = str_replace(',', '.', trim($_POST["points2"]));
     }
 
     if (empty($input_off_points2)) {
@@ -146,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point3
     if ($crit3_db == 0) {
-        $input_off_points3 = str_replace(',', '.',trim($_POST["points3"]));
+        $input_off_points3 = str_replace(',', '.', trim($_POST["points3"]));
     }
 
     if (empty($input_off_points3)) {
@@ -162,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point4
     if ($crit4_db == 0) {
-        $input_off_points4 =str_replace(',', '.',trim($_POST["points4"]));
+        $input_off_points4 = str_replace(',', '.', trim($_POST["points4"]));
     }
 
 
@@ -179,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE point5
     if ($crit5_db == 0) {
-        $input_off_points5 = str_replace(',', '.',trim($_POST["points5"]));
+        $input_off_points5 = str_replace(',', '.', trim($_POST["points5"]));
     }
 
     if (empty($input_off_points5)) {
@@ -192,48 +191,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_points5 = $input_off_points4;
     }
 
-   
 
-    
+
+
     $input_off_remarks = trim($_POST["remarks"]);
-    if ((strlen($input_off_remarks)>349)) {
+    if ((strlen($input_off_remarks) > 349)) {
         $off_remarks_value_err = "Uwaga zbyt długa";
     } else {
-        $off_remarks= $input_off_remarks;
+        $off_remarks = $input_off_remarks;
     }
-   
-// validate tender output wygrany musi miec id =1 
 
-$sql_winn = 'SELECT min(off_output) as output_winner FROM offerors
+    // validate tender output wygrany musi miec id =1 
+
+    $sql_winn = 'SELECT min(off_output) as output_winner FROM offerors
 where off_job_id=?';
 
-if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
-    // Bind variables to the prepared statement as parameters
-    mysqli_stmt_bind_param($stmt_winn, "i", $_SESSION['paramid']);
-    if (mysqli_stmt_execute($stmt_winn)) {
-        $result_winn = mysqli_stmt_get_result($stmt_winn);
-        $row_winn = mysqli_fetch_array($result_winn);
-        //
-        if (!$row_winn == NULL) {
-            $winn_db = $row_winn[0];
-        } else {
-            $winn_db = 0;
+    if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt_winn, "i", $_SESSION['paramid']);
+        if (mysqli_stmt_execute($stmt_winn)) {
+            $result_winn = mysqli_stmt_get_result($stmt_winn);
+            $row_winn = mysqli_fetch_array($result_winn);
+            //
+            if (!$row_winn == NULL) {
+                $winn_db = $row_winn[0];
+            } else {
+                $winn_db = 0;
+            }
         }
     }
-}
-   
 
-$input_tenderoutput = trim($_POST["tenderoutput"]);
-if (empty($input_tenderoutput)) {
-    $off_tenderoutput_err = "Wybierz wynik przetargu";
-} elseif ($input_tenderoutput==1 and $winn_db==1 ) {
-    $off_tenderoutput_err = "Zwycięzca już istnieje";
-} else {
-    $off_tenderoutput = $input_tenderoutput;
-}
+
+    $input_tenderoutput = trim($_POST["tenderoutput"]);
+    if (empty($input_tenderoutput)) {
+        $off_tenderoutput_err = "Wybierz wynik przetargu";
+    } elseif ($input_tenderoutput == 1 and $winn_db == 1) {
+        $off_tenderoutput_err = "Zwycięzca już istnieje";
+    } else {
+        $off_tenderoutput = $input_tenderoutput;
+    }
 
 
     $input_off_creation_worker =  $logid;
+
+    // validate start date     
+    $input_off_start_date = trim($_POST["start_date"]);
 
 
     if (empty($off_contract_value_err) && empty($off_lead_off_err)  && empty($off_points1_err) && empty($off_points2_err) && empty($off_points3_err) && empty($off_points4_err) && empty($off_points5_err) && empty($off_tenderoutput_err)) {
@@ -241,12 +243,12 @@ if (empty($input_tenderoutput)) {
 
         $off_job_id = trim($_POST["paramid"]);
 
-        $sql = "INSERT INTO offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_key_offeror5 , off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_output, off_creation_work) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO offerors (off_job_id, off_leading_offeror, off_key_offeror1, off_key_offeror2, off_key_offeror3, off_key_offeror4, off_key_offeror5 , off_contract_value ,off_points_crit1, off_points_crit2,off_points_crit3,off_points_crit4,off_points_crit5, off_remarks, off_output, off_creation_work,off_contract_start_date) VALUES ( ?, ?,?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiisddddddsis", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4,$param_off_key_offeror5, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output,$param_off_creation_worker);
+            mysqli_stmt_bind_param($stmt, "iiiiiisddddddsiss", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4, $param_off_key_offeror5, $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_creation_worker, $param_off_start_date);
 
             $param_off_job_id = $off_job_id;
             $param_off_leading_offeror = $off_lead_off;
@@ -266,11 +268,13 @@ if (empty($input_tenderoutput)) {
             $param_off_output = $off_tenderoutput;
             $param_off_creation_worker = $input_off_creation_worker;
 
+            $param_off_start_date = $input_off_start_date;
+
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Records created successfully. Redirect to landing page
                 //echo "Dodano nowy przetarg";
-                header("location: offerors_ok.php?job_id=" . $_SESSION['paramid'] );
+                header("location: offerors_ok.php?job_id=" . $_SESSION['paramid']);
                 // echo $_POST['off_winner'];
                 // echo trim($_POST["inputname"]); 
                 // echo $off_points1;
@@ -285,7 +289,7 @@ if (empty($input_tenderoutput)) {
             mysqli_stmt_close($stmt);
         }
     }
-    
+
     // Close connection
 }
 
@@ -386,7 +390,7 @@ if (empty($input_tenderoutput)) {
                         }
                     }
 
-                    
+
                     //outputs options
 
                     $output_options_sql = "SELECT off_tnd_name,off_tnd_out  FROM offerors_tender_output where off_tnd_active=1";
@@ -533,7 +537,7 @@ if (empty($input_tenderoutput)) {
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($off_contract_value, 2, ',', ' ') ; ?>">
+                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($off_contract_value, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 
@@ -543,14 +547,14 @@ if (empty($input_tenderoutput)) {
                 </div>
 
                 <style>
-                        .select2-container .select2-selection--single {
+                    .select2-container .select2-selection--single {
 
-                            height: calc(1.5em + 0.75rem + 2px);
-                            border: 1px solid #ced4da;
-                        }
-                    </style>
+                        height: calc(1.5em + 0.75rem + 2px);
+                        border: 1px solid #ced4da;
+                    }
+                </style>
 
-                    
+
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="off1">Kluczowy oferent 1</label>
@@ -649,8 +653,8 @@ if (empty($input_tenderoutput)) {
 
                     <div class="form-group col-md-4">
                         <label for="off5">Kluczowy oferent 5</label>
-                        <input type = "text" id='off5' name='off5' class="form-control" value = <?php echo $off_key_offeror5 ?>>
-                           
+                        <input type="text" id='off5' name='off5' class="form-control" value=<?php echo $off_key_offeror5 ?>>
+
                         </select>
                     </div>
 
@@ -720,34 +724,47 @@ if (empty($input_tenderoutput)) {
                         <input type="text" id="remarks" name="remarks" class="form-control" value="<?php echo $off_remarks; ?>">
 
                     </div>
-            
 
 
 
 
-                <div class="form-group col-md-4">
+
+                    <div class="form-group col-md-4">
                         <label for="tenderoutput">Wynik przetargu</label>
                         <select id='tenderoutput' name='tenderoutput' class="form-control <?php echo (!empty($off_tenderoutput_err)) ? 'is-invalid' : ''; ?>">
-                         <option selected="selected" hidden value=<?php echo $output_id; ?>> <?php echo $output_name; ?> </option>
-                         <span class="text-danger"><?php echo $off_tenderoutput_err; ?></div>
-                         <OPTION> <?php echo $output_options ?> </option>
-                        </select>
+                            <option selected="selected" hidden value=<?php echo $output_id; ?>> <?php echo $output_name; ?> </option>
+                            <span class="text-danger"><?php echo $off_tenderoutput_err; ?>
                     </div>
+                    <OPTION> <?php echo $output_options ?> </option>
+                    </select>
                 </div>
 
 
+                <div class="form-group">
+                    <label>Data rozpoczęcia kontraktu</label>
+                    <input type="date" name="start_date" min="2018-01-01"  class="form-control" value="<?php echo $input_off_start_date; ?>">
+                </div>
 
-                <?php mysqli_close($link); ?>
 
+             
 
-
-                <input type="submit" class="btn btn-primary" value="Dodaj ofertę">
-
-                <input type="hidden" id="paramid" name="paramid" value=<?php echo $_SESSION['paramid'] ?>>
-
-                <a href="offerors.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-secondary ml-2">Powrót</a>
-            </form>
         </div>
+
+
+
+
+
+        <?php mysqli_close($link); ?>
+
+
+
+        <input type="submit" class="btn btn-primary" value="Dodaj ofertę">
+
+        <input type="hidden" id="paramid" name="paramid" value=<?php echo $_SESSION['paramid'] ?>>
+
+        <a href="offerors.php?job_id=<?php echo $_SESSION['paramid'] ?>" class="btn btn-secondary ml-2">Powrót</a>
+        </form>
+    </div>
     </div>
     </div>
     </div>

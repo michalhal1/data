@@ -46,7 +46,7 @@ $_SESSION['jobid'] = $result_jobid;
 
 
 // Define variables and initialize with empty values
-$off_lead_off  = $off_key_offeror1 = $off_key_offeror2 = $off_key_offeror3 = $off_key_offeror4  = $doff_key_offeror5 = $off_contract_value = $off_points1 = $off_points2 = $off_points3 = $off_points4 = $off_points5 = $off_remarks = NULL;
+$off_lead_off  = $off_key_offeror1 = $off_key_offeror2 = $off_key_offeror3 = $off_key_offeror4  = $doff_key_offeror5 = $off_contract_value = $off_points1 = $off_points2 = $off_points3 = $off_points4 = $off_points5 = $off_remarks = $off_contarct_start_date = NULL;
 $off_lead_off_err  = $off_key_offeror1_err = $off_key_offeror2_err = $off_key_offeror3_err = $off_key_offeror4_err  = $off_key_offeror5_err = $off_contract_value_err = $off_points1_err = $off_points2_err = $off_points3_err = $off_points4_err = $off_points5_err = $off_winner_err = NULL;
 
 
@@ -287,6 +287,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $off_tenderoutput = $input_tenderoutput;
     }
 
+    $off_contarct_start_date = ($_POST["start_date"]);
 
 
 
@@ -298,12 +299,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $param_off_id = trim($_POST["paramid"]);
 
-        $sql = "Update offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_key_offeror5=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ? where off_id=?";
+        $sql = "Update offerors set off_job_id=?, off_leading_offeror=?, off_key_offeror1=?, off_key_offeror2=?, off_key_offeror3=?, off_key_offeror4=?, off_key_offeror5=?, off_contract_value=? ,off_points_crit1=?, off_points_crit2=?,off_points_crit3=?,off_points_crit4=?,off_points_crit5=?, off_remarks=?, off_output=?, off_modification_date = now(), off_modification_work = ?, off_contract_start_date=? where off_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iiiiiisddddddsisi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4,  $param_off_key_offeror5,  $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_modification_worker, $param_off_id);
+            mysqli_stmt_bind_param($stmt, "iiiiiisddddddsissi", $param_off_job_id, $param_off_leading_offeror, $param_off_key_offeror1, $param_off_key_offeror2,  $param_off_key_offeror3,  $param_off_key_offeror4,  $param_off_key_offeror5,  $param_off_contract_value, $param_off_points1, $param_off_points2, $param_off_points3, $param_off_points4, $param_off_points5, $param_off_remarks, $param_off_output, $param_off_modification_worker, $param_off_start_date, $param_off_id);
 
             $param_off_job_id = trim($_POST["jobid"]);
             $param_off_leading_offeror = $off_lead_off;
@@ -323,7 +324,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_off_output = $off_output_id;
 
             $param_off_modification_worker =  $logid;
-
+            $param_off_start_date = $off_contarct_start_date;
             $param_off_id = $_SESSION['paramid'];
 
 
@@ -334,7 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Records created successfully. Redirect to landing page
                 //echo  $param_off_id ;
                 header("location: offerors_update_ok.php?job_id=" . $param_job_id);
-                //echo $_POST["off_value"];
+               // echo $off_contarct_start_date;
                 //echo $input_contract_value; 
                 // echo $off_points1;
                 exit();
@@ -362,7 +363,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case when off_points_crit3 = 0 then null else off_points_crit3 end as off_points_crit3, 
         case when off_points_crit4 = 0 then null else off_points_crit4 end as off_points_crit4, 
         case when off_points_crit5 = 0 then null else off_points_crit5 end as off_points_crit5, 
-        off_remarks , off_tnd_name, off_output, off_creation_date, off_modification_date, off_creation_work, off_modification_work, off_job_id
+        off_remarks , off_tnd_name, off_output, off_creation_date, off_modification_date, off_creation_work, off_modification_work, off_job_id, off_contract_start_date
          FROM  offerors
          left join offerors_tender_output on off_output=off_tnd_out
            WHERE  off_id=?";
@@ -398,6 +399,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $off_remarks = $row["off_remarks"];
                     $off_output_name = $row["off_tnd_name"];
                     $off_output_id = $row["off_output"];
+                    $off_contarct_start_date = $row['off_contract_start_date'];
                 } else {
                     // URL doesn't contain valid id. Redirect to error page
                     header("location: error.php");
@@ -865,6 +867,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <OPTION> <?php echo $output_options ?> </option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label>Data rozpoczęcia kontraktu</label>
+                    <input type="date" id="start_date" name="start_date" min="2018-01-01"  class="form-control" value="<?php echo $off_contarct_start_date; ?>">
+                </div>
+
+
         </div>
 
 
