@@ -46,8 +46,8 @@ $_SESSION['jobid'] = $result_jobid;
 
 
 // Define variables and initialize with empty values
-$off_lead_off  = $off_key_offeror1 = $off_key_offeror2 = $off_key_offeror3 = $off_key_offeror4  = $doff_key_offeror5 = $off_contract_value = $off_points1 = $off_points2 = $off_points3 = $off_points4 = $off_points5 = $off_remarks = "";
-$off_lead_off_err  = $off_key_offeror1_err = $off_key_offeror2_err = $off_key_offeror3_err = $off_key_offeror4_err  = $off_key_offeror5_err = $off_contract_value_err = $off_points1_err = $off_points2_err = $off_points3_err = $off_points4_err = $off_points5_err = $off_winner_err = "";
+$off_lead_off  = $off_key_offeror1 = $off_key_offeror2 = $off_key_offeror3 = $off_key_offeror4  = $doff_key_offeror5 = $off_contract_value = $off_points1 = $off_points2 = $off_points3 = $off_points4 = $off_points5 = $off_remarks = NULL;
+$off_lead_off_err  = $off_key_offeror1_err = $off_key_offeror2_err = $off_key_offeror3_err = $off_key_offeror4_err  = $off_key_offeror5_err = $off_contract_value_err = $off_points1_err = $off_points2_err = $off_points3_err = $off_points4_err = $off_points5_err = $off_winner_err = NULL;
 
 
 
@@ -125,10 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE contract value 
     $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value) or (!is_numeric(str_replace(',', '.',$input_contract_value)))) {
+    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.',$input_contract_value))))) {
         $off_contract_value_err = "Wpisz wartość oferty";
     } else {
-        $off_contract_value = str_replace(',', '.',$input_contract_value);
+        $off_contract_value = str_replace(' ', '' , str_replace(',', '.',$input_contract_value));
     }
 
 
