@@ -78,7 +78,7 @@ echo $_SESSION['logid'];
     if (isset($_GET["tnd_id"]) && !empty(trim($_GET["tnd_id"]))) {
         $id =  trim($_GET["tnd_id"]);
         $query = "
-        Select tnd_number, cnt_name, job_number, job_id, case when length (trim(job_name))>35 then concat(left(job_name,35), if(right(left(job_name,35),1)='.', '', '...')) else job_name end as job_name, reg_name, concat(merch_name, ' ', merch_surname) as merchant_name, sal_type_name, prod_name, job_deadline
+        Select tnd_number, cnt_name, job_number, job_id, case when length (trim(job_name))>30 then concat(left(job_name,30), if(right(left(job_name,30),1)='.', '', '...')) else job_name end as job_name, reg_name, concat(merch_name, ' ', merch_surname) as merchant_name, sal_type_name, case when length (trim(prod_name))>30 then concat(left(prod_name,30), if(right(left(prod_name,30),1)='.', '', '...')) else prod_name end as prod_name, jobstat_name, job_deadline
         from tenders
         join contractors on cnt_id = tnd_contractor_id
         left join tenders_jobs on tnd_id = job_tnd_id
@@ -86,6 +86,7 @@ echo $_SESSION['logid'];
         left join merchants on job_merchant_id=merch_id
         left join sales_types on job_sales_type=sal_type_id
         left join products on job_product_id=prod_id
+        left join job_statuses on job_status=jobstat_id
         WHERE tnd_id = ?
         order by 3";
         if ($stmt = mysqli_prepare($link, $query)) {
@@ -108,6 +109,7 @@ echo $_SESSION['logid'];
         <th>Region</th>
         <th>Typ sprzedaży</th>
         <th>Produkt</th>
+        <th>Status</th>
         <th>Liczba miesięcy</th>
         <th>Akcja</th>
         </tr>
@@ -123,6 +125,7 @@ echo $_SESSION['logid'];
             <td nowrap>' . $row["reg_name"] . '</td> 
             <td nowrap>' . $row["sal_type_name"] . '</td>
             <td nowrap>' . $row["prod_name"] . '</td>
+            <td nowrap>' . $row["jobstat_name"] . '</td>
             <td nowrap>' . $row["job_deadline"] . '</td>
             <td >
             <a href="job_update.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>

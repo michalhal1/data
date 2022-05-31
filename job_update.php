@@ -468,7 +468,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // TUTAJ MAMY UPDATOWANIE BAZY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    if (empty($jobnumber_err) && empty($jobname_err)  && empty($jobproduct_err) && empty($jobpropertyname_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobregion_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobstatus_err)) {
+    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobregion_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobcurrentoperator_err)) {
     // Prepare an insert statement
 
         $param_job_id = trim($_POST["paramid"]);
@@ -1242,8 +1242,8 @@ else {
                     ?>
 
                     <div class="form-group col-md-2">
-                        <label for="jobpropertyname">Rodzaj obiektu*</label>
-                        <select id='jobpropertyname' name='jobpropertyname' class="form-control <?php echo (!empty($jobpropertyname_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobpropertyname">Rodzaj obiektu</label>
+                        <select id='jobpropertyname' name='jobpropertyname' class="form-control <?php // echo (!empty($jobpropertyname_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobpropertyname; ?>> <?php echo $jobpropertyname_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>    
                         </select>
@@ -1365,8 +1365,8 @@ else {
                 <div class="form-row">
 
                     <div class="form-group col-md-2">
-                        <label for="jobSAPnumber">Numer szansy*</label>
-                        <input type="text" id='jobSAPnumber' name='jobSAPnumber' class="form-control <?php echo (!empty($jobSAPnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobSAPnumber; ?>">
+                        <label for="jobSAPnumber">Numer szansy</label>
+                        <input type="text" id='jobSAPnumber' name='jobSAPnumber' class="form-control <?php // echo (!empty($jobSAPnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobSAPnumber; ?>">
                         <span class="invalid-feedback"><?php echo $jobSAPnumber_err; ?></span>
                     </div>
                     
@@ -1382,8 +1382,8 @@ else {
                     }
                     ?>
                     <div class="form-group col-md-2">
-                        <label for="jobstatus">Status*</label>
-                        <select id='jobstatus' name='jobstatus' class="form-control <?php echo (!empty($jobstatus_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobstatus">Status</label>
+                        <select id='jobstatus' name='jobstatus' class="form-control <?php // echo (!empty($jobstatus_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobstatus; ?>> <?php echo $jobstatus_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1443,9 +1443,9 @@ else {
 
                 <div class="form-row">
 
-                    <div class="form-group col-md-2">
-                        <label for="jobestimatedvalue">Wartość szacunkowa [mc]*</label>
-                        <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
+                    <div class="form-group col-md-3">
+                        <label for="jobestimatedvalue">Wartość szacunkowa [brutto mc]</label>
+                        <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php // echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
                         <span class="invalid-feedback"><?php echo $jobestimatedvalue_err; ?></span>
                     </div>
 
@@ -1461,8 +1461,8 @@ else {
                     }
                     ?>
                     <div class="form-group col-md-3">
-                        <label for="jobvaluetype">Typ wartości*</label>
-                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php  echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobvaluetype">Typ wartości</label>
+                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php // echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> <?php echo $jobvaluetype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1527,11 +1527,12 @@ else {
                     }
                     ?>
                     <div class="form-group col-md-4">
-                        <label for="jobcurrentoperator">Aktualny wykonawca</label>
-                        <select id='jobcurrentoperator' name='jobcurrentoperator' class="form-control <?php // echo (!empty($jobcurrentoperator_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobcurrentoperator">Aktualny wykonawca*</label>
+                        <select id='jobcurrentoperator' name='jobcurrentoperator' class="form-control <?php echo (!empty($jobcurrentoperator_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcurrentoperator; ?>> <?php echo $jobcurrentoperator_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
+                        <span class="invalid-feedback"><?php echo $jobcurrentoperator_err; ?></span>
                     </div>
 
                     <!-- po co to ???????????????????????????????????????? -->
