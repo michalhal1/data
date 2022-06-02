@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-                <input type="submit" class="btn btn-primary" value="Dodaj zamawiającego">
+                <input type="submit" class="btn btn-primary" value="Dodaj handlowca">
 
                 <a href="merchant_new.php" class="btn btn-secondary ml-2">Powrót</a>
             </form>
