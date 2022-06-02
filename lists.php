@@ -26,7 +26,7 @@
 <h2 align="center">Listy rozwijane
 <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a></h2><br />
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-5">
 
 
         <a href="contractor_new.php" class="btn btn-primary btn-square-md"><i class="fa fa-plus"></i> Zamawiający</a>
@@ -34,6 +34,8 @@
         <a href="offname_new.php" class="btn btn-primary btn-square-md"><i class="fa fa-plus"></i> Realizujący</a>
 
         <a href="merchant_new.php" class="btn btn-primary btn-square-md"><i class="fa fa-plus"></i> Handlowcy</a>
+
+        <a href="products.php" class="btn btn-primary btn-square-md"><i class="fa fa-plus"></i> Produkty</a>
 
     </div>
 </div>
