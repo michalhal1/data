@@ -31,7 +31,6 @@ if ($stmt = mysqli_prepare($link, $tnd_id_sql)) {
            
         } else {
             $result_tnd_id = null;
-           
         }
     }
 }
@@ -39,11 +38,10 @@ if ($stmt = mysqli_prepare($link, $tnd_id_sql)) {
 $_SESSION['tndid'] = $result_tnd_id;
 
 
-
 // Define variables and initialize with empty values
-$jobnumber = $jobname = $jobproduct = $jobpropertyname = $jobsalestype = $jobdeadline = $jobregion = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobdifferentVAT = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobecars = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = NULL;
-$jobnumber_err = $jobname_err = $jobproduct_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobregion_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobdifferentVAT_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobecars_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = NULL;
-$jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobregion_text = $jobdepartment_text = $jobmerchant_text = $jobstatus_text = $jobresignationreason_text = $jobresignationreasondetails_text = $jobvaluetype_text = $jobdifferentVAT_text = $jobdeposittype_text = $jobcurrentoperator_text = $jobindexname_text = $jobtakeover23_text = $jobZNWUtype_text = $jobcontracttype_text = $jobsubcontractor_text = $jobqualifiedworkers_text = $jobweapon_text = $jobinterventiongroups_text = $jobcriterianame1_text = $jobcriterianame2_text = $jobcriterianame3_text = $jobcriterianame4_text = $jobcriterianame5_text = NULL;
+$jobnumber = $jobname = $jobproduct = $jobvalueVAT = $jobpropertyname = $jobsalestype = $jobdeadline = $jobdepartment = $jobmerchant = $jobSAPnumber = $jobstatus = $jobresignationreason = $jobresignationreasondetails = $jobestimatedvalue = $jobvaluetype = $jobdifferentVAT = $jobunitsnumber = $jobcontractorbudget = $jobdeposit = $jobdeposittype = $jobdepositvaliddate = $jobcurrentoperator = $jobindexname = $jobtakeover23 = $jobtookoverworkers = $jobZNWUtype = $jobZNWUvalue = $jobcontracttype = $jobsubcontractor = $jobinternalareas = $jobexternalareas = $jobqualifiedworkers = $jobweapon = $jobinterventiongroups = $jobecars = $jobcriterianame1 = $jobcriteriaweight1 = $jobcriterianame2 = $jobcriteriaweight2 = $jobcriterianame3 = $jobcriteriaweight3 = $jobcriterianame4 = $jobcriteriaweight4 = $jobcriterianame5 = $jobcriteriaweight5 = $jobselectiondate = NULL;
+$jobnumber_err = $jobname_err = $jobproduct_err = $jobvalueVAT_err = $jobpropertyname_err = $jobsalestype_err = $jobdeadline_err = $jobdepartment_err = $jobmerchant_err = $jobSAPnumber_err = $jobstatus_err = $jobresignationreason_err = $jobresignationreasondetails_err = $jobestimatedvalue_err = $jobvaluetype_err = $jobdifferentVAT_err = $jobunitsnumber_err = $jobcontractorbudget_err = $jobdeposit_err = $jobdeposittype_err = $jobdepositvaliddate_err = $jobcurrentoperator_err = $jobindexname_err = $jobtakeover23_err = $jobtookoverworkers_err = $jobZNWUtype_err = $jobZNWUvalue_err = $jobcontracttype_err = $jobsubcontractor_err = $jobinternalareas_err = $jobexternalareas_err = $jobqualifiedworkers_err = $jobweapon_err = $jobinterventiongroups_err = $jobecars_err = $jobcriterianame1_err = $jobcriteriaweight1_err = $jobcriterianame2_err = $jobcriteriaweight2_err = $jobcriterianame3_err = $jobcriteriaweight3_err = $jobcriterianame4_err = $jobcriteriaweight4_err = $jobcriterianame5_err = $jobcriteriaweight5_err = $jobselectiondate_err = NULL;
+$jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobdepartment_text = $jobmerchant_text = $jobstatus_text = $jobresignationreason_text = $jobresignationreasondetails_text = $jobvaluetype_text = $jobdifferentVAT_text = $jobdeposittype_text = $jobcurrentoperator_text = $jobindexname_text = $jobtakeover23_text = $jobZNWUtype_text = $jobcontracttype_text = $jobsubcontractor_text = $jobqualifiedworkers_text = $jobweapon_text = $jobinterventiongroups_text = $jobcriterianame1_text = $jobcriterianame2_text = $jobcriterianame3_text = $jobcriterianame4_text = $jobcriterianame5_text = NULL;
 
 // nadajemy do zmiennej log_number kolejny numer zadania w danym przetargu
 //$sql = "SELECT max(job_number)+1 as number_lp, job_tnd_id FROM tenders_jobs WHERE job_tnd_id = ? GROUP BY job_tnd_id";
@@ -110,6 +108,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobproduct = $input_job_product;
     }
 
+    //validate jobvalueVAT
+    $input_job_valueVAT = trim($_POST["jobvalueVAT"]);
+    if (empty($input_job_valueVAT)) {
+        $jobvalueVAT_err = "Wybierz wartość VAT";
+    } else {
+        $jobvalueVAT = $input_job_valueVAT;
+    }
+
     //validate jobpropertyname
     $input_job_propertyname = trim($_POST["jobpropertyname"]);
     if (empty($input_job_propertyname)) {
@@ -134,14 +140,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobdeadline_err = "Wpisz wartość liczbową";
     } else {
         $jobdeadline = $input_job_deadline;
-    }
-
-    //validate jobregion
-    $input_job_region = trim($_POST["jobregion"]);
-    if (empty($input_job_region)) {
-        $jobregion_err = "Wybierz region";
-    } else {
-        $jobregion = $input_job_region;
     }
 
     //validate jobdepartment
@@ -480,6 +478,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    //validate jobselectiondate
+    $input_job_selectiondate = trim($_POST["jobselectiondate"]);
+    if (empty($input_job_selectiondate)) {
+        $jobselectiondate_err = "Wybierz datę ważności wadium";
+    } else {
+        $jobselectiondate = $input_job_selectiondate;
+    }
+
     //validate suma kryteriów
     if (empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
         $sumaWag = $jobcriteriaweight1 + $jobcriteriaweight2 + $jobcriteriaweight3 + $jobcriteriaweight4 + $jobcriteriaweight5;
@@ -498,25 +504,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // TUTAJ MAMY UPDATOWANIE BAZY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobregion_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobestimatedvalue_err) && empty($jobunitsnumber_err) && empty($jobcontractorbudget_err) && empty($jobdeposit_err) && empty($jobcurrentoperator_err) && empty($jobtookoverworkers_err) && empty($jobZNWUvalue_err) && empty($jobinternalareas_err) && empty($jobexternalareas_err) && empty($jobecars_err) && empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
+    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobvalueVAT_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobestimatedvalue_err) && empty($jobunitsnumber_err) && empty($jobcontractorbudget_err) && empty($jobdeposit_err) && empty($jobcurrentoperator_err) && empty($jobtookoverworkers_err) && empty($jobZNWUvalue_err) && empty($jobinternalareas_err) && empty($jobexternalareas_err) && empty($jobecars_err) && empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
     // Prepare an insert statement
 
         $param_job_id = trim($_POST["paramid"]);
 
-        $sql = "UPDATE tenders_jobs SET job_number=?, job_name=?, job_product_id=?, job_property_type_id=?, job_sales_type=?, job_deadline=? ,job_region=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_differentVAT=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_eCars=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
+        $sql = "UPDATE tenders_jobs SET job_number=?, job_name=?, job_product_id=?, job_valueVAT=?, job_property_type_id=?, job_sales_type=?, job_deadline=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_differentVAT=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_eCars=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_selection_date=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "isiiiiiiiiisidisdddisiisiidiiddiiiiidididididss", $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobregion, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobdifferentVAT, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobecars, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobmodificationworker, $param_job_id);
+            mysqli_stmt_bind_param($stmt, "isisiiiiiiisidisdddisiisiidiiddiiiiidididididsss", $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobvalueVAT, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobdifferentVAT, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobecars, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobselectiondate, $param_jobmodificationworker, $param_job_id);
                
             $param_jobnumber = $jobnumber;
             $param_jobname = $jobname;
             $param_jobproduct = $jobproduct;
+            $param_jobvalueVAT = $jobvalueVAT;
             $param_jobpropertyname = $jobpropertyname;
             $param_jobsalestype = $jobsalestype;
             $param_jobdeadline = $jobdeadline;
-            $param_jobregion = $jobregion;
             $param_jobdepartment = $jobdepartment;
             $param_jobmerchant = $jobmerchant;
             $param_jobSAPnumber = $jobSAPnumber;
@@ -555,6 +561,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_jobcriteriaweight4 = $jobcriteriaweight4;
             $param_jobcriterianame5 = $jobcriterianame5;
             $param_jobcriteriaweight5 = $jobcriteriaweight5;
+            $param_jobselectiondate = $jobselectiondate;
             $param_jobmodificationworker = $jobmodificationworker;
             $param_job_id = $_SESSION['paramid'];
             
@@ -630,24 +637,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $jobsalestype_text = NULL;
                 }
             }
-        }
-        
-        $selected_jobregion_sql = "select distinct reg_name from regions where reg_active=1 and reg_id = ?";
-        if ($stmt = mysqli_prepare($link, $selected_jobregion_sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $jobregion);
-
-            if (mysqli_stmt_execute($stmt)) {
-                $result_jobregion_text = mysqli_stmt_get_result($stmt);
-                $row1 = mysqli_fetch_array($result_jobregion_text);
-                //
-                if (!$row1 == NULL) {
-                    $jobregion_text = $row1[0];
-                } else {
-                    $jobregion_text = NULL;
-                }
-            }
-        }  
+        } 
         
         $selected_jobdepartment_sql = "select distinct dep_name from departments where dep_active=1 and dep_id = ?";
         if ($stmt = mysqli_prepare($link, $selected_jobdepartment_sql)) {
@@ -1025,7 +1015,7 @@ else {
         job_deposit_valid_date, job_ZNWU_value, job_contract_type, jobcontract_name, job_subcontractor, jobsubcontractor_name, job_internal_areas, job_external_areas,
         job_qualified_workers, jobqualifiedworker_name, job_weapon, jobweapon_name, job_intervention_groups, jobinterventiongroup_name,
         job_criteria_id1, Crit1.jobcrit_name as jobcrit_name1, job_criteria_weight1, job_criteria_id2, Crit2.jobcrit_name as jobcrit_name2, job_criteria_weight2, job_criteria_id3, Crit3.jobcrit_name as jobcrit_name3, job_criteria_weight3, job_criteria_id4, Crit4.jobcrit_name as jobcrit_name4, job_criteria_weight4, job_criteria_id5, Crit5.jobcrit_name as jobcrit_name5, job_criteria_weight5,
-        job_value_type_id, jobval_name, job_selection_date, job_contractor_budget, job_SAP_chance_number, job_contract_startdate, job_creation_date, job_modification_date, job_creation_work, job_modification_work, job_ZNWU_type, jobZNWU_name, job_eCars, job_differentVAT
+        job_value_type_id, jobval_name, job_selection_date, job_contractor_budget, job_SAP_chance_number, job_contract_startdate, job_creation_date, job_modification_date, job_creation_work, job_modification_work, job_ZNWU_type, jobZNWU_name, job_eCars, job_differentVAT, job_valueVAT
         FROM tenders_jobs
         left join job_statuses on job_status=jobstat_id
         left join job_resignations on job_resignation_reason_details=jobresign_id
@@ -1073,6 +1063,7 @@ else {
                     $jobname = $row["job_name"];
                     $jobproduct = $row["job_product_id"];
                     $jobproduct_text = $row["prod_name"];
+                    $jobvalueVAT = $row["job_valueVAT"];
                     $jobpropertyname = $row["job_property_type_id"];
                     $jobpropertyname_text = $row["jobproperty_name"];
                     $jobsalestype = $row["job_sales_type"];
@@ -1137,6 +1128,7 @@ else {
                     $jobcriterianame5 = $row["job_criteria_id5"];
                     $jobcriterianame5_text = $row["jobcrit_name5"];
                     $jobcriteriaweight5 = $row["job_criteria_weight5"];
+                    $jobselectiondate = $row["job_selection_date"];
                     
                 } else {
                     // URL doesn't contain valid id. Redirect to error page
@@ -1261,7 +1253,18 @@ else {
                         });
                     </script>
                     
+                    <div class="form-group col-md-2">
+                        <label for="job">Wysokość VAT*</label>
+                        <select id='jobvalueVAT' name='jobvalueVAT' class="form-control <?php echo (!empty($jobvalueVAT_err)) ? 'is-invalid' : ''; ?>">>
+                            <option selected="selected" value=<?php echo $jobvalueVAT; ?>> <?php echo $jobvalueVAT; ?> </option>
+                            <option value="wyższy"> wyższy </option>
+                            <option value="niższy"> niższy </option>    
+                        </select>
+                        <span class="invalid-feedback"><?php echo $jobvalueVAT_err; ?></span>
+                    </div>
+                </div>
 
+                <div class="form-row">
                     <!-- lista dla RODZAJ OBIEKTU -->
                     <?php
                     $jobpropertyname_sql = "SELECT jobproperty_name, jobproperty_id  FROM job_properties where jobproperty_active=1";
@@ -1283,9 +1286,7 @@ else {
                         </select>
                         <span class="invalid-feedback"><?php echo $jobpropertyname_err; ?></span>
                     </div>
-                </div>
 
-                <div class="form-row">
                     <!-- lista dla TYP SPRZEDAŻY -->
                     <?php
                     $jobsalestype_sql = "SELECT sal_type_name, sal_type_id  FROM sales_types where sal_type_active=1";
@@ -1312,26 +1313,6 @@ else {
                         <label for="jobdeadline">Termin realizacji [mc]*</label>
                         <input type="text" id='jobdeadline' name='jobdeadline' class="form-control <?php echo (!empty($jobdeadline_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeadline; ?>">
                         <span class="invalid-feedback"><?php echo $jobdeadline_err; ?></span>
-                    </div>
-
-                    <?php
-                    $jobregion_sql = "SELECT reg_name, reg_id  FROM regions where reg_active=1";
-
-                    $jobregion_result = mysqli_query($link, $jobregion_sql);
-
-                    $options = "";
-                    
-                    while ($row2 = mysqli_fetch_array($jobregion_result)) {
-                        $options = $options . "<option VALUE=" . $row2[1] . ">$row2[0]</option>";
-                    }
-                    ?>
-                    <div class="form-group col-md-2">
-                        <label for="jobregion">Region*</label>
-                        <select id='jobregion' name='jobregion' class="form-control <?php echo (!empty($jobregion_err)) ? 'is-invalid' : ''; ?>">>
-                            <option selected="selected" hidden value=<?php echo $jobregion; ?>> <?php echo $jobregion_text; ?> </option>
-                            <OPTION> <?php echo $options ?> </option>        
-                        </select>
-                        <span class="invalid-feedback"><?php echo $jobregion_err; ?></span>
                     </div>
 
                     <?php
@@ -1982,6 +1963,14 @@ else {
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="jobselectiondate">Data rozstrzygnięcia</label>
+                        <input type="date" name="jobselectiondate" min="2022-01-01" class="form-control <?php // echo (!empty($jobselectiondate_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobselectiondate; ?>">
+                        <span class="invalid-feedback"><?php echo $jobselectiondate_err; ?></span>
+                    </div>
+                </div>
+
                 <!-- nie wiem co to dokładnie, ale chyba potrzebne-->
             
 
@@ -1999,8 +1988,6 @@ else {
 
 
 <?php
-
-
 // Check existence of id parameter before processing further
 if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
     // Get URL parameter
