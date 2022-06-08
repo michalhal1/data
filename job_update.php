@@ -162,14 +162,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobSAPnumber
     $input_job_SAPnumber = trim($_POST["jobSAPnumber"]);
-    if (empty($input_job_SAPnumber)) {
-        $jobSAPnumber_err = "Wpisz numer szansy";
-    } elseif (!is_numeric($input_job_SAPnumber)) {
-        $jobSAPnumber_err = "Wpisz numer szansy";
-    } elseif (strlen($input_job_SAPnumber) != 10 || !ctype_digit($input_job_SAPnumber)) {
-        $jobSAPnumber_err = "Wpisz poprawny numer szansy";
-    } else {
+    if (!empty($input_job_SAPnumber)) {
+        if (!is_numeric($input_job_SAPnumber)) {
+            $jobSAPnumber_err = "Wpisz numer szansy";
+        } elseif (strlen($input_job_SAPnumber) != 10 || !ctype_digit($input_job_SAPnumber)) {
+            $jobSAPnumber_err = "Wpisz poprawny numer szansy";
+        } else {
         $jobSAPnumber = $input_job_SAPnumber;
+        }
     }
 
     //validate jobstatus
@@ -198,12 +198,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobestimatedvalue
     $input_job_estimatedvalue = trim($_POST["jobestimatedvalue"]);
-    if (empty($input_job_estimatedvalue)) {
-        $jobestimatedvalue_err = "Wpisz wartość szacunkową";
-    } elseif (!is_numeric($input_job_estimatedvalue)) {
-        $jobestimatedvalue_err = "Wpisz wartość szacunkową";
-    } else {
-        $jobestimatedvalue = $input_job_estimatedvalue;
+    if (!empty($input_job_estimatedvalue)) {
+        if (!is_numeric($input_job_estimatedvalue)) {
+            $jobestimatedvalue_err = "Wpisz wartość szacunkową";
+        } else {
+            $jobestimatedvalue = $input_job_estimatedvalue;
+        }
     }
 
     //validate jobvaluetype
@@ -222,34 +222,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobdifferentVAT = $input_job_differentVAT;
     }
 
-    //validate jobunitsnumber
-    $input_job_unitsnumber = trim($_POST["jobunitsnumber"]);
-    if (empty($input_job_unitsnumber)) {
-        $jobunitsnumber_err = "Wpisz liczbę jednostek";
-    } elseif (!is_numeric($input_job_unitsnumber)) {
-        $jobunitsnumber_err = "Wpisz liczbę jednostek";
-    } else {
-        $jobunitsnumber = $input_job_unitsnumber;
-    }
+     //validate jobunitsnumber
+     $input_job_unitsnumber = trim($_POST["jobunitsnumber"]);
+     if (!empty($input_job_unitsnumber)) {
+         if (!is_numeric($input_job_unitsnumber)) {
+             $jobunitsnumber_err = "Wpisz liczbę jednostek";
+         } else {
+             $jobunitsnumber = $input_job_unitsnumber;
+         }
+     }
 
     //validate jobcontractorbudget
     $input_job_contractorbudget = trim($_POST["jobcontractorbudget"]);
-    if (empty($input_job_contractorbudget)) {
-        $jobcontractorbudget_err = "Wpisz budżet zamawiającego";
-    } elseif (!is_numeric($input_job_contractorbudget)) {
-        $jobcontractorbudget_err = "Wpisz budżet zamawiającego";
-    } else {
-        $jobcontractorbudget = $input_job_contractorbudget;
+    if (!empty($input_job_contractorbudget)) {
+        if (!is_numeric($input_job_contractorbudget)) {
+            $jobcontractorbudget_err = "Wpisz budżet zamawiającego";
+        } else {
+            $jobcontractorbudget = $input_job_contractorbudget;
+        }
     }
 
     //validate jobdeposit
     $input_job_deposit = trim($_POST["jobdeposit"]);
-    if (empty($input_job_deposit)) {
-        $jobdeposit_err = "Wpisz kwotę wadium";
-    } elseif (!is_numeric($input_job_deposit)) {
-        $jobdeposit_err = "Wpisz kwotę wadium";
-    } else {
-        $jobdeposit = $input_job_deposit;
+    if (!empty($input_job_deposit)) {
+        if (!is_numeric($input_job_deposit)) {
+            $jobdeposit_err = "Wpisz kwotę wadium";
+        } else {
+            $jobdeposit = $input_job_deposit;
+        }
     }
 
     //validate jobdeposittype
@@ -294,12 +294,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobtookoverworkers
     $input_job_tookoverworkers = trim($_POST["jobtookoverworkers"]);
-    if (empty($input_job_tookoverworkers)) {
-        $jobtookoverworkers_err = "Uzupełnij liczbę pracowników przejmowanych";
-    } elseif (!is_numeric($input_job_tookoverworkers)) {
-        $jobtookoverworkers_err = "Uzupełnij liczbę pracowników przejmowanych";
-    } else {
-        $jobtookoverworkers = $input_job_tookoverworkers;
+    if (!empty($input_job_tookoverworkers)) {
+        if (!is_numeric($input_job_tookoverworkers)) {
+            $jobtookoverworkers_err = "Uzupełnij liczbę pracowników przejmowanych";
+        } else {
+            $jobtookoverworkers = $input_job_tookoverworkers;
+        }
     }
 
     //validate jobZNWUtype
@@ -312,12 +312,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobZNWUvalue
     $input_job_ZNWUvalue = trim($_POST["jobZNWUvalue"]);
-    if (empty($input_job_ZNWUvalue)) {
-        $jobZNWUvalue_err = "Uzupełnij pole wartość ZNWU";
-    } elseif (!is_numeric($input_job_ZNWUvalue)) {
-        $jobZNWUvalue_err = "Uzupełnij pole wartość ZNWU";
-    } else {
-        $jobZNWUvalue = $input_job_ZNWUvalue;
+    if (!empty($input_job_ZNWUvalue)) {
+        if (!is_numeric($input_job_ZNWUvalue)) {
+            $jobZNWUvalue_err = "Uzupełnij pole wartość ZNWU";
+        } else {
+            $jobZNWUvalue = $input_job_ZNWUvalue;
+        }
     }
 
     //validate jobcontracttype
@@ -338,22 +338,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobinternalareas
     $input_job_internalareas = trim($_POST["jobinternalareas"]);
-    if (empty($input_job_internalareas)) {
-        $jobinternalareas_err = "Uzupełnij pole tereny wewnętrzne";
-    } elseif (!is_numeric($input_job_internalareas)) {
-        $jobinternalareas_err = "Uzupełnij pole tereny wewnętrzne";
-    } else {
-        $jobinternalareas = $input_job_internalareas;
+    if (!empty($input_job_internalareas)) {
+        if (!is_numeric($input_job_internalareas)) {
+            $jobinternalareas_err = "Uzupełnij pole tereny wewnętrzne";
+        } else {
+            $jobinternalareas = $input_job_internalareas;
+        }
     }
 
     //validate jobexternalareas
     $input_job_externalareas = trim($_POST["jobexternalareas"]);
-    if (empty($input_job_externalareas)) {
-        $jobexternalareas_err = "Uzupełnij pole tereny zewnętrzne";
-    } elseif (!is_numeric($input_job_externalareas)) {
-        $jobexternalareas_err = "Uzupełnij pole tereny zewnętrzne";
-    } else {
-        $jobexternalareas = $input_job_externalareas;
+    if (!empty($input_job_externalareas)) {
+        if (!is_numeric($input_job_externalareas)) {
+            $jobexternalareas_err = "Uzupełnij pole tereny zewnętrzne";
+        } else {
+            $jobexternalareas = $input_job_externalareas;
+        }
     }
 
     //validate jobqualifiedworkers
@@ -380,15 +380,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobinterventiongroups = $input_job_interventiongroups;
     }
 
-    //validate jobecars
-    $input_job_ecars = trim($_POST["jobecars"]);
-    if (empty($input_job_ecars)) {
-        $jobecars_err = "Wpisz liczbę pojazdów elektrycznych";
-    } elseif (!is_numeric($input_job_ecars)) {
-        $jobecars_err = "Wpisz liczbę pojazdów elektrycznych";
-    } else {
-        $jobecars = $input_job_ecars;
-    }
+   //validate jobecars
+   $input_job_ecars = trim($_POST["jobecars"]);
+   if (!empty($input_job_ecars)) {
+       if (!is_numeric($input_job_ecars)) {
+           $jobecars_err = "Wpisz liczbę pojazdów elektrycznych";
+       } else {
+           $jobecars = $input_job_ecars;
+       }
+   }
     
     //validate jobcriterianame1
     $input_job_criterianame1 = trim($_POST["jobcriterianame1"]);
@@ -398,15 +398,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $jobcriterianame1 = $input_job_criterianame1;
     }
 
-    //validate jobcriteriaweight1
-    $input_job_criteriaweight1 = trim($_POST["jobcriteriaweight1"]);
-    if (empty($input_job_criteriaweight1)) {
-        $jobcriteriaweight1_err = "Uzupełnij pole waga kryterium";
-    } elseif (!is_numeric($input_job_criteriaweight1)) {
-        $jobcriteriaweight1_err = "Uzupełnij pole waga kryterium";
-    } else {
-        $jobcriteriaweight1 = $input_job_criteriaweight1;
-    }
+     //validate jobcriteriaweight1
+     $input_job_criteriaweight1 = trim($_POST["jobcriteriaweight1"]);
+     if (!empty($input_job_criteriaweight1)) {
+         if (!is_numeric($input_job_criteriaweight1)) {
+             $jobcriteriaweight1_err = "Uzupełnij pole waga kryterium";
+         } else {
+             $jobcriteriaweight1 = $input_job_criteriaweight1;
+         }
+     }
 
     //validate jobcriterianame2
     $input_job_criterianame2 = trim($_POST["jobcriterianame2"]);
@@ -418,12 +418,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobcriteriaweight2
     $input_job_criteriaweight2 = trim($_POST["jobcriteriaweight2"]);
-    if (empty($input_job_criteriaweight2)) {
-        $jobcriteriaweight2_err = "Uzupełnij pole waga kryterium";
-    } elseif (!is_numeric($input_job_criteriaweight2)) {
-        $jobcriteriaweight2_err = "Uzupełnij pole waga kryterium";
-    } else {
-        $jobcriteriaweight2 = $input_job_criteriaweight2;
+    if (!empty($input_job_criteriaweight2)) {
+        if (!is_numeric($input_job_criteriaweight2)) {
+            $jobcriteriaweight2_err = "Uzupełnij pole waga kryterium";
+        } else {
+            $jobcriteriaweight2 = $input_job_criteriaweight2;
+        }
     }
 
     //validate jobcriterianame3
@@ -436,12 +436,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobcriteriaweight3
     $input_job_criteriaweight3 = trim($_POST["jobcriteriaweight3"]);
-    if (empty($input_job_criteriaweight3)) {
-        $jobcriteriaweight3_err = "Uzupełnij pole waga kryterium";
-    } elseif (!is_numeric($input_job_criteriaweight3)) {
-        $jobcriteriaweight3_err = "Uzupełnij pole waga kryterium";
-    } else {
-        $jobcriteriaweight3 = $input_job_criteriaweight3;
+    if (!empty($input_job_criteriaweight3)) {
+        if (!is_numeric($input_job_criteriaweight3)) {
+            $jobcriteriaweight3_err = "Uzupełnij pole waga kryterium";
+        } else {
+            $jobcriteriaweight3 = $input_job_criteriaweight3;
+        }
     }
 
     //validate jobcriterianame4
@@ -454,12 +454,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobcriteriaweight4
     $input_job_criteriaweight4 = trim($_POST["jobcriteriaweight4"]);
-    if (empty($input_job_criteriaweight4)) {
-        $jobcriteriaweight4_err = "Uzupełnij pole waga kryterium";
-    } elseif (!is_numeric($input_job_criteriaweight4)) {
-        $jobcriteriaweight4_err = "Uzupełnij pole waga kryterium";
-    } else {
-        $jobcriteriaweight4 = $input_job_criteriaweight4;
+    if (!empty($input_job_criteriaweight4)) {
+        if (!is_numeric($input_job_criteriaweight4)) {
+            $jobcriteriaweight4_err = "Uzupełnij pole waga kryterium";
+        } else {
+            $jobcriteriaweight4 = $input_job_criteriaweight4;
+        }
     }
 
     //validate jobcriterianame5
@@ -472,12 +472,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobcriteriaweight5
     $input_job_criteriaweight5 = trim($_POST["jobcriteriaweight5"]);
-    if (empty($input_job_criteriaweight5)) {
-        $jobcriteriaweight5_err = "Uzupełnij pole waga kryterium";
-    } elseif (!is_numeric($input_job_criteriaweight5)) {
-        $jobcriteriaweight5_err = "Uzupełnij pole waga kryterium";
-    } else {
-        $jobcriteriaweight5 = $input_job_criteriaweight5;
+    if (!empty($input_job_criteriaweight5)) {
+        if (!is_numeric($input_job_criteriaweight5)) {
+            $jobcriteriaweight5_err = "Uzupełnij pole waga kryterium";
+        } else {
+            $jobcriteriaweight5 = $input_job_criteriaweight5;
+        }
+    }
+
+    //validate suma kryteriów
+    if (empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
+        $sumaWag = $jobcriteriaweight1 + $jobcriteriaweight2 + $jobcriteriaweight3 + $jobcriteriaweight4 + $jobcriteriaweight5;
+        if (($sumaWag) <> 100 and ($sumaWag) <> 0) {
+            $jobcriteriaweight1_err = "Suma wag nie jest równa 100%";
+            $jobcriteriaweight2_err = "Suma wag nie jest równa 100%";
+            $jobcriteriaweight3_err = "Suma wag nie jest równa 100%";
+            $jobcriteriaweight4_err = "Suma wag nie jest równa 100%";
+            $jobcriteriaweight5_err = "Suma wag nie jest równa 100%";
+        }
     }
 
     //validate jobcreationworker
@@ -486,7 +498,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // TUTAJ MAMY UPDATOWANIE BAZY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobregion_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobcurrentoperator_err)) {
+    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobregion_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobestimatedvalue_err) && empty($jobunitsnumber_err) && empty($jobcontractorbudget_err) && empty($jobdeposit_err) && empty($jobcurrentoperator_err) && empty($jobtookoverworkers_err) && empty($jobZNWUvalue_err) && empty($jobinternalareas_err) && empty($jobexternalareas_err) && empty($jobecars_err) && empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
     // Prepare an insert statement
 
         $param_job_id = trim($_POST["paramid"]);
@@ -1388,7 +1400,7 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobSAPnumber">Numer szansy</label>
-                        <input type="text" id='jobSAPnumber' name='jobSAPnumber' class="form-control <?php // echo (!empty($jobSAPnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobSAPnumber; ?>">
+                        <input type="text" id='jobSAPnumber' name='jobSAPnumber' class="form-control <?php echo (!empty($jobSAPnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobSAPnumber; ?>">
                         <span class="invalid-feedback"><?php echo $jobSAPnumber_err; ?></span>
                     </div>
                     
@@ -1467,7 +1479,7 @@ else {
 
                     <div class="form-group col-md-3">
                         <label for="jobestimatedvalue">Wartość szacunkowa [brutto mc]</label>
-                        <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php // echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
+                        <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
                         <span class="invalid-feedback"><?php echo $jobestimatedvalue_err; ?></span>
                     </div>
 
@@ -1502,12 +1514,14 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobunitsnumber">Liczba jednostek [mc]</label>
-                        <input type="text" id='jobunitsnumber' name='jobunitsnumber' class="form-control <?php // echo (!empty($jobunitsnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobunitsnumber; ?>">
+                        <input type="text" id='jobunitsnumber' name='jobunitsnumber' class="form-control <?php echo (!empty($jobunitsnumber_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobunitsnumber; ?>">
+                        <span class="invalid-feedback"><?php echo $jobunitsnumber_err; ?></span>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="jobcontractorbudget">Budżet zamawiającego</label>
-                        <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php // echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcontractorbudget; ?>">
+                        <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcontractorbudget; ?>">
+                        <span class="invalid-feedback"><?php echo $jobcontractorbudget_err; ?></span>
                     </div>
                 </div>
 
@@ -1515,7 +1529,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobdeposit">Wadium - kwota</label>
-                        <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php // echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeposit; ?>">
+                        <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeposit; ?>">
+                        <span class="invalid-feedback"><?php echo $jobdeposit_err; ?></span>
                     </div>
                     
                     <?php
@@ -1617,7 +1632,8 @@ else {
 
                     <div class="form-group col-md-3">
                         <label for="jobtookoverworkers">Liczba pracowników przejmowanych</label>
-                        <input type="text" id='jobtookoverworkers' name='jobtookoverworkers' class="form-control <?php // echo (!empty($jobtookoverworkers_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobtookoverworkers; ?>">
+                        <input type="text" id='jobtookoverworkers' name='jobtookoverworkers' class="form-control <?php echo (!empty($jobtookoverworkers_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobtookoverworkers; ?>">
+                        <span class="invalid-feedback"><?php echo $jobtookoverworkers_err; ?></span>
                     </div>
                 </div>
                 
@@ -1644,7 +1660,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobZNWUvalue">Wartość ZNWU [%]</label>
-                        <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php // echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobZNWUvalue; ?>">
+                        <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobZNWUvalue; ?>">
+                        <span class="invalid-feedback"><?php echo $jobZNWUvalue_err; ?></span>
                     </div>
                     
                     <?php
@@ -1690,12 +1707,14 @@ else {
 
                     <div class="form-group col-md-3">
                         <label for="jobinternalareas">Tereny wewnętrzne</label>
-                        <input type="text" id='jobinternalareas' name='jobinternalareas' class="form-control <?php // echo (!empty($jobinternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobinternalareas; ?>">
+                        <input type="text" id='jobinternalareas' name='jobinternalareas' class="form-control <?php echo (!empty($jobinternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobinternalareas; ?>">
+                        <span class="invalid-feedback"><?php echo $jobinternalareas_err; ?></span>
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="jobexternalareas">Tereny zewnętrzne</label>
-                        <input type="text" id='jobexternalareas' name='jobexternalareas' class="form-control <?php // echo (!empty($jobexternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobexternalareas; ?>">
+                        <input type="text" id='jobexternalareas' name='jobexternalareas' class="form-control <?php echo (!empty($jobexternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobexternalareas; ?>">
+                        <span class="invalid-feedback"><?php echo $jobexternalareas_err; ?></span>
                     </div>
                 </div>
 
@@ -1760,7 +1779,8 @@ else {
 
                     <div class="form-group col-md-3">
                         <label for="jobecars">Liczba pojazdów elektrycznych</label>
-                        <input type="text" id='jobecars' name='jobecars' class="form-control <?php // echo (!empty($jobecars_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobecars; ?>">
+                        <input type="text" id='jobecars' name='jobecars' class="form-control <?php echo (!empty($jobecars_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobecars; ?>">
+                        <span class="invalid-feedback"><?php echo $jobecars_err; ?></span>
                     </div>
                 </div>
 
@@ -1810,7 +1830,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight1">Waga kryterium 1 [%]</label>
-                        <input type="text" id='jobcriteriaweight1' name='jobcriteriaweight1' class="form-control <?php // echo (!empty($jobcriteriaweight1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight1; ?>">
+                        <input type="text" id='jobcriteriaweight1' name='jobcriteriaweight1' class="form-control <?php echo (!empty($jobcriteriaweight1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight1; ?>">
+                        <span class="invalid-feedback"><?php echo $jobcriteriaweight1_err; ?></span>
                     </div>
 
                     
@@ -1845,7 +1866,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight2">Waga kryterium 2 [%]</label>
-                        <input type="text" id='jobcriteriaweight2' name='jobcriteriaweight2' class="form-control <?php // echo (!empty($jobcriteriaweight2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight2; ?>">
+                        <input type="text" id='jobcriteriaweight2' name='jobcriteriaweight2' class="form-control <?php echo (!empty($jobcriteriaweight2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight2; ?>">
+                        <span class="invalid-feedback"><?php echo $jobcriteriaweight2_err; ?></span>
                     </div>
                 </div>
 
@@ -1882,7 +1904,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight3">Waga kryterium 3 [%]</label>
-                        <input type="text" id='jobcriteriaweight3' name='jobcriteriaweight3' class="form-control <?php // echo (!empty($jobcriteriaweight3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight3; ?>">
+                        <input type="text" id='jobcriteriaweight3' name='jobcriteriaweight3' class="form-control <?php echo (!empty($jobcriteriaweight3_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight3; ?>">
+                        <span class="invalid-feedback"><?php echo $jobcriteriaweight3_err; ?></span>
                     </div>
 
                     <div class="form-group col-md-3">
@@ -1916,7 +1939,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight4">Waga kryterium 4 [%]</label>
-                        <input type="text" id='jobcriteriaweight4' name='jobcriteriaweight4' class="form-control <?php // echo (!empty($jobcriteriaweight4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight4; ?>">
+                        <input type="text" id='jobcriteriaweight4' name='jobcriteriaweight4' class="form-control <?php echo (!empty($jobcriteriaweight4_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight4; ?>">
+                        <span class="invalid-feedback"><?php echo $jobcriteriaweight4_err; ?></span>
                     </div>
                 </div>
 
@@ -1953,7 +1977,8 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobcriteriaweight5">Waga kryterium 5 [%]</label>
-                        <input type="text" id='jobcriteriaweight5' name='jobcriteriaweight5' class="form-control <?php // echo (!empty($jobcriteriaweight5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight5; ?>">
+                        <input type="text" id='jobcriteriaweight5' name='jobcriteriaweight5' class="form-control <?php echo (!empty($jobcriteriaweight5_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight5; ?>">
+                        <span class="invalid-feedback"><?php echo $jobcriteriaweight5_err; ?></span>
                     </div>
                 </div>
 
