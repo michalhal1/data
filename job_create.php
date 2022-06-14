@@ -59,13 +59,16 @@ $default_job_number = $log_number;
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validate jobnumber
+    //validate jobnumber
     $input_job_number = trim($_POST["jobnumber"]);
-    if (empty($input_job_number)) {
-        $jobnumber_err = "Wpisz numer przetargu";} 
-    else {
-        $jobnumber = $input_job_number;
+    if (!empty($input_job_number)) {
+        if (!is_numeric($input_job_number)) {
+            $jobnumber_err = "Wpisz numer przetargu";
+        } else {
+            $jobnumber = $input_job_number;
+        }
     }
+
 
     //validate jobname
     $input_job_name = trim($_POST["jobname"]);
@@ -486,7 +489,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $job_tnd_id = trim($_POST["paramid"]);
 
-        $sql = "INSERT INTO tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_valueVAT, job_property_type_id, job_sales_type, job_deadline, job_department_id, job_merchant_id, job_SAP_chance_number, job_status, job_resignation_reason, job_resignation_reason_details, job_estimated_value, job_value_type_id, job_differentVAT, job_units_number, job_contractor_budget, job_deposit, job_deposit_id, job_deposit_valid_date, job_current_operator, job_indexation_type_id, job_takeover23, job_tookover_workers, job_ZNWU_type, job_ZNWU_value, job_contract_type, job_subcontractor, job_internal_areas, job_external_areas, job_qualified_workers, job_weapon, job_intervention_groups, job_eCars, job_criteria_id1, job_criteria_weight1, job_criteria_id2, job_criteria_weight2, job_criteria_id3, job_criteria_weight3, job_criteria_id4, job_criteria_weight4, job_criteria_id5, job_criteria_weight5, job_selection_date, job_creation_work) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        //używamy coalesce, żeby wyświetalć 0 a nie null na bazie
+        $sql = "INSERT INTO tenders_jobs (job_tnd_id, job_number, job_name, job_product_id, job_valueVAT, job_property_type_id, job_sales_type, job_deadline, job_department_id, job_merchant_id, job_SAP_chance_number, job_status, job_resignation_reason, job_resignation_reason_details, job_estimated_value, job_value_type_id, job_differentVAT, job_units_number, job_contractor_budget, job_deposit, job_deposit_id, job_deposit_valid_date, job_current_operator, job_indexation_type_id, job_takeover23, job_tookover_workers, job_ZNWU_type, job_ZNWU_value, job_contract_type, job_subcontractor, job_internal_areas, job_external_areas, job_qualified_workers, job_weapon, job_intervention_groups, job_eCars, job_criteria_id1, job_criteria_weight1, job_criteria_id2, job_criteria_weight2, job_criteria_id3, job_criteria_weight3, job_criteria_id4, job_criteria_weight4, job_criteria_id5, job_criteria_weight5, job_selection_date, job_creation_work) VALUES ( ?, coalesce(?,0), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
@@ -494,7 +498,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "iisisiiiiiiisidisdddisiisiidiiddiiiiidididididss", $param_job_tnd_id, $param_jobnumber, $param_jobname, $param_jobproduct, $param_jobvalueVAT, $param_jobpropertyname, $param_jobsalestype, $param_jobdeadline, $param_jobdepartment, $param_jobmerchant, $param_jobSAPnumber, $param_jobstatus, $param_jobresignationreason, $param_jobresignationreasondetails, $param_jobestimatedvalue, $param_jobvaluetype, $param_jobdifferentVAT, $param_jobunitsnumber, $param_jobcontractorbudget, $param_jobdeposit, $param_jobdeposittype, $param_jobdepositvaliddate, $param_jobcurrentoperator, $param_jobindexname, $param_jobtakeover23, $param_jobtookoverworkers, $param_jobZNWUtype, $param_jobZNWUvalue, $param_jobcontracttype, $param_jobsubcontractor, $param_jobinternalareas, $param_jobexternalareas, $param_jobqualifiedworkers, $param_jobweapon, $param_jobinterventiongroups, $param_jobecars, $param_jobcriterianame1, $param_jobcriteriaweight1, $param_jobcriterianame2, $param_jobcriteriaweight2, $param_jobcriterianame3, $param_jobcriteriaweight3, $param_jobcriterianame4, $param_jobcriteriaweight4, $param_jobcriterianame5, $param_jobcriteriaweight5, $param_jobselectiondate, $param_jobcreationworker);
                
             $param_job_tnd_id = $job_tnd_id;
-            $param_jobnumber = $jobnumber ;
+            $param_jobnumber = $jobnumber;
             $param_jobname = $jobname;
             $param_jobproduct = $jobproduct;
             $param_jobvalueVAT = $jobvalueVAT;
