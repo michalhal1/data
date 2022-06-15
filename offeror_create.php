@@ -96,7 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE lead off
     $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.', $input_contract_value))))) {
+    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.', $input_contract_value)))) 
+    or (str_replace(' ', '', str_replace(',', '.', $input_contract_value)) == 0 )) {
         $off_contract_value_err = "Wpisz wartość oferty";
     } else {
         $off_contract_value = str_replace(' ', '', str_replace(',', '.', $input_contract_value));

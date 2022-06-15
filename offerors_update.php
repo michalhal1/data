@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // VALIDATE contract value 
     $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.',$input_contract_value))))) {
+    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.',$input_contract_value)))) or (str_replace(' ', '', str_replace(',', '.', $input_contract_value)))==0) {
         $off_contract_value_err = "Wpisz wartość oferty";
     } else {
         $off_contract_value = str_replace(' ', '' , str_replace(',', '.',$input_contract_value));
@@ -265,7 +265,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($stmt_winn = mysqli_prepare($link, $sql_winn)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt_winn, "i", $_SESSION['paramid']);
+        mysqli_stmt_bind_param($stmt_winn, "i", $result_jobid);
         if (mysqli_stmt_execute($stmt_winn)) {
             $result_winn = mysqli_stmt_get_result($stmt_winn);
             $row_winn = mysqli_fetch_array($result_winn);
@@ -335,7 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Records created successfully. Redirect to landing page
                 //echo  $param_off_id ;
                 header("location: offerors_update_ok.php?job_id=" . $param_job_id);
-               // echo $off_contarct_start_date;
+              // echo $winn_db;
                 //echo $input_contract_value; 
                 // echo $off_points1;
                 exit();
