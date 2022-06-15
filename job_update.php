@@ -82,12 +82,14 @@ $jobproduct_text = $jobpropertyname_text = $jobsalestype_text = $jobdepartment_t
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validate jobnumber
+    //validate jobnumber
     $input_job_number = trim($_POST["jobnumber"]);
-    if (empty($input_job_number)) {
-        $jobnumber_err = "Wpisz numer przetargu";} 
-    else {
-        $jobnumber = $input_job_number;
+    if (!empty($input_job_number)) {
+        if (!is_numeric($input_job_number)) {
+            $jobnumber_err = "Wpisz numer przetargu";
+        } else {
+            $jobnumber = $input_job_number;
+        }
     }
 
     //validate jobname
@@ -509,7 +511,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $param_job_id = trim($_POST["paramid"]);
 
-        $sql = "UPDATE tenders_jobs SET job_number=?, job_name=?, job_product_id=?, job_valueVAT=?, job_property_type_id=?, job_sales_type=?, job_deadline=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_differentVAT=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_eCars=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_selection_date=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
+        //używamy coalesce, żeby wyświetalć 0 a nie null na bazie
+        $sql = "UPDATE tenders_jobs SET job_number = coalesce(?,0), job_name=?, job_product_id=?, job_valueVAT=?, job_property_type_id=?, job_sales_type=?, job_deadline=?, job_department_id=?, job_merchant_id=?, job_SAP_chance_number=?, job_status=?, job_resignation_reason=?, job_resignation_reason_details=?, job_estimated_value=?, job_value_type_id=?, job_differentVAT=?, job_units_number=?, job_contractor_budget=?, job_deposit=?, job_deposit_id=?, job_deposit_valid_date=?, job_current_operator=?, job_indexation_type_id=?, job_takeover23=?, job_tookover_workers=?, job_ZNWU_type=?, job_ZNWU_value=?, job_contract_type=?, job_subcontractor=?, job_internal_areas=?, job_external_areas=?, job_qualified_workers=?, job_weapon=?, job_intervention_groups=?, job_eCars=?, job_criteria_id1=?, job_criteria_weight1=?, job_criteria_id2=?, job_criteria_weight2=?, job_criteria_id3=?, job_criteria_weight3=?, job_criteria_id4=?, job_criteria_weight4=?, job_criteria_id5=?, job_criteria_weight5=?, job_selection_date=?, job_modification_date = now(), job_modification_work = ? where job_id=?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
