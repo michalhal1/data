@@ -125,10 +125,11 @@ echo $_SESSION['logid'];
             <td nowrap>' . $row["prod_name"] . '</td>
             <td nowrap>' . $row["jobstat_name"] . '</td>
             <td nowrap>' . $row["job_deadline"] . '</td>
-            <td >
-            <a href="job_update.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
-            <a href="job_delete.php?job_id=' . $row['job_id'] . '" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
-            <a href="offerors.php?job_id=' . $row['job_id'] . '" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
+            <td>
+            <a href="job_update.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Zaktualizuj rekord" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
+            <a href="job_delete.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Usuń rekord" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
+            <a href="offerors.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
+            <a href="job_X.php?tnd_id=' . $row['job_id'] . '" class="mr-1" title="Kopiuj rekord" data-toggle="tooltip"><span class="fa fa-clone"></span></a>
             </td>
             </tr>
             ';
