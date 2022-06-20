@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobestimatedvalue
-    $input_job_estimatedvalue = trim($_POST["jobestimatedvalue"]);
+    $input_job_estimatedvalue = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobestimatedvalue"])));
     if (!empty($input_job_estimatedvalue)) {
         if (!is_numeric($input_job_estimatedvalue)) {
             $jobestimatedvalue_err = "Wpisz wartość szacunkową";
@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      }
 
     //validate jobcontractorbudget
-    $input_job_contractorbudget = trim($_POST["jobcontractorbudget"]);
+    $input_job_contractorbudget = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcontractorbudget"])));
     if (!empty($input_job_contractorbudget)) {
         if (!is_numeric($input_job_contractorbudget)) {
             $jobcontractorbudget_err = "Wpisz budżet zamawiającego";
@@ -243,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobdeposit
-    $input_job_deposit = trim($_POST["jobdeposit"]);
+    $input_job_deposit = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobdeposit"])));
     if (!empty($input_job_deposit)) {
         if (!is_numeric($input_job_deposit)) {
             $jobdeposit_err = "Wpisz kwotę wadium";
@@ -311,7 +311,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobZNWUvalue
-    $input_job_ZNWUvalue = trim($_POST["jobZNWUvalue"]);
+    $input_job_ZNWUvalue = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobZNWUvalue"])));
     if (!empty($input_job_ZNWUvalue)) {
         if (!is_numeric($input_job_ZNWUvalue)) {
             $jobZNWUvalue_err = "Uzupełnij pole wartość ZNWU";
@@ -337,7 +337,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobinternalareas
-    $input_job_internalareas = trim($_POST["jobinternalareas"]);
+    $input_job_internalareas = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobinternalareas"])));
     if (!empty($input_job_internalareas)) {
         if (!is_numeric($input_job_internalareas)) {
             $jobinternalareas_err = "Uzupełnij pole tereny wewnętrzne";
@@ -347,7 +347,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobexternalareas
-    $input_job_externalareas = trim($_POST["jobexternalareas"]);
+    $input_job_externalareas = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobexternalareas"])));
     if (!empty($input_job_externalareas)) {
         if (!is_numeric($input_job_externalareas)) {
             $jobexternalareas_err = "Uzupełnij pole tereny zewnętrzne";
@@ -399,7 +399,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
      //validate jobcriteriaweight1
-     $input_job_criteriaweight1 = trim($_POST["jobcriteriaweight1"]);
+     $input_job_criteriaweight1 = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcriteriaweight1"])));
      if (!empty($input_job_criteriaweight1)) {
          if (!is_numeric($input_job_criteriaweight1)) {
              $jobcriteriaweight1_err = "Uzupełnij pole waga kryterium";
@@ -417,7 +417,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobcriteriaweight2
-    $input_job_criteriaweight2 = trim($_POST["jobcriteriaweight2"]);
+    $input_job_criteriaweight2 = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcriteriaweight2"])));
     if (!empty($input_job_criteriaweight2)) {
         if (!is_numeric($input_job_criteriaweight2)) {
             $jobcriteriaweight2_err = "Uzupełnij pole waga kryterium";
@@ -435,7 +435,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobcriteriaweight3
-    $input_job_criteriaweight3 = trim($_POST["jobcriteriaweight3"]);
+    $input_job_criteriaweight3 = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcriteriaweight3"])));
     if (!empty($input_job_criteriaweight3)) {
         if (!is_numeric($input_job_criteriaweight3)) {
             $jobcriteriaweight3_err = "Uzupełnij pole waga kryterium";
@@ -453,7 +453,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobcriteriaweight4
-    $input_job_criteriaweight4 = trim($_POST["jobcriteriaweight4"]);
+    $input_job_criteriaweight4 = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcriteriaweight4"])));
     if (!empty($input_job_criteriaweight4)) {
         if (!is_numeric($input_job_criteriaweight4)) {
             $jobcriteriaweight4_err = "Uzupełnij pole waga kryterium";
@@ -471,7 +471,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //validate jobcriteriaweight5
-    $input_job_criteriaweight5 = trim($_POST["jobcriteriaweight5"]);
+    $input_job_criteriaweight5 = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcriteriaweight5"])));
     if (!empty($input_job_criteriaweight5)) {
         if (!is_numeric($input_job_criteriaweight5)) {
             $jobcriteriaweight5_err = "Uzupełnij pole waga kryterium";
@@ -1004,7 +1004,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-//jeżeli nie było submita to sćiągnij z bazy dane i załaduj pola
+//jeżeli nie było submita to sciągnij z bazy dane i załaduj pola
 else {
     // Check existence of id parameter before processing further
     if (isset($_SESSION['paramid'])) {
@@ -1463,7 +1463,7 @@ else {
 
                     <div class="form-group col-md-3">
                         <label for="jobestimatedvalue">Wartość szacunkowa [brutto mc]</label>
-                        <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobestimatedvalue; ?>">
+                        <input type="text" id='jobestimatedvalue' name='jobestimatedvalue' class="form-control <?php echo (!empty($jobestimatedvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($jobestimatedvalue, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $jobestimatedvalue_err; ?></span>
                     </div>
 
@@ -1504,7 +1504,7 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobcontractorbudget">Budżet zamawiającego</label>
-                        <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcontractorbudget; ?>">
+                        <input type="text" id='jobcontractorbudget' name='jobcontractorbudget' class="form-control <?php echo (!empty($jobcontractorbudget_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($jobcontractorbudget, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $jobcontractorbudget_err; ?></span>
                     </div>
                 </div>
@@ -1513,7 +1513,7 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobdeposit">Wadium - kwota</label>
-                        <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobdeposit; ?>">
+                        <input type="text" id='jobdeposit' name='jobdeposit' class="form-control <?php echo (!empty($jobdeposit_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($jobdeposit, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $jobdeposit_err; ?></span>
                     </div>
                     
@@ -1644,7 +1644,7 @@ else {
 
                     <div class="form-group col-md-2">
                         <label for="jobZNWUvalue">Wartość ZNWU [%]</label>
-                        <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobZNWUvalue; ?>">
+                        <input type="text" id='jobZNWUvalue' name='jobZNWUvalue' class="form-control <?php echo (!empty($jobZNWUvalue_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($jobZNWUvalue, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $jobZNWUvalue_err; ?></span>
                     </div>
                     
@@ -1691,13 +1691,13 @@ else {
 
                     <div class="form-group col-md-3">
                         <label for="jobinternalareas">Tereny wewnętrzne</label>
-                        <input type="text" id='jobinternalareas' name='jobinternalareas' class="form-control <?php echo (!empty($jobinternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobinternalareas; ?>">
+                        <input type="text" id='jobinternalareas' name='jobinternalareas' class="form-control <?php echo (!empty($jobinternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($jobinternalareas, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $jobinternalareas_err; ?></span>
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="jobexternalareas">Tereny zewnętrzne</label>
-                        <input type="text" id='jobexternalareas' name='jobexternalareas' class="form-control <?php echo (!empty($jobexternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobexternalareas; ?>">
+                        <input type="text" id='jobexternalareas' name='jobexternalareas' class="form-control <?php echo (!empty($jobexternalareas_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($jobexternalareas, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $jobexternalareas_err; ?></span>
                     </div>
                 </div>
