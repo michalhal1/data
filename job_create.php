@@ -378,7 +378,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //validate jobcriteriaweight1
     $input_job_criteriaweight1 = str_replace(' ', '', str_replace(',', '.', trim($_POST["jobcriteriaweight1"])));
-    if (!empty($input_job_criteriaweight1)) {
+    if (empty($input_job_criteriaweight1)) {
+        $jobcriteriaweight1_err = "Uzupełnij pole waga kryterium";
+    } elseif (!empty($input_job_criteriaweight1)) {
         if (!is_numeric($input_job_criteriaweight1)) {
             $jobcriteriaweight1_err = "Uzupełnij pole waga kryterium";
         } else {
@@ -484,7 +486,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // TUTAJ MAMY WRZUCANIE TEGO DO BAZY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobvalueVAT_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobestimatedvalue_err) && empty($jobunitsnumber_err) && empty($jobcontractorbudget_err) && empty($jobdeposit_err) && empty($jobcurrentoperator_err) && empty($jobtookoverworkers_err) && empty($jobZNWUvalue_err) && empty($jobinternalareas_err) && empty($jobexternalareas_err) && empty($jobecars_err) && empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
+    if (empty($jobnumber_err) && empty($jobname_err) && empty($jobproduct_err) && empty($jobvalueVAT_err) && empty($jobsalestype_err) && empty($jobdeadline_err) && empty($jobdepartment_err) && empty($jobmerchant_err) && empty($jobSAPnumber_err) && empty($jobstatus_err) && empty($jobestimatedvalue_err) && empty($jobvaluetype_err) && empty($jobunitsnumber_err) && empty($jobcontractorbudget_err) && empty($jobdeposit_err) && empty($jobcurrentoperator_err) && empty($jobtookoverworkers_err) && empty($jobZNWUvalue_err) && empty($jobinternalareas_err) && empty($jobexternalareas_err) && empty($jobecars_err) && empty($jobcriterianame1_err) && empty($jobcriteriaweight1_err) && empty($jobcriteriaweight2_err) && empty($jobcriteriaweight3_err) && empty($jobcriteriaweight4_err) && empty($jobcriteriaweight5_err)) {
     // Prepare an insert statement
 
         $job_tnd_id = trim($_POST["paramid"]);
@@ -1236,8 +1238,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     ?>
                     <div class="form-group col-md-2">
-                        <label for="jobstatus">Status</label>
-                        <select id='jobstatus' name='jobstatus' class="form-control <?php // echo (!empty($jobstatus_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobstatus">Status*</label>
+                        <select id='jobstatus' name='jobstatus' class="form-control <?php echo (!empty($jobstatus_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobstatus; ?>> <?php echo $jobstatus_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1315,8 +1317,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     ?>
                     <div class="form-group col-md-2">
-                        <label for="jobvaluetype">Typ wartości</label>
-                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php // echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobvaluetype">Typ wartości*</label>
+                        <select id='jobvaluetype' name='jobvaluetype' class="form-control <?php echo (!empty($jobvaluetype_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobvaluetype; ?>> <?php echo $jobvaluetype_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>        
                         </select>
@@ -1620,11 +1622,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <!-- tutaj zaczynamy ustawiać pola -->
                     <div class="form-group col-md-3">
-                        <label for="jobcriterianame1">Kryterium wyboru 1 - opis</label>
-                        <select id='jobcriterianame1' name='jobcriterianame1' class="form-control <?php // echo (!empty($jobcriterianame1_err)) ? 'is-invalid' : ''; ?>">>
+                        <label for="jobcriterianame1">Kryterium wyboru 1 - opis*</label>
+                        <select id='jobcriterianame1' name='jobcriterianame1' class="form-control <?php echo(!empty($jobcriterianame1_err)) ? 'is-invalid' : ''; ?>">>
                             <option selected="selected" hidden value=<?php echo $jobcriterianame1; ?>> <?php echo $jobcriterianame1_text; ?> </option>
                             <OPTION> <?php echo $options ?> </option>
                         </select>
+                        <span class="invalid-feedback"><?php echo $jobcriterianame1_err; ?></span>
                     </div>
 
                     <!-- po co to ???????????????????????????????????????? -->
@@ -1649,8 +1652,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </script>
 
                     <div class="form-group col-md-2">
-                        <label for="jobcriteriaweight1">Waga kryterium 1 [%]</label>
-                        <input type="text" id='jobcriteriaweight1' name='jobcriteriaweight1' class="form-control <?php echo (!empty(($jobcriteriaweight1_err) or ($blad))) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight1; ?>">
+                        <label for="jobcriteriaweight1">Waga kryterium 1 [%]*</label>
+                        <input type="text" id='jobcriteriaweight1' name='jobcriteriaweight1' class="form-control <?php echo (!empty($jobcriteriaweight1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobcriteriaweight1; ?>">
                         <span class="invalid-feedback"><?php echo $jobcriteriaweight1_err; ?></span>
                     </div>
 
