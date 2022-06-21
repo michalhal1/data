@@ -134,9 +134,9 @@ echo $_SESSION['logid'];
             </tr>
             ';
 
-                    $zamawiajacy = $row['cnt_name'];
-                    $numerZadania = $row["job_number"];
                     $tnd_number = $row["tnd_number"];
+                    $zamawiajacy = $row['cnt_name'];
+                    $przedmiotZamowienia = $row["job_name"];
                 }
             }
         } else {
@@ -144,7 +144,7 @@ echo $_SESSION['logid'];
         }
     }
 
-    if (($numerZadania > 0)) {
+    if (!empty($przedmiotZamowienia)) {
         echo $output;
     }
 
@@ -181,7 +181,7 @@ echo $_SESSION['logid'];
         </div>
         </br>
         <?php
-        if (($numerZadania <= 0)) {
+        if (empty($przedmiotZamowienia)) {
             echo '<div class="alert alert-danger"><em>Brak zadań przetargowych</em></div>';
         }
         ?>
