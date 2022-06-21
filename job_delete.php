@@ -102,7 +102,7 @@ if (isset($_POST["job_id"]) and !empty($_POST["job_id"]) and ($result_creation_w
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mt-5 mb-3">Usuń przetarg z bazy</h2>
+                    <h2 class="mt-5 mb-3">Usuń zadanie przetargowe z bazy</h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="job_id" value="<?php echo trim($_GET["job_id"]); ?>" />
