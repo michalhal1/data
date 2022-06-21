@@ -101,7 +101,7 @@ $_SESSION['offid'] = $_GET["off_id"];
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="mt-5 mb-3">Usuń przetarg z bazy</h2>
+                        <h2 class="mt-5 mb-3">Usuń ofertę z bazy</h2>
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="alert alert-danger">
                                 <input type="hidden" name="off_id" value="<?php echo trim($_GET["off_id"]); ?>" />
