@@ -37,7 +37,7 @@ if ($stmt1 = mysqli_prepare($link, $sql)) {
     mysqli_stmt_close($stmt1);
 }
 
-$sql1 = "SELECT max(substring(tnd_number, 1 , position('/' in tnd_number)-1)) + 1 as number_lp ,tnd_creation_worker FROM tenders
+$sql1 = "SELECT     max(cast((substring(tnd_number, 1 , position('/' in tnd_number)-1)) as signed) + 1) as number_lp ,tnd_creation_worker FROM tenders
                  WHERE tnd_creation_worker = ? and year(tnd_record_creation_date) = year(now())
                     group by tnd_creation_worker ";
 if ($stmt2 = mysqli_prepare($link, $sql1)) {
