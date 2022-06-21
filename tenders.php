@@ -72,6 +72,10 @@ echo $_SESSION['logid'];
       <div class="horizontalgap" style="width:2%"></div>
 
       <a href="lists.php" class="btn btn-primary pull-right"><i class="fa fa-list"></i> Listy rozwijane</a>
+      <div class="horizontalgap" style="width:2%"></div>
+
+      <a href="excel.php" class="btn btn-info"><i class="fa fa-file-excel-o"></i> Export do pliku</a>
+
 
     </div>
     <br />
@@ -111,3 +115,4 @@ echo $_SESSION['logid'];
   });
   
 </script>
+
