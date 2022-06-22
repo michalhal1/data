@@ -277,11 +277,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-           
+
+    
+
+    $sql_current = 'SELECT off_output as output_off FROM offerors
+    where off_id=?';
+    
+    if ($stmt_curr = mysqli_prepare($link, $sql_current)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt_curr, "i", $_SESSION['paramid']);
+        if (mysqli_stmt_execute($stmt_curr)) {
+            $result_curr = mysqli_stmt_get_result($stmt_curr);
+            $row_curr = mysqli_fetch_array($result_curr);
+            //
+            if (!$row_curr == NULL) {
+                $winn_curr = $row_curr[0];
+            } else {
+                $winn_curr = 0;
+            }
+        }
+    }
+
+
+// sprawdzamy trzy warunki:  czy teraz uzytkownik chce zmienić na wygraną (input_tenderoutput), czy w danym jobie istnieje już zwycięzca (winn_db) i czy czasem tym zwyciezcą nie jest obecna oferta (winn_curr) - jeżeli current winnerem jest bieząca oferta to przepuszczamy 
     $input_tenderoutput = trim($_POST["tenderoutput"]);
     if (empty($input_tenderoutput)) {
         $off_tenderoutput_err = "Wybierz wynik przetargu";
-    } elseif ($input_tenderoutput==1 and $winn_db==1 ) {
+    } elseif ($input_tenderoutput==1 and $winn_db==1 and $winn_curr<>1) {
         $off_tenderoutput_err = "Zwycięzca już istnieje";
     } else {
         $off_tenderoutput = $input_tenderoutput;
