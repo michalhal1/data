@@ -129,7 +129,7 @@ echo $_SESSION['logid'];
             <a href="job_update.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Zaktualizuj rekord" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
             <a href="job_delete.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Usuń rekord" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
             <a href="offerors.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Dodaj oferenta" data-toggle="tooltip"><span class="fa fa-handshake-o"></span></a>
-            <a href="job_X.php?tnd_id=' . $row['job_id'] . '" class="mr-1" title="Kopiuj rekord" data-toggle="tooltip"><span class="fa fa-clone"></span></a>
+            <a href="job_copy.php?job_id=' . $row['job_id'] . '" class="mr-1" title="Kopiuj rekord" data-toggle="tooltip"><span class="fa fa-clone"></span></a>
             </td>
             </tr>
             ';
