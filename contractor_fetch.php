@@ -94,7 +94,7 @@
         while ($row = mysqli_fetch_array($result)) {
             $output .= '
    <tr>
-    <td class="a" nowrap>' . $row["cnt_name"] . '</td>
+    <td>' . $row["cnt_name"] . '</td>
     <td nowrap>' . $row["cnt_NIP"] . '</td>
     <td nowrap>' . $row["adress"] . '</td>
     <td nowrap>' . $row["cnt_record_creation_work"] . '</td>
