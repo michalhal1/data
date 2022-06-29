@@ -23,7 +23,7 @@
 <br>
 
        
-<h2 align="center">Listy rozwijane
+<h2 align="center">Panel administracyjny
 <a href="tenders.php" class="btn btn-secondary ml-2">Powrót</a></h2><br />
 <div class="form-row">
     <div class="form-group col-md-5">
@@ -37,6 +37,10 @@
 
         <a href="products.php" class="btn btn-primary btn-square-md"><i class="fa fa-plus"></i> Produkty</a>
 
+       
     </div>
 </div>
+
+<a href="errors.php" class="btn btn-danger btn-square-md"><i class="fa fa-plus"></i> Błędy</a>
+
 

@@ -71,10 +71,11 @@ echo $_SESSION['logid'];
       <a href="tender_create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Nowy przetarg</a>
       <div class="horizontalgap" style="width:2%"></div>
 
-      <a href="lists.php" class="btn btn-primary pull-right"><i class="fa fa-list"></i> Listy rozwijane</a>
+      <a href="lists.php" class="btn btn-primary pull-right"><i class="fa fa-list"></i> Panel </a>
       <div class="horizontalgap" style="width:2%"></div>
 
       <a href="excel.php" class="btn btn-info"><i class="fa fa-file-excel-o"></i> Export do pliku</a>
+      <div class="horizontalgap" style="width:2%"></div>
 
 
     </div>
