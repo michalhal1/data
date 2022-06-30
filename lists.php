@@ -1,3 +1,15 @@
+<?php session_start();
+
+
+
+
+if (isset($_SESSION["logid"])) {
+    $logid = $_SESSION['logid'];
+} else {
+    header("location:login.php");
+};
+ ?>
+ń
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Baza przetargowa</title>

@@ -1,5 +1,15 @@
-<?php
+
 // Connection 
+<?php
+
+session_start();
+
+//zmienna sesyjna , po kliknięciu w stronę zapamiętuje parametr
+if (isset($_SESSION["logid"])) {
+   $logid = $_SESSION['logid'];
+ } else {
+   header("location:login.php");
+};
 
 require_once "config.php";
 
