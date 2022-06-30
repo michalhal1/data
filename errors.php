@@ -143,15 +143,18 @@ tr:nth-child(even) {
    <table class="table table bordered">
     <tr>
     <th>Numer przetargu</span></th>
+  
+    <th>Numer zadania </th>
     <th>Osoba odpowiedzialna</th>
     <th>BŁĘDNE STATUSY ZADANIA LUB WYNIK</th>
     <th>DATA OGŁOSZENIA PO DACIE ZGŁOSZENIA</th>
     <th>ZADANIE BEZ OFERT</th>
     <th>ZADANIA W TOKU Z DATĄ ZŁOŻENIA</th>
     <th>ZADANIA W TOKU Z DATĄ ROZSTRZYGNIĘCIA</th>
+    <th>BRAK DATY ROZSTRZYGNIĘCIA</th>
     <th>BRAK SZANSY SAP LUB DATY STARTU KONTR.</th>
     <th>BRAK ZWYCIĘZCY</th>
-    <th>BRAK OFERT LUB 2 OFERTY Z GI</th>
+    <th>BRAK OFERT LUB >2 OFERTY Z GI</th>
     <th>BRAK LICZBY JEDNOSTEK</th>
     <th>PODWÓJNY PRZETARG</th>
     
@@ -161,12 +164,15 @@ tr:nth-child(even) {
             $output .= '
    <tr>
     <td class="a" nowrap>' . $row["tend_number"] . '</td>
+    <td nowrap><em>' . $row["jb_number"] . '</em></td>
     <td nowrap>' . $row["tend_creation_worker"] . '</td>
+    
     <td nowrap>' . $row["błąd_statusów"] . '</td>
     <td nowrap>' . $row["bład_data_złożenia_data_ogłoszenia"] . '</td>
     <td nowrap>' . $row["brak_ofert_zadanie_puste"] . '</td>
     <td nowrap>' . $row["data_złożenia_minęła_zadanie_w_toku"] . '</td>
     <td nowrap>' . $row["data_rozstrz_zad_w_toku"] . '</td>
+    <td nowrap>' . $row["brak_daty_rozsztrz_zad_zl"] . '</td>
     <td nowrap>' . $row["brak_szansySAP_lub_startu_kontraktu"] . '</td>
     <td nowrap>' . $row["brak_zwycięzcy"] . '</td>
     <td nowrap>' . $row["liczba_ofert_GI_inna_niz_1"] . '</td>
