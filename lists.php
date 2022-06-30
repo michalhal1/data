@@ -9,7 +9,7 @@ if (isset($_SESSION["logid"])) {
     header("location:login.php");
 };
  ?>
-ń
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Baza przetargowa</title>
