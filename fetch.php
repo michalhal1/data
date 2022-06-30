@@ -61,7 +61,7 @@
         }
         echo $output;
     } else {
-        echo 'Data Not Found';
+        echo 'Nie wprowadzono żadnych przetargów';
     }
 
     ?>
