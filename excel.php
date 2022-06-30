@@ -1,5 +1,5 @@
 
-// Connection 
+
 <?php
 
 session_start();
