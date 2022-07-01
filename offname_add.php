@@ -8,7 +8,7 @@ if (isset($_SESSION["logid"])) {
   } else {
     header("location:login.php");
  };
- 
+
 
 
 
@@ -33,14 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate cnt_NIP
     $input_offname_Impelgroup = trim($_POST["Impelgroup"]);
-    if (!isset($input_offname_Impelgroup)) {
-        $offname_Impelgroup_err = "Zadeklaruj wartość";
-        } else {
+    // if (!isset($input_offname_Impelgroup)) {
+    //     $offname_Impelgroup_err = "Zadeklaruj wartość";
+    //     } else {
         $offname_Impelgroup = $input_offname_Impelgroup;
-    }
+   // }
 
     $offname_record_creation_work = $logid ;
-
+   /// $offname_Impelgroup = $input_offname_Impelgroup;
 
     // '%d-%m-%y')inputZip
 
@@ -49,29 +49,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare an insert statement
 
 
-        $sql = "INSERT INTO offerors_names (offnames_name, offnames_active, offnames_isimpel, offnames_record_creation_worker) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO offerors_names (offnames_name, offnames_active, offnames_isimpel, offnames_record_creation_worker) VALUES (?, ?, coalesce(?,0),  ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_offname_name, $param_offname_Impelgroup, $param_offnames_active, $param_offnames_record_creation_worker);
+            mysqli_stmt_bind_param($stmt, "siis", $param_offname_name, $param_offnames_active,$param_offname_Impelgroup, $param_offnames_record_creation_worker);
 
             // Set parameters
             $param_offname_name = $input_offname_name;
-            $param_offname_Impelgroup = $input_offname_Impelgroup;
             $param_offnames_active = 1;
+            $param_offname_Impelgroup = $input_offname_Impelgroup;
+           
             $param_offnames_record_creation_worker = $offname_record_creation_work;
-     
+
             //date_format($date,"Y/m/d H:i:s");
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Records created successfully. Redirect to landing page
                 //  echo "Dodano nowego zamawiającego";
-                header("location: offname_ok.php");
+               header("location: offname_ok.php");
 
-                // echo trim($_POST["inputname"]); 
-                // echo $stmt;
+              
+               //  echo $stmt;
                 exit();
             } else {
                 //  echo preg_match("/^[0-9]{2}-[0-9]{3}$/", "46-080");
@@ -136,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
     </div>
-              
+
 
 
 
