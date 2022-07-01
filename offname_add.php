@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate cnt_NIP
     $input_offname_Impelgroup = trim($_POST["Impelgroup"]);
-    if (empty($input_offname_Impelgroup)) {
+    if (!isset($input_offname_Impelgroup)) {
         $offname_Impelgroup_err = "Zadeklaruj wartość";
         } else {
         $offname_Impelgroup = $input_offname_Impelgroup;
