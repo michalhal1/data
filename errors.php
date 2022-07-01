@@ -165,7 +165,7 @@ tr:nth-child(even) {
     <th>ZADANIE BEZ OFERT</th>
     <th>ZADANIA W TOKU Z DATĄ ZŁOŻENIA</th>
     <th>ZADANIA W TOKU Z DATĄ ROZSTRZYGNIĘCIA</th>
-    <th>BRAK DATY ROZSTRZYGNIĘCIA ZAD. W TOKU</th>
+    <th>BRAK DATY ROZSTRZYGNIĘCIA ZAD. ZŁOŻ.</th>
     <th>BRAK SZANSY SAP LUB DATY STARTU KONTR.</th>
     <th>BRAK ZWYCIĘZCY</th>
     <th>BRAK OFERT LUB >2 OFERTY Z GI</th>
