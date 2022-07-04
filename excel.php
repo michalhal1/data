@@ -23,10 +23,10 @@ $flag = false;
 while ($row = mysqli_fetch_assoc($user_query)) {
     if (!$flag) {
         // display field/column names as first row
-        echo implode(",", array_keys($row)) . "\r\n";
+        echo implode(";", array_keys($row)) . "\r\n";
         $flag = true;
     }
-    echo implode(",", array_values($row)) . "\r\n";
+    echo implode(";", array_values($row)) . "\r\n";
     
 
 }
