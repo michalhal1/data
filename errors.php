@@ -148,7 +148,7 @@ tr:nth-child(even) {
     $output = '';
 
    
-        $query = "SELECT * from errors_view order by 2";
+        $query = "SELECT * from errors_view";
     
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) > 0) {
