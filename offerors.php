@@ -110,7 +110,7 @@ echo $_SESSION['logid'];
             $output .= '
             <tr>
             <td width nowrap>' . $row["offnames_name"] . '</td>
-            <td nowrap>' . $row["off_contract_value"] . '</td>   
+            <td nowrap>' . number_format($row["off_contract_value"], 2, ',', ' ') . '</td>   
             <td nowrap>' . $row["jobval_name"] . '</td>
             <td nowrap>' . $row["off_tnd_name"] . '</td>
             <td width=300>
