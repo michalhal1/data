@@ -1414,6 +1414,7 @@ else {
                         <label for="jobresignationreason">Powód rezygnacji</label>
                         <select id='jobresignationreason' name='jobresignationreason' class="form-control <?php // echo (!empty($jobresignationreason_err)) ? 'is-invalid' : ''; ?>">
                             <option selected="selected" hidden value=<?php echo $jobresignationreason; ?>> <?php echo $jobresignationreason; ?> </option>
+                            <option value=""> </option>
                             <option value="Ekonomiczne"> ekonomiczne </option>
                             <option value="Formalne"> formalne </option>    
                         </select>
