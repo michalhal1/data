@@ -204,6 +204,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     
+<?php
+// Check existence of id parameter before processing further
+if (isset($_SESSION['paramid']) && !empty(trim($_SESSION['paramid']))) {
+    // Get URL parameter
+    $id =  $_SESSION['paramid'];
+    // Prepare a select statement
+    $sql = "SELECT * FROM offerors_names t WHERE offnames_id = ?";
+    if ($stmt1 = mysqli_prepare($link, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt1, "s", $param_id);
+
+        // Set parameters
+        $param_id = $id;
+
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt1)) {
+            $result1 = mysqli_stmt_get_result($stmt1);
+
+            if (mysqli_num_rows($result1) == 1) {
+                /* Fetch result row as an associative array. Since the result set
+                    contains only one row, we don't need to use while loop */
+                $row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+                //$tnd_number = $tnd_NIP = $tnd_contractor = $tnd_type = $tnd_segment = $tnd_announce_date = $tnd_submit_date =  "";
+                // Retrieve individual field value
+                $tnd_modification_date = $row1["offnames_record_modification_date"];
+                $tnd_creation_date = $row1["offnames_record_creation_date"];
+                $tnd_modification_emp = $row1["offnames_record_modification_worker"];
+                $tnd_creation_emp = $row1["offnames_record_creation_worker"];
+            } else {
+
+                exit();
+            }
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+
+    // Close statement
+    mysqli_stmt_close($stmt1);
+
+    // Close connection
+
+}
+?>
+
+<br>
+<style>
+    p {
+        text-indent: 130px;
+    }
+
+    h1 {
+        font-size: 10px;
+    }
+</style>
+
+<h1>
+    <p>
+        <?php echo "utworzono: " . $tnd_creation_date . " przez " . $tnd_creation_emp ?> <br>
+    <p>
+        <?php echo "ostatnio zmodyfikowano: " . $tnd_modification_date . " przez " . $tnd_modification_emp; ?>
+
+
+        <?php
+        mysqli_close($link);
+
+
+
+        ?>
 
 <?php
 
