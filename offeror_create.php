@@ -95,13 +95,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // VALIDATE lead off
-    $input_contract_value = trim($_POST["off_value"]);
-    if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.', $input_contract_value)))) 
-    or (str_replace(' ', '', str_replace(',', '.', $input_contract_value)) == 0 )) {
-        $off_contract_value_err = "Wpisz wartość oferty";
-    } else {
-        $off_contract_value = str_replace(' ', '', str_replace(',', '.', $input_contract_value));
-    }
+     $input_contract_value = trim($_POST["off_value"]);
+    // if (empty($input_contract_value) or (!is_numeric(str_replace(' ', '', str_replace(',', '.', $input_contract_value)))) 
+    // or (str_replace(' ', '', str_replace(',', '.', $input_contract_value)) == 0 )) {
+    //     $off_contract_value_err = "Wpisz wartość oferty";
+    // } else {
+         $off_contract_value = str_replace(' ', '', str_replace(',', '.', $input_contract_value));
+    // }
 
 
 
@@ -538,7 +538,7 @@ where off_job_id=?';
 
                     <div class="form-group col-md-2">
                         <label for="off_value">Kwota oferty</label>
-                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control <?php echo (!empty($off_contract_value_err)) ? 'is-invalid' : ''; ?>" value="<?php echo number_format($off_contract_value, 2, ',', ' '); ?>">
+                        <input type="float" lang="en-150" id="off_value" name="off_value" class="form-control" value="<?php echo number_format($off_contract_value, 2, ',', ' '); ?>">
                         <span class="invalid-feedback"><?php echo $off_contract_value_err; ?></span>
                     </div>
 
