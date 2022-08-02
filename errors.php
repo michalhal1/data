@@ -177,7 +177,7 @@ tr:nth-child(even) {
         while ($row = mysqli_fetch_array($result)) {
             $output .= '
    <tr>
-    <td class="a" nowrap>' . '<a href= "tasks.php/tnd_id= '.  $row["tend_id"]  .'"</a>' . $row["tend_number"] . '</td>
+    <td class="a" nowrap>' . '<a href= "tasks.php?tnd_id= '.  $row["tend_id"]  .'"</a>' . $row["tend_number"] . '</td>
     <td nowrap><em>' . $row["jb_number"] . '</em></td>
     <td nowrap>' . $row["tend_creation_worker"] . '</td>
     <td nowrap>' . $row["błąd_statusów"] . '</td>
