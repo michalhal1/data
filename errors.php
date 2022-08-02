@@ -171,16 +171,15 @@ tr:nth-child(even) {
     <th>BRAK OFERT LUB >2 OFERTY Z GI</th>
     <th>BRAK LICZBY JEDNOSTEK</th>
     <th>PODWÓJNY PRZETARG</th>
-    
+    <th>BRAK CEN</th>
     </tr>
  ';
         while ($row = mysqli_fetch_array($result)) {
             $output .= '
    <tr>
-    <td class="a" nowrap>' . $row["tend_number"] . '</td>
+    <td class="a" nowrap>' . '<a href= "tasks.php/tnd_id= '.  $row["tend_id"]  .'"</a>' . $row["tend_number"] . '</td>
     <td nowrap><em>' . $row["jb_number"] . '</em></td>
     <td nowrap>' . $row["tend_creation_worker"] . '</td>
-    
     <td nowrap>' . $row["błąd_statusów"] . '</td>
     <td nowrap>' . $row["bład_data_złożenia_data_ogłoszenia"] . '</td>
     <td nowrap>' . $row["brak_ofert_zadanie_puste"] . '</td>
@@ -192,7 +191,7 @@ tr:nth-child(even) {
     <td nowrap>' . $row["liczba_ofert_GI_inna_niz_1"] . '</td>
     <td nowrap>' . $row["stawka_brak_jednostek"] . '</td>
     <td nowrap>' . $row["podwojony_przetarg"] . '</td>
-
+    <td nowrap>' . $row["brak_cen"] . '</td>
 
     <td width=100>
    
